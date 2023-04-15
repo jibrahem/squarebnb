@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {
-    "bcryptjs": "^2.4.3"
-  },
   "devDependencies": {},
   "scripts": {
       "install": "npm --prefix backend install backend",
@@ -15,15 +12,7 @@
       "start": "npm start --prefix backend",
       "build": "npm run --prefix backend build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jibrahem/API-project.git"
-  },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jibrahem/API-project/issues"
-  },
-  "homepage": "https://github.com/jibrahem/API-project#readme"
+  "license": "ISC"
 }
