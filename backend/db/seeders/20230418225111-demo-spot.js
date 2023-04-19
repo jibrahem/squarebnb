@@ -18,7 +18,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert(options, [
+    return queryInterface.bulkInsert(options, [
       {
         ownerId: 1,
         address: '123 Sesame Street',
@@ -53,6 +53,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete(options);
+    return queryInterface.bulkDelete(options);
   }
 };
