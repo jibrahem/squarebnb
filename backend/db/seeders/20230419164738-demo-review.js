@@ -1,10 +1,11 @@
 'use strict';
 
+const { query } = require('express');
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
-options.tableName = 'SpotImages';
+options.tableName = 'Reviews';
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -21,30 +22,35 @@ module.exports = {
    await queryInterface.bulkInsert(options, [
     {
       spotId: 1,
-      url: 'hi.com',
-      preview: true
+      userId: 1,
+      review: 'Was a great place to stay',
+      stars: 5
     },
     {
       spotId: 2,
-      url: 'bye.com',
-      preview: false
-     },
-     {
-       spotId: 3,
-       url: 'bye.com',
-       preview: false
-     },
+      userId: 2,
+      review: 'Was an okay place',
+      stars: 3
+    },
      {
        spotId: 1,
-       url: 'bye.com',
-       preview: true
+       userId: 2,
+       review: 'Nice service',
+       stars: 4
      },
      {
        spotId: 2,
-       url: 'bye.com',
-       preview: true
-     }
-   ], {});
+       userId: 3,
+       review: 'Was gross',
+       stars: 1
+     },
+     {
+       spotId: 3,
+       userId: 3,
+       review: 'Amazing place',
+       stars: 5
+     },
+   ]);
   },
 
   async down (queryInterface, Sequelize) {

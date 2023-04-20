@@ -42,6 +42,30 @@ module.exports = {
         name: "App Academy",
         description: "Place where web developers are created",
         price: 123
+      },
+      {
+        ownerId: 3,
+        address: "2022 Lara St",
+        city: "Sacramento",
+        state: "California",
+        country: "United States of America",
+        lat: 89.348,
+        lng: -124.234,
+        name: "Google",
+        description: "Place where web developers thrive",
+        price: 12356
+      },
+      {
+        ownerId: 3,
+        address: "1212 Hippo Lane",
+        city: "Brooklyn",
+        state: "New York",
+        country: "United States of America",
+        lat: 90.23458,
+        lng: -57.23327,
+        name: "Microsoft",
+        description: "Place where web developers are eaten alive",
+        price: 435896
       }
     ], {});
     },
