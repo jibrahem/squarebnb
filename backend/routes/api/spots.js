@@ -261,23 +261,24 @@ router.post('/:spotId/reviews', requireAuth, async (req,res)=>{
     if(!spot){
         return res.status(404).json({message: "Spot couldn't be found"});
     }
-    const createdReview = await Review.create({
-        spotId: spot.id,
-        userId: user.id,
-        review,
-        stars
-    });
     const getReview = await Review.findAll({
         where:{
             spotId: spot.id,
             userId: user.id
         }
     });
+    console.log(getReview);
     if(getReview.length){
         return res.status(500).json({
             message: "User already has a review for this spot"
         });
     }
+    const createdReview = await Review.create({
+        spotId: spot.id,
+        userId: user.id,
+        review,
+        stars
+    });
 
     const resReview = createdReview.toJSON();
     return res.json(createdReview);

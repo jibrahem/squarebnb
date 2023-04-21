@@ -72,6 +72,18 @@ router.put('/:reviewId', requireAuth, async(req, res) =>{
         return res.json(editedReview);
 
 });
-//have to own the review.dataValues.id key into within the users
-// keying the id datavalues and it exists
+
+router.delete('/:reviewId', async (req, res) =>{
+    const review = await Review.findByPk(req.params.reviewId);
+    if(!review){
+       return res.status(404).json({
+           message: "Review couldn't be found"
+        });
+    }
+    await review.destroy();
+    return res.json({
+        message: "Successfully deleted"
+    });
+});
+
 module.exports = router;
