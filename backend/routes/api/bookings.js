@@ -13,11 +13,11 @@ router.get('/current', requireAuth, async (req, res) =>{
             {model: Spot}
         ]
     });
-    if(!Bookings.length){
-        res.status(404).json({
-            message: "No bookings created for User"
-        });
-    }
+    // if(!Bookings.length){
+    //     res.status(404).json({
+    //         message: "No bookings created for User"
+    //     });
+    // }
     return res.json({Bookings});
 });
 
