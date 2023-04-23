@@ -13,12 +13,18 @@ router.get('/current', requireAuth, async (req, res) =>{
             {model: Spot}
         ]
     });
-    res.json({Bookings});
+    if(!Bookings.length){
+        res.status(404).json({
+            message: "No bookings created for User"
+        });
+    }
+    return res.json({Bookings});
 });
 
 router.put('/:bookingId', requireAuth, async (req, res) => {
+    const { user } = req;
     const booking = await Booking.findByPk(req.params.bookingId);
-    const {startDate, endDate} = req.body;
+    const {id, spotId, startDate, endDate, createdAt, updatedAt} = req.body;
     const start = new Date(startDate);
     const end = new Date(endDate);
 
@@ -27,14 +33,24 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
             message: "Booking couldn't be found"
         });
     }
-    if(end < start){
-        return res.status(400).json({
-            endDate: "endDate cannot come before startDate"
+
+    if(booking.userId !== user.id){
+        return res.status(403).json({
+            message: "Forbidden"
         });
     }
+    if(end < start){
+        return res.status(400).json({
+            message: "Bad Request",
+            errors:{
+            endDate: "endDate cannot come before startDate"
+            }
+        });
+    }
+
     const now = new Date();
     if(startDate < now || endDate < now){
-        res.status(403).json({
+        return res.status(403).json({
             message: "Past bookings can't be modified"
         });
     }
@@ -44,17 +60,36 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     if(end){
         booking.endDate = end;
     }
-    return res.json(booking);
+
+    const safeId = booking.dataValues.id;
+    const spot = booking.dataValues.spotId;
+    const create = booking.dataValues.createdAt;
+    const update = booking.dataValues.updatedAt;
+
+    const safeObj = {
+        id: safeId,
+        spotId: spot,
+        userId: user.id,
+        startDate: booking.startDate.toISOString().split('T0')[0],
+        endDate: booking.endDate.toISOString().split('T0')[0],
+        createdAt: create,
+        updatedAt: update
+    };
+    await booking.save();
+    return res.json(safeObj);
 });
 
 router.delete('/:bookingId', requireAuth, async (req, res)=>{
     const {user} = req;
-    const booking = await Booking.findByPk(req.params.bookingId, {
-        where: {userId : user.id}
-});
+    const booking = await Booking.findByPk(req.params.bookingId);
     if(!booking){
         return res.status(404).json({
             message: "Booking couldn't be found"
+        });
+    }
+    if(booking.userId !== user.id){
+        return res.status(403).json({
+            message: "Forbidden"
         });
     }
     const now = new Date();
