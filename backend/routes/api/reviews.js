@@ -34,6 +34,9 @@ router.get('/current', requireAuth, async (req, res)=>{
                     }
                 });
                 delete spot.SpotImages;
+        spot.price = Number(spot.price);
+        spot.lng = Number(spot.lng);
+        spot.lat = Number(spot.lat);
             });
 
    return res.json({Reviews: reviewList});

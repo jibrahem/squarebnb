@@ -197,6 +197,9 @@ router.get('/:spotId', async (req, res) => {
     });
     spot.dataValues.avgStarRating = sum / spot.dataValues.Reviews.length;
     delete spot.dataValues.Reviews;
+    spot.price = Number(spot.price);
+    spot.lng = Number(spot.lng);
+    spot.lat = Number(spot.lat);
 
    return res.json(spot);
 });
@@ -262,6 +265,10 @@ const {ownerId, address, city, state, country, lat, lng, name, description, pric
         description: description,
         price: price
     });
+    spot.price = Number(spot.price);
+    spot.lng = Number(spot.lng);
+    spot.lat = Number(spot.lat);
+
     return res.status(201).json(spot);
 });
 

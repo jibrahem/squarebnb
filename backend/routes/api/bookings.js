@@ -39,6 +39,9 @@ router.get('/current', requireAuth, async (req, res) =>{
                 spot.previewImage = 'No preview image found';
             }
         });
+        spot.price = Number(spot.price);
+        spot.lng = Number(spot.lng);
+        spot.lat = Number(spot.lat);
         delete spot.SpotImages;
         delete spot.description;
     });
@@ -73,7 +76,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     }
 
     const now = new Date();
-    if(startDate < now || endDate < now){
+    if(startDate.getTime() < now.getTime() || endDate.getTime() < now.getTime()){
         return res.status(403).json({
             message: "Past bookings can't be modified"
         });
@@ -140,7 +143,7 @@ router.delete('/:bookingId', requireAuth, async (req, res)=>{
             message: "Forbidden"
         });
     }
-    
+
     const now = new Date();
     if(booking.startDate < now){
        return res.status(403).json({
