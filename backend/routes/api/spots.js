@@ -548,7 +548,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res)=>{
 
         return res.json(safeObj);
     }
-    return res.json({message: 'You are the owner of this spot'});
+    return res.status(403).json({message: 'Forbidden'});
 });
 
 
