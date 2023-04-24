@@ -8,14 +8,16 @@ const { requireAuth } = require('../../utils/auth');
 
 router.delete('/:imageId', requireAuth, async (req, res) =>{
     const { user } = req;
-    const reviewImage = await ReviewImage.findByPk(req.params.imageId);
+    const reviewImage = await ReviewImage.findByPk(req.params.imageId, {
+        include: {model: Review}
+    });
     if(!reviewImage){
         return res.status(404).json({
             message: "Review Image couldn't be found"
         });
     }
 
-    if(reviewImage.userId !== user.id){
+    if(reviewImage.Review.userId !== user.id){
         return res.status(403).json({
             message: "Forbidden"
         });
