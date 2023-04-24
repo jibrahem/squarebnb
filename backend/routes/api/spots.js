@@ -240,6 +240,7 @@ const validateSpot = [
         .exists({ checkFalsy: true })
         .notEmpty()
         .isLength({ max: 49 })
+        .isLength({ min: 1})
         .withMessage("Name must be less than 50 characters"),
     check('description')
         .exists({ checkFalsy: true })
@@ -364,6 +365,11 @@ router.delete('/:spotId', requireAuth, async (req,res) =>{
 
 router.get('/:spotId/reviews', async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
+     if(!spot){
+        return res.status(404).json({
+            message: "Spot couldn't be found"
+        });
+    }
     const Reviews = await Review.findAll({
         where:{spotId : spot.id},
         include: [
@@ -373,27 +379,11 @@ router.get('/:spotId/reviews', async (req, res) => {
                     attributes:['id', 'url'] }
                 ],
             });
-            if(!Reviews.length){
-                return res.status(404).json({
-                    message: "Spot couldn't be found"
-                });
-            }
     return res.json({Reviews});
 });
 
-const validateReview = [
-    check('review')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("Review text is required"),
-    check('stars')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("Stars must be an integer from 1 to 5"),
-    handleValidationErrors
-];
 
-router.post('/:spotId/reviews', validateReview, requireAuth, async (req,res)=>{
+router.post('/:spotId/reviews', requireAuth, async (req,res)=>{
     const {review, stars} = req.body;
     const { user } = req;
     const spot = await Spot.findByPk(req.params.spotId);
@@ -410,6 +400,20 @@ router.post('/:spotId/reviews', validateReview, requireAuth, async (req,res)=>{
     if(getReview.length){
         return res.status(500).json({
             message: "User already has a review for this spot"
+        });
+    }
+
+    const errors = {};
+    if(!review){
+        errors.review = "Review text is required";
+    }
+    if (typeof stars !== Number && stars < 1 || typeof stars !== Number && stars > 5){
+        errors.stars = "Stars must be an integer from 1 to 5";
+    }
+    if(Object.values(errors).length !== 0){
+        return res.status(400).json({
+            message: "Bad Request",
+            errors: errors
         });
     }
     const createdReview = await Review.create({
@@ -435,17 +439,39 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
             where: {spotId: spot.id},
             attributes: ['spotId', 'startDate', 'endDate']
         });
-        return res.json({Bookings});
+
+        let arr = [];
+        Bookings.forEach(booking => {
+            arr.push(booking.toJSON());
+        });
+
+        arr.forEach(booking => {
+            booking.startDate = booking.startDate.toISOString().split('T0')[0],
+            booking.endDate = booking.endDate.toISOString().split('T0')[0]
+        });
+        return res.json({Bookings: arr});
     }
 
     if(spot.ownerId === user.id){
         const Bookings = await Booking.findAll({
             include:[
-                {model: User}
+                {model: User,
+                attributes: ['id', 'firstName', 'lastName']}
             ],
             where: { spotId: spot.id }
         });
-       return res.json({Bookings});
+
+        let arr = [];
+        Bookings.forEach(booking => {
+            arr.push(booking.toJSON());
+        });
+
+        arr.forEach(booking => {
+            booking.startDate = booking.startDate.toISOString().split('T0')[0],
+                booking.endDate = booking.endDate.toISOString().split('T0')[0]
+        });
+
+       return res.json({Bookings: arr});
     }
 });
 

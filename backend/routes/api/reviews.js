@@ -76,19 +76,8 @@ router.post('/:reviewId/images', requireAuth, async (req, res) =>{
     return res.json(correct);
 });
 
-const validateReview = [
-    check('review')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("Review text is required"),
-    check('stars')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage("Stars must be an integer from 1 to 5"),
-    handleValidationErrors
-];
 
-router.put('/:reviewId', validateReview, requireAuth, async(req, res) =>{
+router.put('/:reviewId', requireAuth, async(req, res) =>{
     const { user } = req;
     const {review, stars} = req.body;
     const editedReview = await Review.findByPk(req.params.reviewId);
@@ -100,6 +89,19 @@ router.put('/:reviewId', validateReview, requireAuth, async(req, res) =>{
     if(editedReview.userId !== user.id){
         res.status(403).json({
             message: "Forbidden"
+        });
+    }
+    const errors = {};
+    if (!review) {
+        errors.review = "Review text is required";
+    }
+    if (typeof stars !== Number && stars < 1 || typeof stars !== Number && stars > 5) {
+        errors.stars = "Stars must be an integer from 1 to 5";
+    }
+    if (Object.values(errors).length !== 0) {
+        return res.status(400).json({
+            message: "Bad Request",
+            errors: errors
         });
     }
         if(review){
