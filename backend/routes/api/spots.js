@@ -100,9 +100,9 @@ router.get('/current',requireAuth , async (req, res) => {
             spot.previewImage = 'No preview image found';
         }
         delete spot.SpotImages;
-        spot.price = Number(spot.price);
-        spot.lat = Number(spot.lat);
-        spot.lng = Number(spot.lng);
+        spot.price = parseInt(spot.price);
+        spot.lat = parseInt(spot.lat);
+        spot.lng = parseInt(spot.lng);
 
     });
 
