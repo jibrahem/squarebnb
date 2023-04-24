@@ -5,6 +5,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { Spot, User, SpotImage, Booking, Review, ReviewImage } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
+
 router.delete('/:imageId', requireAuth, async (req, res) =>{
     const { user } = req;
     const reviewImage = await ReviewImage.findByPk(req.params.imageId);
@@ -13,7 +14,7 @@ router.delete('/:imageId', requireAuth, async (req, res) =>{
             message: "Review Image couldn't be found"
         });
     }
-    
+
     if(reviewImage.userId !== user.id){
         return res.status(403).json({
             message: "Forbidden"
