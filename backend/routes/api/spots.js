@@ -56,6 +56,9 @@ router.get('/', async (req, res) => {
             spot.previewImage = 'No preview image found';
         }
         delete spot.SpotImages;
+        spot.price = Number(spot.price);
+        spot.lng = Number(spot.lng);
+        spot.lat = Number(spot.lat);
     });
 
     return res.json({Spots});
@@ -91,6 +94,7 @@ router.get('/current',requireAuth , async (req, res) => {
         delete spot.Reviews;
     });
     Spots.forEach(spot => {
+
         spot.SpotImages.forEach(image => {
             if (image.preview === true) {
                 spot.previewImage = image.url;
@@ -100,9 +104,6 @@ router.get('/current',requireAuth , async (req, res) => {
             spot.previewImage = 'No preview image found';
         }
         delete spot.SpotImages;
-        spot.price = parseInt(spot.price);
-        spot.lat = parseInt(spot.lat);
-        spot.lng = parseInt(spot.lng);
 
     });
 
