@@ -140,6 +140,7 @@ router.delete('/:bookingId', requireAuth, async (req, res)=>{
             message: "Forbidden"
         });
     }
+    
     const now = new Date();
     if(booking.startDate < now){
        return res.status(403).json({
