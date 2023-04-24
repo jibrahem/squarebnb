@@ -5,38 +5,6 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { Spot, User, SpotImage, Booking, Review, ReviewImage } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
-// const validateSpot = [
-//     check('address')
-//         .exists({ checkFalsy: true })
-//         .withMessage("Street address is required"),
-//     check('city')
-//         .exists({ checkFalsy: true })
-//         .isLength({ min: 2 })
-//         .withMessage("City is required"),
-//     check('state')
-//         .not()
-//         .withMessage("State is required"),
-//     check('country')
-//         .exists({ checkFalsy: true })
-//         .isLength({ min: 2 })
-//         .withMessage("Country is required"),
-//     check('lat')
-//         .not()
-//         .withMessage("Latitude is not valid"),
-//     check('lng')
-//         .not()
-//         .withMessage("Longitude is not valid"),
-//     check('name')
-//         .not()
-//         .withMessage("Name must be less than 50 characters"),
-//     check('description')
-//         .not()
-//         .withMessage("Description is required"),
-//     check('price')
-//         .not()
-//         .withMessage("Price per day is required"),
-//     handleValidationErrors
-// ];
 
 router.get('/', async (req, res) => {
 
@@ -45,7 +13,7 @@ router.get('/', async (req, res) => {
     size = parseInt(size);
     minLat = parseInt(minLat);
 
-    
+
     if(!page) page = 1;
     if(!size || size > 20) size = 20;
     if(page > 10) page = 10;
@@ -132,6 +100,10 @@ router.get('/current',requireAuth , async (req, res) => {
             spot.previewImage = 'No preview image found';
         }
         delete spot.SpotImages;
+        spot.price = Number.spot.price;
+        spot.lat = Number.spot.lat;
+        spot.lng = Number.spot.lng;
+
     });
 
 return res.json({ Spots });
