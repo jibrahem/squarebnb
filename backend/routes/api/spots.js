@@ -139,12 +139,6 @@ router.get('/current',requireAuth , async (req, res) => {
         Spots.push(spot.toJSON());
     });
 
-    if(!Spots.length){
-        return res.status(404).json({
-            message: "Spot couldn't be found"
-        });
-    }
-
     Spots.forEach(spot => {
         let sum = 0;
         spot.Reviews.forEach(review => {
