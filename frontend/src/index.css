@@ -1,1 +1,18 @@
 /* TODO Add site wide styles */
+* {
+box-sizing: border-box;
+}
+
+#root {
+ width:62rem;
+}
+
+body {
+    display: flex;
+     margin: 2rem;
+}
+
+a{
+ text-decoration: none;
+    color: black;
+}

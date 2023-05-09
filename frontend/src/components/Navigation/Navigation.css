@@ -1,0 +1,17 @@
+ul:hover{
+    cursor: pointer;
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+li{
+    display: flex;
+    flex-direction: column;
+ }
+button{
+    display: flex;
+}

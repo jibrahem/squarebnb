@@ -3,6 +3,11 @@ import { useDispatch } from "react-redux";
 import { Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import { Route } from 'react-router-dom';
+import SpotList from './components/SpotList';
+import SpotShow from "./components/SpotShow";
+import ManageSpots from "./components/ManageSpots";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -11,10 +16,23 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  //render component in app.js, import into app.js
+//route, path
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Switch></Switch>}
+      {isLoaded && <Switch>
+        <Route exact path={'/spots/current'}>
+          <ManageSpots />
+        </Route>
+        <Route exact path={'/spots/:spotId'}>
+        <SpotShow />
+        </Route>
+        <Route exact path={'/'}>
+          <SpotList />
+        </Route>
+        </Switch>}
     </>
   );
 }
