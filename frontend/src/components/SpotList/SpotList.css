@@ -1,3 +1,10 @@
-.spots{
-    width: 100px;
+.spot{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.img{
+    border-radius: 8px;
+
 }

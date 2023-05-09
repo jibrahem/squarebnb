@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allSpotsThunk } from '../../store/spots';
 import { Link } from 'react-router-dom';
+import './SpotList.css'
 //build a component
 //route in the backend to grab spots
 //backened will send array of objects
@@ -26,19 +27,21 @@ export default function SpotList(){
 
     //show data on page through return jsx, map through list of spot
     return (
-      <div>
+      <div className='wrapper'>
+        <ul>
       {spotList.length > 0 && spotList.map(spot => (
-        <div className='spots'>
-        <li key={spot.id}>
+        <li key={spot.id} className='spot'>
           <Link to={`spots/${spot.id}`}>
-          <img src={spot.previewImage} alt='home'/>
+            <div className='image'>
+              <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='home'/>
+            </div>
           <div className='from'>{spot.city}, {spot.state}</div>
           <p>${spot.price} night</p>
           <p>{spot.avgRating}</p>
           </Link>
         </li>
-        </div>
       ))}
+      </ul>
       </div>
     )
 }

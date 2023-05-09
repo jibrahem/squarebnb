@@ -1,18 +1,25 @@
 /* TODO Add site wide styles */
 * {
-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-#root {
- width:62rem;
+ul {
+    list-style: none;
 }
 
-body {
+a {
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+.wrapper{
     display: flex;
-     margin: 2rem;
-}
-
-a{
- text-decoration: none;
-    color: black;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
 }

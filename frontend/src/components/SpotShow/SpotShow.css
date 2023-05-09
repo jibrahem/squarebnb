@@ -1,0 +1,17 @@
+.info{
+    font-size: 20px;
+}
+
+.spot-box{
+   height: 400px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   border-bottom: solid black;
+}
+
+img{
+    height:100px;
+    width: 150px;
+    border-radius: 8px;
+}

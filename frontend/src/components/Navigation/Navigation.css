@@ -1,17 +1,35 @@
-ul:hover{
-    cursor: pointer;
-}
-
-ul{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
 li{
     display: flex;
     flex-direction: column;
+    margin: .5rem;
  }
-button{
+ li:hover{
+    cursor: pointer;
+ }
+
+
+.nav-wrap{
     display: flex;
+    flex-direction: row;
+    border-bottom: solid grey;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 40rem;
+}
+
+.air{
+    font-size: 30px;
+    height: 30px;
+}
+
+.air a{
+    color:rgb(235, 67, 48);
+
+}
+.air a:hover{
+    cursor: pointer;
 }

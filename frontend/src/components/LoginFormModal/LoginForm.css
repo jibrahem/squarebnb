@@ -1,19 +1,12 @@
 
 button{
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-}
-
-h1{
-    display: flex;
-    justify-content: center;
+    justify-self: center;
 }
 
 ul{
     list-style: none;
     display: flex;
-    justify-content: space-between;
 }
 label{
     display: flex;
