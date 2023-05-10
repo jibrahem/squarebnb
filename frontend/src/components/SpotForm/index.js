@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch} from 'react-redux';
 import { createSpotThunk, updateSpotThunk } from '../../store/spots';
@@ -21,7 +21,6 @@ const SpotForm = ({ spot, formType }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrors({});
         spot = {...spot, country, street, city, state, latitude, longitude, description, name, price, image };
 
         const errors = {}
@@ -59,21 +58,21 @@ const SpotForm = ({ spot, formType }) => {
             errors.image = 'Image URL must end with .png, .jpg, or .jpeg'
         }
 
-        if (Object.values(errors).length){
-            setErrors(errors)
+
+        if (formType === 'Update your Spot') {
+            const editedSpot = await dispatch(updateSpotThunk(spot));
+            spot = editedSpot;
+        } else if (formType === 'Create a new Spot') {
+            const newSpot = await dispatch(createSpotThunk(spot));
+            spot = newSpot;
+
+        }
+         if (Object.values(errors).length){
+            setErrors(errors);
+        } else{
+            history.push(`/spots/${spot.id}`)
         }
 
-        if(!Object.values(errors).length){
-            if (formType === 'Update your Spot') {
-                const editedSpot = await dispatch(updateSpotThunk(spot));
-                spot = editedSpot;
-            } else if (formType === 'Create a new Spot') {
-                const newSpot = await dispatch(createSpotThunk(spot));
-                spot = newSpot;
-            }
-        } else {
-            history.push(`/spots/${spot.id}`);
-        }
     };
 
     if(formType === 'Create a new Spot'){
