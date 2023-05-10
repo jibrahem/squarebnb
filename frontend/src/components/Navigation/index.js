@@ -6,23 +6,48 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
-
-    return (
-        <div className ='nav-wrap'>
-        <ul className = 'nav'>
-            <div className = 'air'>
-                <li>
-                <NavLink exact to="/">airebnb</NavLink>
-                </li>
+    if(sessionUser){
+        return (
+            <div className ='nav-wrap'>
+            <ul className = 'nav'>
+                <div className = 'air'>
+                    <li>
+                    <NavLink exact to="/">airebnb</NavLink>
+                    </li>
+                </div>
+                {isLoaded && (
+                    <ul>
+                    <li><NavLink exact to='/spots/new'>
+                        Create a New Spot
+                        </NavLink>
+                    </li>
+                    <li>
+                        <ProfileButton user={sessionUser} />
+                    </li>
+                    </ul>
+                )}
+            </ul>
             </div>
-            {isLoaded && (
-                <li>
-                    <ProfileButton user={sessionUser} />
-                </li>
-            )}
-        </ul>
-        </div>
-    );
+        );
+    } else {
+        return (
+            <div className='nav-wrap'>
+                <ul className='nav'>
+                    <div className='air'>
+                        <li>
+                            <NavLink exact to="/">airebnb</NavLink>
+                        </li>
+                    </div>
+                    {isLoaded && (
+                            <li>
+                                <ProfileButton user={sessionUser} />
+                            </li>
+                    )}
+                </ul>
+            </div>
+        );
+    }
+
 }
 
 export default Navigation;

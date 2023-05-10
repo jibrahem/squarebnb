@@ -14,12 +14,9 @@ const SpotShow = () => {
         dispatch(getOneSpotThunk(spotId))
     }, [dispatch, spotId]);
 
-
     if(spot.Owner === undefined){
         return null
     }
-
-
 
     return (
     <section>

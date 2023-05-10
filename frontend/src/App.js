@@ -7,6 +7,8 @@ import { Route } from 'react-router-dom';
 import SpotList from './components/SpotList';
 import SpotShow from "./components/SpotShow";
 import ManageSpots from "./components/ManageSpots";
+import CreateSpotForm from "./components/CreateSpotForm";
+import EditSpotForm from "./components/EditSpotForm";
 
 
 function App() {
@@ -23,14 +25,20 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && <Switch>
+        <Route exact path={'/spots/new'}>
+        <CreateSpotForm />
+        </Route>
+        <Route exact path={'/spots/:spotId/edit'}>
+        <EditSpotForm />
+        </Route>
         <Route exact path={'/spots/current'}>
-          <ManageSpots />
+        <ManageSpots />
         </Route>
         <Route exact path={'/spots/:spotId'}>
         <SpotShow />
         </Route>
         <Route exact path={'/'}>
-          <SpotList />
+        <SpotList />
         </Route>
         </Switch>}
     </>
