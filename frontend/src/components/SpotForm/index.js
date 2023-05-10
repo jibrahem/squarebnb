@@ -58,7 +58,10 @@ const SpotForm = ({ spot, formType }) => {
         if (!image.endsWith('.png' || '.jpg' || '.jpeg')) {
             errors.image = 'Image URL must end with .png, .jpg, or .jpeg'
         }
-        setErrors(errors)
+
+        if (Object.values(errors).length){
+            setErrors(errors)
+        }
 
         if(!Object.values(errors).length){
             if (formType === 'Update your Spot') {
@@ -88,6 +91,7 @@ const SpotForm = ({ spot, formType }) => {
                 onChange={(e) => setCountry(e.target.value)}
                 />
             </label>
+            <div className='errors'>{errors.street}</div>
             <label>
                 Street Address
                 <input
@@ -96,6 +100,7 @@ const SpotForm = ({ spot, formType }) => {
                 onChange={(e) => setStreet(e.target.value)}
                 />
             </label>
+            <div className='errors'>{errors.city}</div>
             <label>
                 City
                 <input
@@ -104,6 +109,7 @@ const SpotForm = ({ spot, formType }) => {
                 onChange={(e) => setCity(e.target.value)}
                 />
             </label>
+            <div className='errors'>{errors.state}</div>
             <label>
                 State
                 <input
@@ -112,6 +118,7 @@ const SpotForm = ({ spot, formType }) => {
                     onChange={(e) => setState(e.target.value)}
                 />
             </label>
+            <div className='errors'>{errors.latitude}</div>
             <label>
                 Latitude
                 <input
@@ -120,11 +127,12 @@ const SpotForm = ({ spot, formType }) => {
                     onChange={(e) => setLatitude(e.target.value)}
                 />
             </label>
+            <div className='errors'>{errors.longitude}</div>
             <label>
                 Longitude
                 <input
                     type='text'
-                    value={city}
+                    value={longitude}
                     onChange={(e) => setLongitude(e.target.value)}
                 />
             </label>
@@ -135,6 +143,7 @@ const SpotForm = ({ spot, formType }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             />
+            <div className='errors'>{errors.description}</div>
             <div>Create a title for your spot</div>
             <div>Catch guests' attention with a spot title that highlights what makes
                 your place special.</div>
@@ -143,6 +152,7 @@ const SpotForm = ({ spot, formType }) => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 />
+            <div className='errors'>{errors.name}</div>
                 <div>Set a base price for your spot</div>
             <div>Competitive pricing can help your listing stand out and rank higher
                 in search results.</div>
@@ -154,6 +164,7 @@ const SpotForm = ({ spot, formType }) => {
                     onChange={(e) => setPrice(e.target.value)}
                     />
                 </label>
+            <div className='errors'>{errors.price}</div>
                 <div>Liven up your spot with photos</div>
             <p>Submit a link to at least one photo to publish your spot.</p>
             <input
