@@ -122,6 +122,7 @@ const spotReducer = (state = initialState, action) =>{
             })
             return newState
             case RECEIVE_SPOT:
+            newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: { ...state.singleSpot } }
                 return {...state, singleSpot: {...action.spot}};
                 case GET_USER_SPOT:
                     newState = {...state, allSpots:{...state.allSpots}, singleSpot:{...state.singleSpot}}

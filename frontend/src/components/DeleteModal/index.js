@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { deleteSpotThunk } from "../../store/spots";
-import { Link } from "react-router-dom";
 
 function DeleteModal({ spot }) {
     const dispatch = useDispatch();
@@ -24,10 +23,8 @@ function DeleteModal({ spot }) {
                 <button type='submit'>
                     Yes(Delete Spot)
                 </button>
-                <button>
-                    <Link to='/spots/current'>
+                <button onClick={closeModal}>
                     No(Keep Spot)
-                    </Link>
                 </button>
             </form>
         </>

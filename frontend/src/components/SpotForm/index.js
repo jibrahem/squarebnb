@@ -62,7 +62,7 @@ const SpotForm = ({ spot, formType }) => {
         if (!price) {
             errors.price = 'Price is required'
         }
-        
+
         // if (!image) {
         //     errors.image = 'Preview Image is required'
         // }
@@ -80,11 +80,10 @@ const SpotForm = ({ spot, formType }) => {
 
         } else if (formType === 'Create a new Spot') {
             const newSpot = await dispatch(createSpotThunk(spotObj));
+            console.log('CREATEDSPOT', newSpot)
             history.push(`/spots/${newSpot.id}`)
         }
     }
-
-
 
     if(formType === 'Create a new Spot'){
     return (

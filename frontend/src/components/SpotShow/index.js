@@ -10,25 +10,30 @@ const SpotShow = () => {
     const spot = useSelector((state) => state.spots.singleSpot);
     const dispatch = useDispatch();
 
+
     useEffect(() => {
         dispatch(getOneSpotThunk(spotId))
     }, [dispatch, spotId]);
 
+    if(spot.id === spotId){
+        if(!spot.Owner){
+            return null
+        }
 
-  if(spotId && spotId === spot.id){
-
-    return (
-    <section>
-        <div className='spot-box'>
-       <h1>{spot.name}</h1>
-       <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
-       <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-        </div>
-    </section>
-)
+        return (
+        <section>
+            <div className='spot-box'>
+           <h1>{spot.name}</h1>
+           <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+            <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+           <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
+            </div>
+        </section>
+    )
+        }
     }
-}
+
+
 
 
 
