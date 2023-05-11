@@ -5,9 +5,6 @@ export const GET_USER_SPOT = 'spots/GET_USER_SPOT'
 export const UPDATE_SPOT = 'spots/UPDATE_SPOT';
 export const REMOVE_SPOT ='spots/REMOVE_SPOT';
 
-//redux
-//type string
-
 //action creator
 export const getSpots = (spots) => ({
     type: GET_ALL_SPOTS,
@@ -41,7 +38,6 @@ export const allSpotsThunk = () => async (dispatch) => {
     if(response.ok){
         const spots = await response.json();
         dispatch(getSpots(spots))
-
     }
 }
 
@@ -74,12 +70,14 @@ export const createSpotThunk = (spot, image) => async (dispatch) => {
     });
 
     if(response.ok){
-        
         const newSpot = await response.json();
         dispatch(receiveSpot(newSpot))
         return newSpot;
+      }else{
+            const errors = await response.json();
+            return errors;
+        }
     }
-}
 
 export const updateSpotThunk = (spot) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spot.id}`, {
@@ -95,15 +93,14 @@ export const updateSpotThunk = (spot) => async (dispatch) => {
         const errors = await response.json();
         return errors;
     }
-    //try catch
 }
 
-export const deleteSpotThunk = (spotId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${spotId}`, {
+export const deleteSpotThunk = (spot) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spot.id}`, {
         method: 'DELETE',
     })
     if (response.ok){
-        dispatch(removeSpot(spotId));
+        dispatch(removeSpot(spot));
     } else {
         const errors = await response.json()
         return errors
@@ -134,7 +131,7 @@ const spotReducer = (state = initialState, action) =>{
                     case UPDATE_SPOT:
                         return {...state, singleSpot: {...action.spot}};
                     case REMOVE_SPOT:
-                    newState = {...state};
+                    newState = {...state, singleSpot: {...action.spot}};
                     delete newState[action.spotId];
                     return newState;
                 default:

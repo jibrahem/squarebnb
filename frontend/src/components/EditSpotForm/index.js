@@ -8,14 +8,13 @@ const EditSpotForm = () => {
     let { spotId } = useParams();
     spotId = Number(spotId);
     const spot = useSelector((state) => state.spots.singleSpot);
-
     const dispatch = useDispatch();
 
 useEffect(() => {
-    dispatch(getOneSpotThunk(spotId))
-}, [dispatch, spotId])
+    dispatch(getOneSpotThunk(spotId));
+}, [dispatch, spotId]);
 
-if(!spot) return (<></>);
+if(!spot) return null;
 
     return (
         Object.keys(spot).length > 1 && (

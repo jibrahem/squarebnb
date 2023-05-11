@@ -206,7 +206,7 @@ router.get('/:spotId', async (req, res) => {
 
 const validateSpot = [
     check ('address')
-        .exists({checkFalsy: true})
+        .exists({ checkFalsy: true })
         .notEmpty()
         .withMessage("Street address is required"),
     check ('city')
@@ -251,7 +251,7 @@ const validateSpot = [
 ]
 
 router.post('/', validateSpot, requireAuth, async (req, res) => {
-const {ownerId, address, city, state, country, lat, lng, name, description, price} = req.body;
+const {address, city, state, country, lat, lng, name, description, price} = req.body;
    const { user } = req;
     const spot = await Spot.create({
         ownerId: user.id,

@@ -6,22 +6,33 @@ import { createSpotThunk, updateSpotThunk } from '../../store/spots';
 
 const SpotForm = ({ spot, formType }) => {
     const history = useHistory();
-    const [country, setCountry] = useState('');
-    const [street, setStreet] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [latitude, setLatitude] = useState(0);
-    const [longitude, setLongitude] = useState(0);
-    const [description, setDescription] = useState('');
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState(0);
+    const [country, setCountry] = useState(spot.country);
+    const [street, setStreet] = useState(spot.address);
+    const [city, setCity] = useState(spot.city);
+    const [state, setState] = useState(spot.state);
+    const [latitude, setLatitude] = useState(spot.lat);
+    const [longitude, setLongitude] = useState(spot.lng);
+    const [description, setDescription] = useState(spot.description);
+    const [name, setName] = useState(spot.name);
+    const [price, setPrice] = useState(spot.price);
     const [image, setImage] = useState('');
     const [errors, setErrors] = useState({});
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        spot = {...spot, country, street, city, state, latitude, longitude, description, name, price, image };
+        const spotObj = {
+            ...spot,
+            country,
+            address: street,
+            city,
+            state,
+            lat:latitude,
+            lng:longitude,
+            description,
+            name,
+            price,
+            };
 
         const errors = {}
         if (!country) {
@@ -51,29 +62,26 @@ const SpotForm = ({ spot, formType }) => {
         if (!price) {
             errors.price = 'Price is required'
         }
-        if (!image) {
-            errors.image = 'Preview Image is required'
-        }
-        if (!image.endsWith('.png' || '.jpg' || '.jpeg')) {
-            errors.image = 'Image URL must end with .png, .jpg, or .jpeg'
-        }
+        // if (!image) {
+        //     errors.image = 'Preview Image is required'
+        // }
+        // if (!image.endsWith('.png' || '.jpg' || '.jpeg')) {
+        //     errors.image = 'Image URL must end with .png, .jpg, or .jpeg'
+        // }
+        console.log('hiiiiii')
 
+        if (Object.values(errors).length > 0){
+           setErrors(errors);
+       } else if (formType === 'Update your Spot') {
+            const editedSpot = await dispatch(updateSpotThunk(spotObj));
+            console.log('HIIIIIIIII', editedSpot)
+            history.push(`/spots/${editedSpot.id}`)
 
-        if (formType === 'Update your Spot') {
-            const editedSpot = await dispatch(updateSpotThunk(spot));
-            spot = editedSpot;
         } else if (formType === 'Create a new Spot') {
-            const newSpot = await dispatch(createSpotThunk(spot));
-            spot = newSpot;
-
+            const newSpot = await dispatch(createSpotThunk(spotObj));
+            history.push(`/spots/${newSpot.id}`)
         }
-         if (Object.values(errors).length){
-            setErrors(errors);
-        } else{
-            history.push(`/spots/${spot.id}`)
-        }
-
-    };
+    }
 
     if(formType === 'Create a new Spot'){
     return (
@@ -196,11 +204,12 @@ const SpotForm = ({ spot, formType }) => {
     )
 
 } else if (formType === 'Update your Spot'){
-        return (
+           return (
             <form onSubmit={handleSubmit}>
                 <h2>{formType}</h2>
                 <div>Where's your place located?</div>
                 <div>Guests will only get your exact address once they booked a reservation</div>
+                <div className='errors'>{errors.country}</div>
                 <label>
                     Country
                     <input
@@ -209,6 +218,7 @@ const SpotForm = ({ spot, formType }) => {
                         onChange={(e) => setCountry(e.target.value)}
                     />
                 </label>
+                <div className='errors'>{errors.street}</div>
                 <label>
                     Street Address
                     <input
@@ -217,6 +227,7 @@ const SpotForm = ({ spot, formType }) => {
                         onChange={(e) => setStreet(e.target.value)}
                     />
                 </label>
+                <div className='errors'>{errors.city}</div>
                 <label>
                     City
                     <input
@@ -225,6 +236,7 @@ const SpotForm = ({ spot, formType }) => {
                         onChange={(e) => setCity(e.target.value)}
                     />
                 </label>
+                <div className='errors'>{errors.state}</div>
                 <label>
                     State
                     <input
@@ -233,6 +245,7 @@ const SpotForm = ({ spot, formType }) => {
                         onChange={(e) => setState(e.target.value)}
                     />
                 </label>
+                <div className='errors'>{errors.latitude}</div>
                 <label>
                     Latitude
                     <input
@@ -241,11 +254,12 @@ const SpotForm = ({ spot, formType }) => {
                         onChange={(e) => setLatitude(e.target.value)}
                     />
                 </label>
+                <div className='errors'>{errors.longitude}</div>
                 <label>
                     Longitude
                     <input
                         type='text'
-                        value={city}
+                        value={longitude}
                         onChange={(e) => setLongitude(e.target.value)}
                     />
                 </label>
@@ -256,6 +270,7 @@ const SpotForm = ({ spot, formType }) => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
+                <div className='errors'>{errors.description}</div>
                 <div>Create a title for your spot</div>
                 <div>Catch guests' attention with a spot title that highlights what makes
                     your place special.</div>
@@ -264,6 +279,7 @@ const SpotForm = ({ spot, formType }) => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
+                <div className='errors'>{errors.name}</div>
                 <div>Set a base price for your spot</div>
                 <div>Competitive pricing can help your listing stand out and rank higher
                     in search results.</div>
@@ -275,12 +291,12 @@ const SpotForm = ({ spot, formType }) => {
                         onChange={(e) => setPrice(e.target.value)}
                     />
                 </label>
+                <div className='errors'>{errors.price}</div>
+
                 <button type="submit">{formType}</button>
             </form>
         )
-
 }
 }
-
 
 export default SpotForm;

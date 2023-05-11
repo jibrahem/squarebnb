@@ -27,7 +27,7 @@ export default function SpotList(){
 
     //show data on page through return jsx, map through list of spot
     return (
-      <div className='wrapper'>
+      <main>
         <ul>
       {spotList.length > 0 && spotList.map(spot => (
         <li key={spot.id} className='spot'>
@@ -42,6 +42,6 @@ export default function SpotList(){
         </li>
       ))}
       </ul>
-      </div>
+      </main>
     )
 }

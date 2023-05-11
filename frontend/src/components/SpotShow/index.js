@@ -19,14 +19,14 @@ const SpotShow = () => {
     }
 
     return (
-    <section>
+    <main>
         <div className='spot-box'>
        <h1>{spot.name}</h1>
        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
         <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
         </div>
-    </section>
+    </main>
 )
 
 }

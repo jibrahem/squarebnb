@@ -9,6 +9,7 @@ function Navigation({ isLoaded }) {
     if(sessionUser){
         return (
             <div className ='nav-wrap'>
+                <header>
             <ul className = 'nav'>
                 <div className = 'air'>
                     <li>
@@ -27,6 +28,7 @@ function Navigation({ isLoaded }) {
                     </ul>
                 )}
             </ul>
+                </header>
             </div>
         );
     } else {
