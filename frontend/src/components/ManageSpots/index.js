@@ -7,13 +7,12 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteModal from "../DeleteModal";
 
 
-export default function ManageSpots () {
+export default function ManageSpots() {
 
     const dispatch = useDispatch()
     const [showMenu, setShowMenu] = useState(false);
-
     const spotObj = useSelector(state => state.spots.allSpots)
-    const userSpot = useSelector(state=> state.session.user.id)
+    const userSpot = useSelector(state => state.session.user.id)
     const spotList = Object.values(spotObj)
     const newList = spotList.filter((spot) => spot.ownerId === userSpot)
     const ulRef = useRef();
@@ -42,30 +41,31 @@ export default function ManageSpots () {
         <section>
             <h1>Manage Your Spots</h1>
             <button>
-                <NavLink exact to='/spots/new'>Create a New Spot</NavLink></button>
-            <ul>
-            {newList.length > 0 && newList.map(spot => (
-                <>
-                <li key={spot.id}>
-                 <img src={spot.previewImage} alt='house'></img>
-                 <div>{spot.city}, {spot.state}</div>
-                 <div>{spot.price} night</div>
-                 <div>{spot.avgRating}</div>
-                </li>
-                 <button>
-                <Link exact to={`/spots/${spot.id}/edit`}>Update</Link>
+                <NavLink exact to={'/spots/new'}>Create a New Spot</NavLink>
                 </button>
-                    <OpenModalMenuItem
-                        itemText="Delete"
-                        onItemClick={closeMenu}
-                        spot={spot}
-                        modalComponent={<DeleteModal />}
-                    />
-            </>
+            <ul>
+                {newList.length > 0 && newList.map(spot => (
+                    <div key={spot.id}>
+                        <li >
+                            <img src={spot.previewImage} alt='house'></img>
+                            <div>{spot.city}, {spot.state}</div>
+                            <div>{spot.price} night</div>
+                            <div>{spot.avgRating}</div>
+                        </li>
+                        <button>
+                            <Link to={`/spots/${spot.id}/edit`}>Update</Link>
+                        </button>
+                        <OpenModalMenuItem
+                            itemText="Delete"
+                            onItemClick={closeMenu}
+                            modalComponent={<DeleteModal
+                                spot={spot}
+                            />}
+                        />
+                    </div>
 
-
-            ))}
+                ))}
             </ul>
-            </section>
+        </section>
     );
 }

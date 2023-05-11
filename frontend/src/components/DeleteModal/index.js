@@ -7,13 +7,14 @@ import { Link } from "react-router-dom";
 function DeleteModal({ spot }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-console.log('SPOTTTTT', spot)
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         return dispatch(deleteSpotThunk(spot))
             .then(closeModal)
     };
+
+    //onclick instead of button-link
 
     return (
         <>

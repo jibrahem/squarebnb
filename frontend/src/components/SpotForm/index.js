@@ -6,15 +6,15 @@ import { createSpotThunk, updateSpotThunk } from '../../store/spots';
 
 const SpotForm = ({ spot, formType }) => {
     const history = useHistory();
-    const [country, setCountry] = useState(spot.country);
-    const [street, setStreet] = useState(spot.address);
-    const [city, setCity] = useState(spot.city);
-    const [state, setState] = useState(spot.state);
-    const [latitude, setLatitude] = useState(spot.lat);
-    const [longitude, setLongitude] = useState(spot.lng);
-    const [description, setDescription] = useState(spot.description);
-    const [name, setName] = useState(spot.name);
-    const [price, setPrice] = useState(spot.price);
+    const [country, setCountry] = useState(spot?.country);
+    const [street, setStreet] = useState(spot?.address);
+    const [city, setCity] = useState(spot?.city);
+    const [state, setState] = useState(spot?.state);
+    const [latitude, setLatitude] = useState(spot?.lat);
+    const [longitude, setLongitude] = useState(spot?.lng);
+    const [description, setDescription] = useState(spot?.description);
+    const [name, setName] = useState(spot?.name);
+    const [price, setPrice] = useState(spot?.price);
     const [image, setImage] = useState('');
     const [errors, setErrors] = useState({});
     const dispatch = useDispatch();
@@ -62,19 +62,20 @@ const SpotForm = ({ spot, formType }) => {
         if (!price) {
             errors.price = 'Price is required'
         }
+        
         // if (!image) {
         //     errors.image = 'Preview Image is required'
         // }
         // if (!image.endsWith('.png' || '.jpg' || '.jpeg')) {
         //     errors.image = 'Image URL must end with .png, .jpg, or .jpeg'
         // }
-        console.log('hiiiiii')
+
 
         if (Object.values(errors).length > 0){
            setErrors(errors);
        } else if (formType === 'Update your Spot') {
             const editedSpot = await dispatch(updateSpotThunk(spotObj));
-            console.log('HIIIIIIIII', editedSpot)
+
             history.push(`/spots/${editedSpot.id}`)
 
         } else if (formType === 'Create a new Spot') {
@@ -82,6 +83,8 @@ const SpotForm = ({ spot, formType }) => {
             history.push(`/spots/${newSpot.id}`)
         }
     }
+
+
 
     if(formType === 'Create a new Spot'){
     return (

@@ -26,9 +26,9 @@ export const editSpot = (spot) => ({
     spot,
 });
 
-export const removeSpot = (spotId) =>({
+export const removeSpot = (spot) =>({
     type: REMOVE_SPOT,
-    spotId,
+    spot,
 });
 
 //thunk action creator
@@ -88,6 +88,7 @@ export const updateSpotThunk = (spot) => async (dispatch) => {
     if(response.ok){
         const updatedSpot = await response.json();
         dispatch(editSpot(updatedSpot));
+        console.log('UPDATed', updatedSpot)
         return updatedSpot;
     } else {
         const errors = await response.json();
@@ -129,11 +130,15 @@ const spotReducer = (state = initialState, action) =>{
                     })
                     return newState;
                     case UPDATE_SPOT:
-                        return {...state, singleSpot: {...action.spot}};
-                    case REMOVE_SPOT:
-                    newState = {...state, singleSpot: {...action.spot}};
-                    delete newState[action.spotId];
-                    return newState;
+                        newState = {...state, allSpots: {...state.allSpots}, singleSpot: {...state.singleSpot}}
+                        return newState;
+                        // newState = newState.allSpots[action.spot]
+                        // console.log('NEWSTATE', newState) //undefined
+                        // return newState;
+                case REMOVE_SPOT:
+                  newState = {...state, allSpots: {...state.allSpots}, singleSpot: {}};
+                  delete newState.allSpots[action.spot.id];
+                  return newState;
                 default:
                     return state;
     }

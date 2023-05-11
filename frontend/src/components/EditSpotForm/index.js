@@ -7,15 +7,21 @@ import SpotForm from "../SpotForm";
 const EditSpotForm = () => {
     let { spotId } = useParams();
     spotId = Number(spotId);
+
     const spot = useSelector((state) => state.spots.singleSpot);
     const dispatch = useDispatch();
 
-useEffect(() => {
-    dispatch(getOneSpotThunk(spotId));
-}, [dispatch, spotId]);
+    console.log('EDITSPOTID', spotId)
+    console.log('EDITSPOT', spot)
 
-if(!spot) return null;
+    useEffect(() => {
+        console.log('SPOTIDDDDD', spotId)
+        dispatch(getOneSpotThunk(spotId));
+    }, [dispatch, spotId]);
 
+    if(!spot) return null;
+
+ if(spot.id === spotId){
     return (
         Object.keys(spot).length > 1 && (
          <>
@@ -26,6 +32,7 @@ if(!spot) return null;
             </>
         )
     )
+}
 }
 
 export default EditSpotForm;
