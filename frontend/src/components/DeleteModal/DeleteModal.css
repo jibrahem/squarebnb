@@ -4,9 +4,6 @@
     margin:.5rem;
     color: black;
 }
-button:hover{
-    background-color: rgb(237, 84, 67);
-}
 
 .delete{
     display: flex;
@@ -16,4 +13,12 @@ button:hover{
 }
 .delete h1{
     align-self: center;
+}
+
+.red button{
+    background-color: red;
+}
+
+.grey button{
+    background-color: grey;
 }

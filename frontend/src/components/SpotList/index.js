@@ -28,7 +28,7 @@ export default function SpotList(){
     if(spotList.length === 0){
       return null
     }
-    console.log('spotlist', spotList[0])
+
 
     //show data on page through return jsx, map through list of spot
     return (
