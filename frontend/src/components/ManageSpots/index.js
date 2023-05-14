@@ -4,7 +4,8 @@ import { allSpotsOfUserThunk } from "../../store/spots";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteModal from "../DeleteModal";
 import { useHistory } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+
 import './ManageSpot.css'
 
 export default function ManageSpots() {
@@ -44,19 +45,29 @@ export default function ManageSpots() {
 
     return (
         <main>
-            <h1>Manage Your Spots</h1>
-            <button onClick={create}>
-                Create a New Spot
-            </button>
+            <div className="manage">
+                <h1>Manage Your Spots</h1>
+                <button onClick={create}>
+                    Create a New Spot
+                </button>
+            </div>
             <ul>
                 {newList.length > 0 && newList.map(spot => (
-                    <div key={spot.id}>
-                        <li >
+                    <>
+                    <div key={spot.id} className="spot">
+                        <Link to={`/spots/${spot.id}`}>
+                            <div className="image">
                             <img src={spot.previewImage} alt='house'></img>
-                            <div>{spot.city}, {spot.state}</div>
-                            <div>${spot.price} night</div>
-                            <div>★ {spot.avgRating}</div>
-                        </li>
+                            </div>
+                            <div className='list'>
+                                <div className='star'>
+                                    <li>{spot.city}, {spot.state}</li>
+                                    <li>★ {spot.avgRating}</li>
+                                </div>
+                                <li>${spot.price} night</li>
+                           </div>
+                             </Link>
+                        <div className="buttons">
                         <button>
                             <NavLink exact to={`/spots/${spot.id}/edit`}>
                             Update
@@ -67,10 +78,11 @@ export default function ManageSpots() {
                             buttonText="Delete"
                             onItemClick={closeMenu}
                             modalComponent={<DeleteModal
-                                spot={spot}
-                            />}
-                        />
-                    </div>
+                                spot={spot}/>}
+                                />
+                        </div>
+                                </div>
+                        </>
                 ))}
             </ul>
         </main>

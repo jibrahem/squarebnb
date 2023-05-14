@@ -1,4 +1,31 @@
 ul button{
-    width:60px;
+    width:75px;
+    height: 30px
 }
 
+.manage{
+    margin: 2rem;
+}
+.manage button{
+    margin-top: 1rem;
+    background-color: gray;
+    color:white;
+    height:30px;
+    width:150px;
+}
+.buttons button{
+    background-color: gray;
+    color: white;
+}
+
+.buttons a{
+    color: white
+}
+.buttons{
+    display: flex;
+    align-items: center;
+}
+.spot{
+    display: flex;
+    flex-direction: column;
+}

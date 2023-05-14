@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createSpotThunk, updateSpotThunk } from '../../store/spots';
+import './SpotForm.css'
 
 const SpotForm = ({ spot, formType }) => {
     const history = useHistory();
@@ -86,6 +87,7 @@ const SpotForm = ({ spot, formType }) => {
 
     if (formType === 'Create a new Spot') {
         return (
+            <div className='spot-form'>
             <form onSubmit={handleSubmit}>
                 <h2>{formType}</h2>
                 <div>Where's your place located?</div>
@@ -199,12 +201,14 @@ const SpotForm = ({ spot, formType }) => {
                     value={image}
                     onChange={(e) => setImage(e.target.value)}
                 />
-                <button type="submit">{formType}</button>
+                <button type="submit">Create Spot</button>
             </form>
+            </div>
         )
 
     } else if (formType === 'Update your Spot') {
         return (
+            <div className='spot-form'>
             <form onSubmit={handleSubmit}>
                 <h2>{formType}</h2>
                 <div>Where's your place located?</div>
@@ -294,6 +298,7 @@ const SpotForm = ({ spot, formType }) => {
                 <div className='errors'>{errors.price}</div>
                 <button type="submit">{formType}</button>
             </form>
+            </div>
         )
     }
 }
