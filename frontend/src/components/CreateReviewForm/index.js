@@ -4,12 +4,14 @@ import { createReviewThunk } from '../../store/reviews';
 import { useModal } from "../../context/Modal";
 import { useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom'
+import { getOneSpotThunk } from "../../store/spots";
 
-const CreateReviewForm = ( {spot} ) => {
+const CreateReviewForm = ({ spot }) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [text, setText] = useState('');
     const [stars, setStars] = useState(1);
+    const [starRating, setStarRating] = useState(1)
     const [errors, setErrors] = useState({});
     const user = useSelector(state => state.session.user)
     const { closeModal } = useModal();
@@ -22,7 +24,7 @@ const CreateReviewForm = ( {spot} ) => {
             review: text,
             stars,
         }
-        const errors ={};
+        const errors = {};
 
         if (!text) {
             errors.text = 'Review text is required'
@@ -34,13 +36,13 @@ const CreateReviewForm = ( {spot} ) => {
         if (Object.values(errors).length > 0) {
             setErrors(errors);
         } else {
-            const newReview =  await dispatch(createReviewThunk(spot, review))
-            history.push(`/spots/${newReview.spotId}`)
+            const newReview = await dispatch(createReviewThunk(spot, review))
+                .then(dispatch(getOneSpotThunk(spot.id)))
         }
-        if(!review){
+        if (!review) {
             return null
         }
-        if(!spot){
+        if (!spot) {
             return null
         }
     }
@@ -54,6 +56,43 @@ const CreateReviewForm = ( {spot} ) => {
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                 />
+                <div className="rating-input">
+                    <div
+                        className={starRating >= 1 ? "filled" : "empty"}
+                        onMouseEnter={() => setStarRating(1)}
+                        onMouseLeave={() => setStarRating(1)}
+                        onClick={() => setStars(1)}>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <div
+                        className={starRating >= 2 ? "filled" : "empty"}
+                        onMouseEnter={() => setStarRating(2)}
+                        onMouseLeave={() => setStarRating(2)}
+                        onClick={() => setStars(2)}>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div
+                        className={starRating >= 3 ? "filled" : "empty"}
+                        onMouseEnter={() => setStarRating(3)}
+                        onMouseLeave={() => setStarRating(3)}
+                        onClick={() => setStars(3)}>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div
+                        className={starRating >= 4 ? "filled" : "empty"}
+                        onMouseEnter={() => setStarRating(4)}
+                        onMouseLeave={() => setStarRating(4)}
+                        onClick={() => setStars(4)}>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div
+                        className={starRating >= 5 ? "filled" : "empty"}
+                        onMouseEnter={() => setStarRating(5)}
+                        onMouseLeave={() => setStarRating(5)}
+                        onClick={() => setStars(5)}>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
                 <button type='submit'>Submit Your Review</button>
             </form>
         </>

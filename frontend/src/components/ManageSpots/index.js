@@ -54,35 +54,35 @@ export default function ManageSpots() {
             <ul>
                 {newList.length > 0 && newList.map(spot => (
                     <>
-                    <div key={spot.id} className="spot">
-                        <Link to={`/spots/${spot.id}`}>
-                            <div className="image">
-                            <img src={spot.previewImage} alt='house'></img>
-                            </div>
-                            <div className='list'>
-                                <div className='star'>
-                                    <li>{spot.city}, {spot.state}</li>
-                                    <li>★ {spot.avgRating}</li>
+                        <div key={spot.id} className="spot">
+                            <Link to={`/spots/${spot.id}`}>
+                                <div className="image">
+                                    <img src={spot.previewImage} alt='house'></img>
                                 </div>
-                                <li>${spot.price} night</li>
-                           </div>
-                             </Link>
-                        <div className="buttons">
-                        <button>
-                            <NavLink exact to={`/spots/${spot.id}/edit`}>
-                            Update
-                            </NavLink>
-                        </button>
+                                <div className='list'>
+                                    <div className='star'>
+                                        <li>{spot.city}, {spot.state}</li>
+                                        <li>★ {spot.avgRating}</li>
+                                    </div>
+                                    <li>${spot.price} night</li>
+                                </div>
+                            </Link>
+                            <div className="buttons">
+                                <button>
+                                    <NavLink exact to={`/spots/${spot.id}/edit`}>
+                                        Update
+                                    </NavLink>
+                                </button>
 
-                        <OpenModalMenuItem
-                            buttonText="Delete"
-                            onItemClick={closeMenu}
-                            modalComponent={<DeleteModal
-                                spot={spot}/>}
+                                <OpenModalMenuItem
+                                    buttonText="Delete"
+                                    onItemClick={closeMenu}
+                                    modalComponent={<DeleteModal
+                                        spot={spot} />}
                                 />
+                            </div>
                         </div>
-                                </div>
-                        </>
+                    </>
                 ))}
             </ul>
         </main>

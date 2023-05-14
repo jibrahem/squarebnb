@@ -57,11 +57,13 @@ const SpotShow = () => {
         return null
     }
 
-    console.log('spot', spot)
+    const reserve = () =>{
+      window.alert('Feature Coming Soon...')
+    }
+
 
     const newReviewList = reviewList.filter(review => review.spotId === spot.id);
 
-    console.log('reviewlist', newReviewList)
 
     if(!user){
         if (newReviewList.length === 0) {
@@ -72,8 +74,17 @@ const SpotShow = () => {
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                         <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+                            <div className='reserve-wrap'>
+                        <div className='host'>
                         <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
                         <div>{spot.description}</div>
+                        </div>
+                        <div className='reserve'>
+                            <div>$ {spot.price} night</div>
+                                <div>★</div>
+                                    <button onClick={reserve}>Reserve</button>
+                        </div>
+                        </div>
                     </div>
                     <h1>★ New</h1>
                     </div>
@@ -89,8 +100,17 @@ const SpotShow = () => {
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                         <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
-                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                        <div>{spot.description}</div>
+                            <div className='reserve-wrap'>
+                                <div className='host'>
+                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                    <div>{spot.description}</div>
+                                </div>
+                            <div className='reserve'>
+                                <div>$ {spot.price} night</div>
+                                <div>★</div>
+                                    <button onClick={reserve}>Reserve</button>
+                            </div>
+                            </div>
                     </div>
 
                     <ul>
@@ -115,8 +135,17 @@ const SpotShow = () => {
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                         <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
-                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                        <div>{spot.description}</div>
+                            <div className='reserve-wrap'>
+                                <div className='host'>
+                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                    <div>{spot.description}</div>
+                                </div>
+                            <div className='reserve'>
+                                <div>$ {spot.price} night</div>
+                                <div>★</div>
+                                    <button onClick={reserve}>Reserve</button>
+                            </div>
+                            </div>
                     </div>
 
                     <ul>
@@ -144,8 +173,17 @@ const SpotShow = () => {
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                             <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
-                            <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                            <div>{spot.description}</div>
+                                <div className='reserve-wrap'>
+                                    <div className='host'>
+                                        <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                        <div>{spot.description}</div>
+                                    </div>
+                                <div className='reserve'>
+                                    <div>$ {spot.price} night</div>
+                                    <div>★</div>
+                                        <button onClick={reserve}>Reserve</button>
+                                </div>
+                                </div>
                             </div>
                         <h1>★ New</h1>
                         <OpenModalMenuItem
@@ -166,8 +204,17 @@ const SpotShow = () => {
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                             <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
-                            <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                            <div>{spot.description}</div>
+                                <div className='reserve-wrap'>
+                                    <div className='host'>
+                                        <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                        <div>{spot.description}</div>
+                                    </div>
+                                <div className='reserve'>
+                                    <div>$ {spot.price} night</div>
+                                    <div>★</div>
+                                        <button onClick={reserve}>Reserve</button>
+                                    </div>
+                                </div>
                             </div>
                         <ul>
                             <h1>★ {newReviewList.length} review</h1>
@@ -199,8 +246,17 @@ const SpotShow = () => {
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                             <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
-                            <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                            <div>{spot.description}</div>
+                                <div className='reserve-wrap'>
+                                    <div className='host'>
+                                        <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                        <div>{spot.description}</div>
+                                    </div>
+                                <div className='reserve'>
+                                    <div>$ {spot.price} night</div>
+                                    <div>★</div>
+                                        <button onClick={reserve}>Reserve</button>
+                                    </div>
+                                </div>
                             </div>
                         <ul>
                             <h1>★ {newReviewList.length} reviews</h1>
@@ -224,8 +280,17 @@ const SpotShow = () => {
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                         <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
-                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                        <div>{spot.description}</div>
+                            <div className='reserve-wrap'>
+                                <div className='host'>
+                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                    <div>{spot.description}</div>
+                                </div>
+                            <div className='reserve'>
+                                <div>$ {spot.price} night</div>
+                                <div>★</div>
+                                    <button onClick={reserve}>Reserve</button>
+                                </div>
+                            </div>
                         </div>
                     <h1>★ New</h1>
                     </div>
@@ -240,8 +305,17 @@ const SpotShow = () => {
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                         <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
-                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                        <div>{spot.description}</div>
+                            <div className='reserve-wrap'>
+                                <div className='host'>
+                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                    <div>{spot.description}</div>
+                                </div>
+                            <div className='reserve'>
+                                <div>$ {spot.price} night</div>
+                                <div>★</div>
+                                    <button onClick={reserve}>Reserve</button>
+                                </div>
+                            </div>
                         </div>
                     <ul>
                         <h1>★ {newReviewList.length} review</h1>
@@ -267,8 +341,17 @@ const SpotShow = () => {
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                         <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
-                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                        <div>{spot.description}</div>
+                            <div className='reserve-wrap'>
+                                <div className='host'>
+                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                    <div>{spot.description}</div>
+                                </div>
+                            <div className='reserve'>
+                                <div>$ {spot.price} night</div>
+                                <div>★</div>
+                                    <button onClick={reserve}>Reserve</button>
+                            </div>
+                            </div>
                         </div>
                     <h1>★ New</h1>
                     <ul>
@@ -288,8 +371,17 @@ const SpotShow = () => {
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                         <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
-                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                        <div>{spot.description}</div>
+                            <div className='reserve-wrap'>
+                                <div className='host'>
+                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                    <div>{spot.description}</div>
+                                </div>
+                            <div className='reserve'>
+                                <div>$ {spot.price} night</div>
+                                <div>★</div>
+                                    <button onClick={reserve}>Reserve</button>
+                                </div>
+                            </div>
                     </div>
                     <ul>
                         <h1>★ {newReviewList.length} review</h1>
@@ -310,11 +402,21 @@ const SpotShow = () => {
                 <section>
                     <div className='box'>
                         <div className='spot-box'>
+
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                         <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
-                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                        <div>{spot.description}</div>
+                        <div className='reserve-wrap'>
+                                <div className='host'>
+                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                    <div>{spot.description}</div>
+                                </div>
+                            <div className='reserve'>
+                                <div>$ {spot.price} night</div>
+                                <div>★</div>
+                                <button onClick={reserve}>Reserve</button>
+                                </div>
+                            </div>
                     </div>
                     <ul>
                         <h1>★ {newReviewList.length} reviews</h1>
