@@ -12,6 +12,7 @@ function ProfileButton({ user }) {
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
+
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
@@ -49,12 +50,14 @@ function ProfileButton({ user }) {
             <ul className={ulClassName} ref={ulRef}>
                 {user ? (
                     <>
-                        <li>{user.username}</li>
+                        <li>Hello, {user.username}</li>
                         <li>{user.firstName} {user.lastName}</li>
                         <li>{user.email}</li>
+                        <li>
                         <NavLink exact to='/spots/current'>
                             Manage Spots
                             </NavLink>
+                        </li>
                         <li>
                             <button onClick={logout}>
                                 <Link to='/'>Log Out</Link>

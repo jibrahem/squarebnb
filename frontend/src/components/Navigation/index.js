@@ -7,28 +7,30 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
-    if(sessionUser){
+    if (sessionUser) {
         return (
-            <div className ='nav-wrap'>
+            <div className='nav-wrap'>
                 <header>
-            <ul className = 'nav'>
-                <div className = 'air'>
-                    <li>
-                    <NavLink exact to="/">airebnb</NavLink>
-                    </li>
-                </div>
-                {isLoaded && (
-                    <ul>
-                    <li><NavLink exact to='/spots/new'>
-                        Create a New Spot
-                        </NavLink>
-                    </li>
-                    <li>
-                        <ProfileButton user={sessionUser} />
-                    </li>
+                    <ul className='nav'>
+                        <div className='air'>
+                            <li>
+                                <NavLink exact to="/"> airebnb</NavLink>
+                            </li>
+                        </div>
+                        {isLoaded && (
+                            <div className='top'>
+                                <ul>
+                                    <li><NavLink exact to='/spots/new'>
+                                        Create a New Spot
+                                    </NavLink>
+                                    </li>
+                                    <li>
+                                        <ProfileButton user={sessionUser} />
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
                     </ul>
-                )}
-            </ul>
                 </header>
             </div>
         );
@@ -42,9 +44,9 @@ function Navigation({ isLoaded }) {
                         </li>
                     </div>
                     {isLoaded && (
-                            <li>
-                                <ProfileButton user={sessionUser} />
-                            </li>
+                        <li>
+                            <ProfileButton user={sessionUser} />
+                        </li>
                     )}
                 </ul>
             </div>

@@ -25,21 +25,31 @@ export default function SpotList(){
         dispatch(allSpotsThunk())
     }, [dispatch])
 
+    if(spotList.length === 0){
+      return null
+    }
+    console.log('spotlist', spotList[0])
+
     //show data on page through return jsx, map through list of spot
     return (
       <main>
         <ul>
       {spotList.length > 0 && spotList.map(spot => (
-        <li key={spot.id} className='spot'>
-          <Link to={`spots/${spot.id}`}>
+        <div key={spot.id} className='spot' title={spot.name}>
+          <Link to={`/spots/${spot.id}`}>
             <div className='image'>
               <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='home'/>
+
             </div>
-          <div className='from'>{spot.city}, {spot.state}</div>
-          <p>${spot.price} night</p>
-          <p>{spot.avgRating}</p>
+            <div className='list'>
+              <div className='star'>
+          <li>{spot.city}, {spot.state}</li>
+            <li>★ {spot.avgRating}</li>
+              </div>
+          <li>${spot.price} night</li>
+            </div>
           </Link>
-        </li>
+          </div>
       ))}
       </ul>
       </main>

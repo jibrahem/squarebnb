@@ -7,14 +7,20 @@ li{
     flex-direction: column;
     margin: .5rem;
  }
+
  li:hover{
     cursor: pointer;
  }
 
+ a:hover{
+    text-decoration: none;
+ }
+
+ .top a{
+    color: rgb(12, 100, 83);
+ }
 
 .nav-wrap{
-    display: flex;
-    flex-direction: row;
     border-bottom: solid grey;
 }
 
@@ -22,7 +28,7 @@ li{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 40rem;
+    margin: 1rem;
 }
 
 .air{
@@ -31,9 +37,11 @@ li{
 }
 
 .air a{
-    color:rgb(235, 67, 48);
+    color:rgb(248, 103, 86);
 
 }
 .air a:hover{
     cursor: pointer;
 }
+
+

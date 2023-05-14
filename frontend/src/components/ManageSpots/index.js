@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allSpotsOfUserThunk } from "../../store/spots";
-import { NavLink } from 'react-router-dom';
-import { Link } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteModal from "../DeleteModal";
-
+import { useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import './ManageSpot.css'
 
 export default function ManageSpots() {
-
     const dispatch = useDispatch()
     const [showMenu, setShowMenu] = useState(false);
     const spotObj = useSelector(state => state.spots.allSpots)
@@ -16,6 +15,7 @@ export default function ManageSpots() {
     const spotList = Object.values(spotObj)
     const newList = spotList.filter((spot) => spot.ownerId === userSpot)
     const ulRef = useRef();
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(allSpotsOfUserThunk())
@@ -37,35 +37,42 @@ export default function ManageSpots() {
 
     const closeMenu = () => setShowMenu(false);
 
+
+    const create = () => {
+        history.push('/spots/new')
+    }
+
     return (
-        <section>
+        <main>
             <h1>Manage Your Spots</h1>
-            <button>
-                <NavLink exact to={'/spots/new'}>Create a New Spot</NavLink>
-                </button>
+            <button onClick={create}>
+                Create a New Spot
+            </button>
             <ul>
                 {newList.length > 0 && newList.map(spot => (
                     <div key={spot.id}>
                         <li >
                             <img src={spot.previewImage} alt='house'></img>
                             <div>{spot.city}, {spot.state}</div>
-                            <div>{spot.price} night</div>
-                            <div>{spot.avgRating}</div>
+                            <div>${spot.price} night</div>
+                            <div>★ {spot.avgRating}</div>
                         </li>
                         <button>
-                            <Link to={`/spots/${spot.id}/edit`}>Update</Link>
+                            <NavLink exact to={`/spots/${spot.id}/edit`}>
+                            Update
+                            </NavLink>
                         </button>
+
                         <OpenModalMenuItem
-                            itemText="Delete"
+                            buttonText="Delete"
                             onItemClick={closeMenu}
                             modalComponent={<DeleteModal
                                 spot={spot}
                             />}
                         />
                     </div>
-
                 ))}
             </ul>
-        </section>
+        </main>
     );
 }

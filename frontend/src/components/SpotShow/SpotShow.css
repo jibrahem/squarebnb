@@ -1,5 +1,5 @@
 .info{
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .spot-box{
@@ -9,7 +9,14 @@
 }
 
 img{
-    height:100px;
-    width: 150px;
-    border-radius: 8px;
+    height: 150px;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+.spot-box h1{
+    font-size: 30px;
+}
+.box{
+    margin: 2rem;
 }

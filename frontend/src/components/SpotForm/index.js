@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createSpotThunk, updateSpotThunk } from '../../store/spots';
-
 
 const SpotForm = ({ spot, formType }) => {
     const history = useHistory();
@@ -27,12 +26,12 @@ const SpotForm = ({ spot, formType }) => {
             address: street,
             city,
             state,
-            lat:latitude,
-            lng:longitude,
+            lat: latitude,
+            lng: longitude,
             description,
             name,
             price,
-            };
+        };
 
         const errors = {}
         if (!country) {
@@ -71,142 +70,141 @@ const SpotForm = ({ spot, formType }) => {
         // }
 
 
-        if (Object.values(errors).length > 0){
-           setErrors(errors);
-       } else if (formType === 'Update your Spot') {
+        if (Object.values(errors).length > 0) {
+            setErrors(errors);
+        } else if (formType === 'Update your Spot') {
             const editedSpot = await dispatch(updateSpotThunk(spotObj));
 
             history.push(`/spots/${editedSpot.id}`)
 
         } else if (formType === 'Create a new Spot') {
             const newSpot = await dispatch(createSpotThunk(spotObj));
-            console.log('CREATEDSPOT', newSpot)
+
             history.push(`/spots/${newSpot.id}`)
         }
     }
 
-    if(formType === 'Create a new Spot'){
-    return (
-        <form onSubmit={handleSubmit}>
-            <h2>{formType}</h2>
-            <div>Where's your place located?</div>
-            <div>Guests will only get your exact address once they booked a reservation</div>
-            <div className='errors'>{errors.country}</div>
-            <label>
-                Country
-                <input
-                type='text'
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                />
-            </label>
-            <div className='errors'>{errors.street}</div>
-            <label>
-                Street Address
-                <input
-                type='text'
-                value={street}
-                onChange={(e) => setStreet(e.target.value)}
-                />
-            </label>
-            <div className='errors'>{errors.city}</div>
-            <label>
-                City
-                <input
-                type='text'
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                />
-            </label>
-            <div className='errors'>{errors.state}</div>
-            <label>
-                State
-                <input
-                    type='text'
-                    value={state}
-                    onChange={(e) => setState(e.target.value)}
-                />
-            </label>
-            <div className='errors'>{errors.latitude}</div>
-            <label>
-                Latitude
-                <input
-                    type='text'
-                    value={latitude}
-                    onChange={(e) => setLatitude(e.target.value)}
-                />
-            </label>
-            <div className='errors'>{errors.longitude}</div>
-            <label>
-                Longitude
-                <input
-                    type='text'
-                    value={longitude}
-                    onChange={(e) => setLongitude(e.target.value)}
-                />
-            </label>
-            <div>Describe your place to guests</div>
-            <div>Mention the best features of your space, any special amentities like
-                fast wif or parking, and what you love about the neighborhood.</div>
-            <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            />
-            <div className='errors'>{errors.description}</div>
-            <div>Create a title for your spot</div>
-            <div>Catch guests' attention with a spot title that highlights what makes
-                your place special.</div>
-             <input
-                type='text'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                />
-            <div className='errors'>{errors.name}</div>
-                <div>Set a base price for your spot</div>
-            <div>Competitive pricing can help your listing stand out and rank higher
-                in search results.</div>
+    if (formType === 'Create a new Spot') {
+        return (
+            <form onSubmit={handleSubmit}>
+                <h2>{formType}</h2>
+                <div>Where's your place located?</div>
+                <div>Guests will only get your exact address once they booked a reservation</div>
+                <div className='errors'>{errors.country}</div>
                 <label>
-                    $
+                    Country
                     <input
-                    type='text'
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
+                        type='text'
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
                     />
                 </label>
-            <div className='errors'>{errors.price}</div>
+                <div className='errors'>{errors.street}</div>
+                <label>
+                    Street Address
+                    <input
+                        type='text'
+                        value={street}
+                        onChange={(e) => setStreet(e.target.value)}
+                    />
+                </label>
+                <div className='errors'>{errors.city}</div>
+                <label>
+                    City
+                    <input
+                        type='text'
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                    />
+                </label>
+                <div className='errors'>{errors.state}</div>
+                <label>
+                    State
+                    <input
+                        type='text'
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                    />
+                </label>
+                <div className='errors'>{errors.latitude}</div>
+                <label>
+                    Latitude
+                    <input
+                        type='text'
+                        value={latitude}
+                        onChange={(e) => setLatitude(e.target.value)}
+                    />
+                </label>
+                <div className='errors'>{errors.longitude}</div>
+                <label>
+                    Longitude
+                    <input
+                        type='text'
+                        value={longitude}
+                        onChange={(e) => setLongitude(e.target.value)}
+                    />
+                </label>
+                <div>Describe your place to guests</div>
+                <div>Mention the best features of your space, any special amentities like
+                    fast wif or parking, and what you love about the neighborhood.</div>
+                <textarea
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
+                <div className='errors'>{errors.description}</div>
+                <div>Create a title for your spot</div>
+                <div>Catch guests' attention with a spot title that highlights what makes
+                    your place special.</div>
+                <input
+                    type='text'
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+                <div className='errors'>{errors.name}</div>
+                <div>Set a base price for your spot</div>
+                <div>Competitive pricing can help your listing stand out and rank higher
+                    in search results.</div>
+                <label>
+                    $<input
+                        type='text'
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                    />
+                </label>
+                <div className='errors'>{errors.price}</div>
                 <div>Liven up your spot with photos</div>
-            <p>Submit a link to at least one photo to publish your spot.</p>
-            <input
-            type='text'
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-            />
-            <input
-                type='text'
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-            />
-            <input
-                type='text'
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-            />
-            <input
-                type='text'
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-            />
-            <input
-                type='text'
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-            />
-            <button type="submit">{formType}</button>
-        </form>
-    )
+                <p>Submit a link to at least one photo to publish your spot.</p>
+                <input
+                    type='text'
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                />
+                <input
+                    type='text'
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                />
+                <input
+                    type='text'
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                />
+                <input
+                    type='text'
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                />
+                <input
+                    type='text'
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                />
+                <button type="submit">{formType}</button>
+            </form>
+        )
 
-} else if (formType === 'Update your Spot'){
-           return (
+    } else if (formType === 'Update your Spot') {
+        return (
             <form onSubmit={handleSubmit}>
                 <h2>{formType}</h2>
                 <div>Where's your place located?</div>
@@ -294,11 +292,10 @@ const SpotForm = ({ spot, formType }) => {
                     />
                 </label>
                 <div className='errors'>{errors.price}</div>
-
                 <button type="submit">{formType}</button>
             </form>
         )
-}
+    }
 }
 
 export default SpotForm;

@@ -3,16 +3,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-header {
-    display: flex;
-    flex-direction: row;
-    width: 62rem;
-    align-items: center;
-    justify-content: space-around;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    font-family: 'Quicksand', sans-serif;
 }
 
 ul {
@@ -30,10 +21,9 @@ a:hover{
 .wrapper{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 2rem;
 }
 main ul{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    
 }

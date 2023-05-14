@@ -1,4 +1,16 @@
-.img{
-    border-radius: 8px;
+.list li{
+    color: black;
+}
 
+main ul {
+    margin: 2rem;
+}
+.spot{
+    width: 252px;
+}
+
+.star{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
