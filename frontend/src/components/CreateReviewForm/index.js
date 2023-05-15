@@ -45,6 +45,10 @@ const CreateReviewForm = ({ spot }) => {
             return null
         }
     }
+    let isDisabled = true;
+    if(text.length > 10){
+        isDisabled = false
+    }
 
     return (
         <>
@@ -92,7 +96,7 @@ const CreateReviewForm = ({ spot }) => {
                         <i class="fa-solid fa-star"></i>
                     </div>
                 </div>
-                <button type='submit'>Submit Your Review</button>
+                <button type='submit' disabled={isDisabled}>Submit Your Review</button>
             </form>
         </>
     )
