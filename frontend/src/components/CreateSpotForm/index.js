@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createSpotThunk, updateSpotThunk } from '../../store/spots';
-import '../SpotForm'
+import './CreateSpotForm.css'
 
 const CreateSpotForm = () => {
     const spot = {

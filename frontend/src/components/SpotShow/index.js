@@ -19,7 +19,6 @@ const SpotShow = () => {
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
-
     useEffect(() => {
         dispatch(getOneSpotThunk(spotId))
     }, [dispatch, spotId]);
@@ -45,7 +44,7 @@ const SpotShow = () => {
 
     const closeMenu = () => setShowMenu(false);
 
-    if(!spot){
+    if (!spot) {
         return null
     }
 
@@ -57,8 +56,8 @@ const SpotShow = () => {
         return null
     }
 
-    const reserve = () =>{
-      window.alert('Feature Coming Soon...')
+    const reserve = () => {
+        window.alert('Feature Coming Soon...')
     }
 
 
@@ -66,51 +65,55 @@ const SpotShow = () => {
 
     console.log('reviews', newReviewList)
 
-    if(!newReviewList){
+    if (!newReviewList) {
         return null
     }
-    const hidden = (review) =>{
-        if(review.userId === user.id){
+    const hidden = (review) => {
+        if (review.userId === user.id) {
             return ''
-        } else{
+        } else {
             return <OpenModalMenuItem
                 buttonText="Delete"
                 onItemClick={closeMenu}
                 modalComponent={<DeleteReview
                     review={review}
                 />}
-                ></OpenModalMenuItem>
+            ></OpenModalMenuItem>
         }
     }
 
-    console.log('spot', spot)
-
-    if(!user){
+    if (!user) {
         if (newReviewList.length === 0) {
             return (
                 <section>
                     <div className='box'>
-                    <div className='spot-box'>
-                        <h1>{spot.name}</h1>
-                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <div className='images'>
-                        {spot.SpotImages.length && spot.SpotImages.map(image => (
-                            <img src={image.url} alt='house'></img>
-                        ))}
+                        <div className='spot-box'>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                            <div className='images'>
+                                <div className='img1'>
+                                    <img src={spot.SpotImages[0].url} alt='house'></img>
+                                </div>
+                                <div className='img2'>
+                                    <img src={spot.SpotImages[1].url} alt='house'></img>
+                                    <img src={spot.SpotImages[2].url} alt='house'></img>
+                                    <img src={spot.SpotImages[3].url} alt='house'></img>
+                                    <img src={spot.SpotImages[4].url} alt='house'></img>
+                            </div>
                             </div>
                             <div className='reserve-wrap'>
-                        <div className='host'>
-                        <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
-                        <div>{spot.description}</div>
-                        </div>
-                        <div className='reserve'>
-                            <div>$ {spot.price} night</div>
-                                <div>★ New</div>
+                                <div className='host'>
+                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                    <div>{spot.description}</div>
+                                </div>
+                                <div className='reserve'>
+                                    <div>$ {spot.price} night</div>
+                                    <div>★ New</div>
                                     <button onClick={reserve}>Reserve</button>
+                                </div>
+                            </div>
                         </div>
-                        </div>
-                    </div>
-                    <h1>★ New</h1>
+                        <h1>★ New</h1>
                     </div>
                 </section>
             )
@@ -120,37 +123,42 @@ const SpotShow = () => {
             return (
                 <section>
                     <div className='box'>
-                    <div className='spot-box'>
-                        <h1>{spot.name}</h1>
-                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                        <div className='spot-box'>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                             <div className='images'>
-                            {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                <img src={image.url} alt='house'></img>
-                            ))}
+                                <div className='img1'>
+                                    <img src={spot.SpotImages[0].url} alt='house'></img>
+                                </div>
+                                <div className='img2'>
+                                    <img src={spot.SpotImages[1].url} alt='house'></img>
+                                    <img src={spot.SpotImages[2].url} alt='house'></img>
+                                    <img src={spot.SpotImages[3].url} alt='house'></img>
+                                    <img src={spot.SpotImages[4].url} alt='house'></img>
+                                </div>
                             </div>
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
                                     <div>{spot.description}</div>
                                 </div>
-                            <div className='reserve'>
-                                <div>$ {spot.price} night</div>
+                                <div className='reserve'>
+                                    <div>$ {spot.price} night</div>
                                     <div>★ {spot.avgStarRating} · {spot.numReviews} review</div>
                                     <button onClick={reserve}>Reserve</button>
+                                </div>
                             </div>
-                            </div>
-                    </div>
+                        </div>
 
-                    <ul>
+                        <ul>
                             <h1>★ {spot.avgStarRating} · {newReviewList.length} review</h1>
-                        {newReviewList.length && newReviewList.map(review => (
-                            <li key={review.id}>
-                                <div>{review.User.firstName}</div>
-                                <div>{review.review}</div>
-                                <div>{review.stars}</div>
-                            </li>
-                        ))}
-                    </ul>
+                            {newReviewList.length && newReviewList.map(review => (
+                                <li key={review.id}>
+                                    <div>{review.User.firstName}</div>
+                                    <div>{review.review}</div>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </section>
             )
@@ -159,394 +167,442 @@ const SpotShow = () => {
             return (
                 <section>
                     <div className='box'>
-                    <div className='spot-box'>
-                        <h1>{spot.name}</h1>
-                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                        <div className='spot-box'>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                             <div className='images'>
-                            {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                <img src={image.url} alt='house'></img>
-                            ))}
+                                <div className='img1'>
+                                    <img src={spot.SpotImages[0].url} alt='house'></img>
+                                </div>
+                                <div className='img2'>
+                                    <img src={spot.SpotImages[1].url} alt='house'></img>
+                                    <img src={spot.SpotImages[2].url} alt='house'></img>
+                                    <img src={spot.SpotImages[3].url} alt='house'></img>
+                                    <img src={spot.SpotImages[4].url} alt='house'></img>
+                                </div>
                             </div>
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
                                     <div>{spot.description}</div>
                                 </div>
-                            <div className='reserve'>
-                                <div>$ {spot.price} night</div>
+                                <div className='reserve'>
+                                    <div>$ {spot.price} night</div>
                                     <div>★ {spot.avgStarRating} · {spot.numReviews} reviews</div>
                                     <button onClick={reserve}>Reserve</button>
+                                </div>
                             </div>
-                            </div>
-                    </div>
+                        </div>
 
-                    <ul>
+                        <ul>
                             <h1>★ {spot.avgStarRating} · {newReviewList.length} reviews</h1>
-                        {newReviewList.length && newReviewList.map(review => (
-                            <li key={review.id}>
-                                <div>{review.User.firstName}</div>
-                                <div>{review.review}</div>
-                                <div>{review.stars}</div>
-                            </li>
-                        ))}
-                    </ul>
+                            {newReviewList.length && newReviewList.map(review => (
+                                <li key={review.id}>
+                                    <div>{review.User.firstName}</div>
+                                    <div>{review.review}</div>
+
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </section>
             )
         }
 
     }
-        if (user.id !== spot.ownerId ) {
-            if (newReviewList.length === 0) {
-                return (
-                    <section>
-                        <div className='box'>
-                        <div className='spot-box'>
-                            <h1>{spot.name}</h1>
-                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                                <div className='images'>
-                                {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                    <img src={image.url} alt='house'></img>
-                                ))}
-                                </div>
-                                <div className='reserve-wrap'>
-                                    <div className='host'>
-                                        <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
-                                        <div>{spot.description}</div>
-                                    </div>
-                                <div className='reserve'>
-                                    <div>$ {spot.price} night</div>
-                                    <div>★</div>
-                                        <button onClick={reserve}>Reserve</button>
-                                </div>
-                                </div>
-                            </div>
-                        <h1>★ New</h1>
-                            <h5>Be the first to post a review!</h5>
-                        <OpenModalMenuItem
-                            buttonText="Post Your Review"
-                            onItemClick={closeMenu}
-                            modalComponent={<CreateReviewForm
-                            spot={spot}
-                            />}
-                        />
-                        </div>
-                    </section>
-                )
-            } else if (newReviewList.length === 1 && newReviewList[0].userId === user.id) {
-                return (
-                    <section>
-                        <div className='box'>
-                            <div className='spot-box'>
-                            <h1>{spot.name}</h1>
-                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                                <div className='images'>
-                                {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                    <img src={image.url} alt='house'></img>
-                                ))}
-                                </div>
-                                <div className='reserve-wrap'>
-                                    <div className='host'>
-                                        <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
-                                        <div>{spot.description}</div>
-                                    </div>
-                                <div className='reserve'>
-                                    <div>$ {spot.price} night</div>
-                                    <div>★</div>
-                                        <button onClick={reserve}>Reserve</button>
-                                    </div>
-                                </div>
-                            </div>
-                        <ul>
-                            <h1>★ {newReviewList.length} review</h1>
-                            {newReviewList.length && newReviewList.map(review => (
-                            <div key={review.id}>
-                               <li>
-                                    <div>{review?.User?.firstName}</div>
-                                    <div>{review.review}</div>
-                                    <div>{review.stars}</div>
-                                </li>
-                                    <OpenModalMenuItem
-                                        buttonText="Delete"
-                                        onItemClick={closeMenu}
-                                        modalComponent={<DeleteReview
-                                        review={review}
-                                        />}
-                                    />
-                                 </div>
-                            ))}
-                        </ul>
-                        </div>
-                    </section>
-                )
-                                        }
-                else if (newReviewList.length === 1 && newReviewList[0].userId !== user.id) {
-                return (
-                    <section>
-                        <div className='box'>
-                            <div className='spot-box'>
-                                <h1>{spot.name}</h1>
-                                <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                                <div className='images'>
-                                    {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                        <img src={image.url} alt='house'></img>
-                                    ))}
-                                </div>
-                                <div className='reserve-wrap'>
-                                    <div className='host'>
-                                        <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
-                                        <div>{spot.description}</div>
-                                    </div>
-                                    <div className='reserve'>
-                                        <div>$ {spot.price} night</div>
-                                        <div>★</div>
-                                        <button onClick={reserve}>Reserve</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul>
-                                <h1>★ {newReviewList.length} review</h1>
-                                {newReviewList.length && newReviewList.map(review => (
-                                    <div key={review.id}>
-                                        <li>
-                                            <div>{review?.User?.firstName}</div>
-                                            <div>{review.review}</div>
-                                            <div>{review.stars}</div>
-                                        </li>
-                                        <OpenModalMenuItem
-                                            buttonText="Post Your Review"
-                                            onItemClick={closeMenu}
-                                            modalComponent={<CreateReviewForm
-                                                spot={spot}
-                                            />}
-                                        />
-                                    </div>
-                                ))}
-                            </ul>
-                        </div>
-                    </section>
-                )
-
-            } else if (newReviewList.length > 1){
-                return (
-                    <section>
-                        <div className='box'>
-                            <div className='spot-box'>
-                            <h1>{spot.name}</h1>
-                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                                <div className='images'>
-                                {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                    <img src={image.url} alt='house'></img>
-                                ))}
-                                </div>
-                                <div className='reserve-wrap'>
-                                    <div className='host'>
-                                        <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
-                                        <div>{spot.description}</div>
-                                    </div>
-                                <div className='reserve'>
-                                    <div>$ {spot.price} night</div>
-                                    <div>★</div>
-                                        <button onClick={reserve}>Reserve</button>
-                                    </div>
-                                </div>
-                            </div>
-                        <ul>
-                            <h1>★ {newReviewList.length} reviews</h1>
-                            {newReviewList.length && newReviewList.map(review => (
-                                <li key={review.id}>
-                                    <div>{review?.User?.firstName}</div>
-                                    <div>{review.review}</div>
-                                    <div>{review.stars}</div>
-                                 </li>
-                            ))}
-                        </ul>
-                        </div>
-                    </section>
-                )
-            }
-        } else if (newReviewList.length === 0) {
-            return (
-                <section>
-                    <div className='box'>
-                        <div className='spot-box'>
-                        <h1>{spot.name}</h1>
-                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <div className='images'>
-                            {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                <img src={image.url} alt='house'></img>
-                            ))}
-                            </div>
-                            <div className='reserve-wrap'>
-                                <div className='host'>
-                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
-                                    <div>{spot.description}</div>
-                                </div>
-                            <div className='reserve'>
-                                <div>$ {spot.price} night</div>
-                                <div>★</div>
-                                    <button onClick={reserve}>Reserve</button>
-                                </div>
-                            </div>
-                        </div>
-                    <h1>★ New</h1>
-                    </div>
-                </section>
-            )
-        }
-        else if (newReviewList.length === 1) {
-            return (
-                <section>
-                    <div className='box'>
-                        <div className='spot-box'>
-                        <h1>{spot.name}</h1>
-                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <div className='images'>
-                            {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                <img src={image.url} alt='house'></img>
-                            ))}
-                            </div>
-                            <div className='reserve-wrap'>
-                                <div className='host'>
-                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
-                                    <div>{spot.description}</div>
-                                </div>
-                            <div className='reserve'>
-                                <div>$ {spot.price} night</div>
-                                <div>★</div>
-                                    <button onClick={reserve}>Reserve</button>
-                                </div>
-                            </div>
-                        </div>
-                    <ul>
-                        <h1>★ {newReviewList.length} review</h1>
-                        {newReviewList.length && newReviewList.map(review => (
-                            <div key={review.id}>
-                           <li>
-                                <div>{review?.User?.firstName}</div>
-                                <div>{review.review}</div>
-                                <div>{review.stars}</div>
-                                <div>{hidden=(review)}</div>
-                                </li>
-                            </div>
-                        ))}
-                     </ul>
-                        </div>
-                </section>
-            )
-        }
+    if (user.id !== spot.ownerId) {
         if (newReviewList.length === 0) {
             return (
                 <section>
                     <div className='box'>
                         <div className='spot-box'>
-                        <h1>{spot.name}</h1>
-                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                             <div className='images'>
-                            {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                <img src={image.url} alt='house'></img>
-                            ))}
+                                {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                    <img src={image.url} alt='house'></img>
+                                ))}
                             </div>
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
                                     <div>{spot.description}</div>
                                 </div>
-                            <div className='reserve'>
-                                <div>$ {spot.price} night</div>
-                                <div>★</div>
+                                <div className='reserve'>
+                                    <div>$ {spot.price} night</div>
+                                    <div>★ New</div>
                                     <button onClick={reserve}>Reserve</button>
-                            </div>
+                                </div>
                             </div>
                         </div>
+                        <h1>★ New</h1>
+                        <h5>Be the first to post a review!</h5>
+                        <OpenModalMenuItem
+                            buttonText="Post Your Review"
+                            onItemClick={closeMenu}
+                            modalComponent={<CreateReviewForm
+                                spot={spot}
+                            />}
+                        />
+                    </div>
+                </section>
+            )
+        } else if (newReviewList.length === 1 && newReviewList[0].userId === user.id) {
+            return (
+                <section>
+                    <div className='box'>
+                        <div className='spot-box'>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                            <div className='images'>
+                                {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                    <img src={image.url} alt='house'></img>
+                                ))}
+                            </div>
+                            <div className='reserve-wrap'>
+                                <div className='host'>
+                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                    <div>{spot.description}</div>
+                                </div>
+                                <div className='reserve'>
+                                    <div>$ {spot.price} night</div>
+                                    <div>★ {spot.avgStarRating} · {spot.numReviews} review</div>
+                                    <button onClick={reserve}>Reserve</button>
+                                </div>
+                            </div>
+                        </div>
+                        <ul>
+                            <h1>★ {spot.avgStarRating} · {spot.numReviews} review</h1>
+                            {newReviewList.length && newReviewList.map(review => (
+                                <div key={review.id}>
+                                    <li>
+                                        <div>{review?.User?.firstName}</div>
+                                        <div>{review.review}</div>
+
+                                    </li>
+                                    <OpenModalMenuItem
+                                        buttonText="Delete"
+                                        onItemClick={closeMenu}
+                                        modalComponent={<DeleteReview
+                                            review={review}
+                                        />}
+                                    />
+                                </div>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
+            )
+        }
+        else if (newReviewList.length === 1 && newReviewList[0].userId !== user.id) {
+            return (
+                <section>
+                    <div className='box'>
+                        <div className='spot-box'>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                            <div className='images'>
+                                <div className='img1'>
+                                    <img src={spot.SpotImages[0].url} alt='house'></img>
+                                </div>
+                                <div className='img2'>
+                                    <img src={spot.SpotImages[1].url} alt='house'></img>
+                                    <img src={spot.SpotImages[2].url} alt='house'></img>
+                                    <img src={spot.SpotImages[3].url} alt='house'></img>
+                                    <img src={spot.SpotImages[4].url} alt='house'></img>
+                                </div>
+                            </div>
+                            <div className='reserve-wrap'>
+                                <div className='host'>
+                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                    <div>{spot.description}</div>
+                                </div>
+                                <div className='reserve'>
+                                    <div>$ {spot.price} night</div>
+                                    <div>★ {spot.avgStarRating} · {spot.numReviews} review</div>
+                                    <button onClick={reserve}>Reserve</button>
+                                </div>
+                            </div>
+                        </div>
+                        <ul>
+                            <h1>★ {spot.avgStarRating} · {spot.numReviews} review</h1>
+                            {newReviewList.length && newReviewList.map(review => (
+                                <div key={review.id}>
+                                    <li>
+                                        <div>{review?.User?.firstName}</div>
+                                        <div>{review.review}</div>
+
+                                    </li>
+                                    <OpenModalMenuItem
+                                        buttonText="Post Your Review"
+                                        onItemClick={closeMenu}
+                                        modalComponent={<CreateReviewForm
+                                            spot={spot}
+                                        />}
+                                    />
+                                </div>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
+            )
+
+        } else if (newReviewList.length > 1) {
+            return (
+                <section>
+                    <div className='box'>
+                        <div className='spot-box'>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                            <div className='images'>
+                                <div className='img1'>
+                                    <img src={spot.SpotImages[0].url} alt='house'></img>
+                                </div>
+                                <div className='img2'>
+                                    <img src={spot.SpotImages[1].url} alt='house'></img>
+                                    <img src={spot.SpotImages[2].url} alt='house'></img>
+                                    <img src={spot.SpotImages[3].url} alt='house'></img>
+                                    <img src={spot.SpotImages[4].url} alt='house'></img>
+                                </div>
+                            </div>
+                            <div className='reserve-wrap'>
+                                <div className='host'>
+                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                    <div>{spot.description}</div>
+                                </div>
+                                <div className='reserve'>
+                                    <div>$ {spot.price} night</div>
+                                    <div>★ {spot.avgStarRating} · {spot.numReviews} reviews</div>
+                                    <button onClick={reserve}>Reserve</button>
+                                </div>
+                            </div>
+                        </div>
+                        <ul>
+                            <h1>★ {spot.avgStarRating} · {spot.numReviews} reviews</h1>
+                            {newReviewList.length && newReviewList.map(review => (
+                                <li key={review.id}>
+                                    <div>{review?.User?.firstName}</div>
+                                    <div>{review.review}</div>
+
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
+            )
+        }
+    } else if (newReviewList.length === 0) {
+        return (
+            <section>
+                <div className='box'>
+                    <div className='spot-box'>
+                        <h1>{spot.name}</h1>
+                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                        <div className='images'>
+                            <div className='img1'>
+                                <img src={spot.SpotImages[0].url} alt='house'></img>
+                            </div>
+                            <div className='img2'>
+                                <img src={spot.SpotImages[1].url} alt='house'></img>
+                                <img src={spot.SpotImages[2].url} alt='house'></img>
+                                <img src={spot.SpotImages[3].url} alt='house'></img>
+                                <img src={spot.SpotImages[4].url} alt='house'></img>
+                            </div>
+                        </div>
+                        <div className='reserve-wrap'>
+                            <div className='host'>
+                                <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                <div>{spot.description}</div>
+                            </div>
+                            <div className='reserve'>
+                                <div>$ {spot.price} night</div>
+                                <div>★ New</div>
+                                <button onClick={reserve}>Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h1>★ New</h1>
+                </div>
+            </section>
+        )
+    }
+    else if (newReviewList.length === 1) {
+        return (
+            <section>
+                <div className='box'>
+                    <div className='spot-box'>
+                        <h1>{spot.name}</h1>
+                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                        <div className='images'>
+                            <div className='img1'>
+                                <img src={spot.SpotImages[0].url} alt='house'></img>
+                            </div>
+                            <div className='img2'>
+                                <img src={spot.SpotImages[1].url} alt='house'></img>
+                                <img src={spot.SpotImages[2].url} alt='house'></img>
+                                <img src={spot.SpotImages[3].url} alt='house'></img>
+                                <img src={spot.SpotImages[4].url} alt='house'></img>
+                            </div>
+                        </div>
+                        <div className='reserve-wrap'>
+                            <div className='host'>
+                                <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                <div>{spot.description}</div>
+                            </div>
+                            <div className='reserve'>
+                                <div>$ {spot.price} night</div>
+                                <div>★ {spot.avgStarRating} · {spot.numReviews} review</div>
+                                <button onClick={reserve}>Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                    <ul>
+                        <h1>★ {spot.avgStarRating} · {spot.numReviews} review</h1>
+                        {newReviewList.length && newReviewList.map(review => (
+                            <div key={review.id}>
+                                <li>
+                                    <div>{review?.User?.firstName}</div>
+                                    <div>{review.review}</div>
+
+                                    <div>{hidden = (review)}</div>
+                                </li>
+                            </div>
+                        ))}
+                    </ul>
+                </div>
+            </section>
+        )
+    }
+    if (newReviewList.length === 0) {
+        return (
+            <section>
+                <div className='box'>
+                    <div className='spot-box'>
+                        <h1>{spot.name}</h1>
+                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                        <div className='images'>
+                            <div className='img1'>
+                                <img src={spot.SpotImages[0].url} alt='house'></img>
+                            </div>
+                            <div className='img2'>
+                                <img src={spot.SpotImages[1].url} alt='house'></img>
+                                <img src={spot.SpotImages[2].url} alt='house'></img>
+                                <img src={spot.SpotImages[3].url} alt='house'></img>
+                                <img src={spot.SpotImages[4].url} alt='house'></img>
+                            </div>
+                        </div>
+                        <div className='reserve-wrap'>
+                            <div className='host'>
+                                <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                <div>{spot.description}</div>
+                            </div>
+                            <div className='reserve'>
+                                <div>$ {spot.price} night</div>
+                                <div>★ New</div>
+                                <button onClick={reserve}>Reserve</button>
+                            </div>
+                        </div>
+                    </div>
                     <h1>★ New</h1>
                     <ul>
                         <button>Post Your Review</button>
                         <div>Be the first to post a review!</div>
                     </ul>
-                    </div>
-                </section>
-            )
-        }
-
-        if (newReviewList.length === 1) {
-            return (
-                <section>
-                    <div className='box'>
-                        <div className='spot-box'>
-                        <h1>{spot.name}</h1>
-                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <div className='images'>
-                            {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                <img src={image.url} alt='house'></img>
-                            ))}
-                            </div>
-                            <div className='reserve-wrap'>
-                                <div className='host'>
-                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
-                                    <div>{spot.description}</div>
-                                </div>
-                            <div className='reserve'>
-                                <div>$ {spot.price} night</div>
-                                <div>★</div>
-                                    <button onClick={reserve}>Reserve</button>
-                                </div>
-                            </div>
-                    </div>
-                    <ul>
-                        <h1>★ {newReviewList.length} review</h1>
-                        {newReviewList.length && newReviewList.map(review => (
-                            <li key={review.id}>
-                                <div>{review?.User?.firstName}</div>
-                                <div>{review.review}</div>
-                                <div>{review.stars}</div>
-                            </li>
-                        ))}
-                    </ul>
-                        </div>
-                </section>
-            )
-        }
-        else {
-            return (
-                <section>
-                    <div className='box'>
-                        <div className='spot-box'>
-
-                        <h1>{spot.name}</h1>
-                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <div className='images'>
-                            {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                <img src={image.url} alt='house'></img>
-                            ))}
-                            </div>
-                        <div className='reserve-wrap'>
-                                <div className='host'>
-                                    <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
-                                    <div>{spot.description}</div>
-                                </div>
-                            <div className='reserve'>
-                                <div>$ {spot.price} night</div>
-                                <div>★</div>
-                                <button onClick={reserve}>Reserve</button>
-                                </div>
-                            </div>
-                    </div>
-                    <ul>
-                        <h1>★ {newReviewList.length} reviews</h1>
-                        {newReviewList.length && newReviewList.map(review => (
-                            <li key={review.id}>
-                                <div>{review?.User?.firstName}</div>
-                                <div>{review.review}</div>
-                                <div>{review.stars}</div>
-                            </li>
-                        ))}
-                    </ul>
-                        </div>
-                </section>
-            )
-        }
+                </div>
+            </section>
+        )
     }
+
+    if (newReviewList.length === 1) {
+        return (
+            <section>
+                <div className='box'>
+                    <div className='spot-box'>
+                        <h1>{spot.name}</h1>
+                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                        <div className='images'>
+                            <div className='img1'>
+                                <img src={spot.SpotImages[0].url} alt='house'></img>
+                            </div>
+                            <div className='img2'>
+                                <img src={spot.SpotImages[1].url} alt='house'></img>
+                                <img src={spot.SpotImages[2].url} alt='house'></img>
+                                <img src={spot.SpotImages[3].url} alt='house'></img>
+                                <img src={spot.SpotImages[4].url} alt='house'></img>
+                            </div>
+                        </div>
+                        <div className='reserve-wrap'>
+                            <div className='host'>
+                                <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                <div>{spot.description}</div>
+                            </div>
+                            <div className='reserve'>
+                                <div>$ {spot.price} night</div>
+                                <div>★ {spot.avgStarRating} · {spot.numReviews} review</div>
+                                <button onClick={reserve}>Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                    <ul>
+                        <h1>★ {spot.avgStarRating} · {spot.numReviews} review</h1>
+                        {newReviewList.length && newReviewList.map(review => (
+                            <li key={review.id}>
+                                <div>{review?.User?.firstName}</div>
+                                <div>{review.review}</div>
+
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </section>
+        )
+    }
+    else {
+        return (
+            <section>
+                <div className='box'>
+                    <div className='spot-box'>
+
+                        <h1>{spot.name}</h1>
+                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                        <div className='images'>
+                            <div className='img1'>
+                                <img src={spot.SpotImages[0].url} alt='house'></img>
+                            </div>
+                            <div className='img2'>
+                                <img src={spot.SpotImages[1].url} alt='house'></img>
+                                <img src={spot.SpotImages[2].url} alt='house'></img>
+                                <img src={spot.SpotImages[3].url} alt='house'></img>
+                                <img src={spot.SpotImages[4].url} alt='house'></img>
+                            </div>
+                        </div>
+                        <div className='reserve-wrap'>
+                            <div className='host'>
+                                <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                <div>{spot.description}</div>
+                            </div>
+                            <div className='reserve'>
+                                <div>$ {spot.price} night</div>
+                                <div>★ {spot.avgStarRating} · {spot.numReviews} reviews</div>
+                                <button onClick={reserve}>Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                    <ul>
+                        <h1>★ {spot.avgStarRating} · {spot.numReviews} reviews</h1>
+                        {newReviewList.length && newReviewList.map(review => (
+                            <li key={review.id}>
+                                <div>{review?.User?.firstName}</div>
+                                <div>{review.review}</div>
+
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </section>
+        )
+    }
+}
 
 
 

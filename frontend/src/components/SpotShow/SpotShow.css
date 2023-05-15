@@ -7,7 +7,7 @@
 }
 
 img{
-    height: 100px;
+    height: 125px;
     width: fit-content;
     border-radius: 5px;
 }
@@ -53,8 +53,20 @@ img{
 .images{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: .5rem;
 }
 .images img{
-    height: 250px;
+    height: 400px;
     width:fit-content;
+}
+.img2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: .5rem;
+    column-gap: .5rem;
+}
+.img2 img{
+    height: 200px;
+    width: fit-content;
+
 }
