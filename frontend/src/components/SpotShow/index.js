@@ -237,6 +237,7 @@ const SpotShow = () => {
                         </div>
                         <h1>★ New</h1>
                         <h5>Be the first to post a review!</h5>
+                        <div className='modal'>
                         <OpenModalMenuItem
                             buttonText="Post Your Review"
                             onItemClick={closeMenu}
@@ -244,6 +245,7 @@ const SpotShow = () => {
                                 spot={spot}
                             />}
                         />
+                    </div>
                     </div>
                 </section>
             )
@@ -280,6 +282,7 @@ const SpotShow = () => {
                                         <div>{review.review}</div>
 
                                     </li>
+                                    <div className='modal'>
                                     <OpenModalMenuItem
                                         buttonText="Delete"
                                         onItemClick={closeMenu}
@@ -287,6 +290,7 @@ const SpotShow = () => {
                                             review={review}
                                         />}
                                     />
+                                    </div>
                                 </div>
                             ))}
                         </ul>
@@ -333,6 +337,7 @@ const SpotShow = () => {
                                         <div>{review.review}</div>
 
                                     </li>
+                                    <div className='modal'>
                                     <OpenModalMenuItem
                                         buttonText="Post Your Review"
                                         onItemClick={closeMenu}
@@ -340,6 +345,7 @@ const SpotShow = () => {
                                             spot={spot}
                                         />}
                                     />
+                                    </div>
                                 </div>
                             ))}
                         </ul>
