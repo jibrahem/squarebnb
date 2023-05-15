@@ -68,19 +68,14 @@ const SpotShow = () => {
     if (!newReviewList) {
         return null
     }
-    // const hidden = (review) => {
-    //     if (review.userId === user.id) {
-    //         return ''
-    //     } else {
-    //         return <OpenModalMenuItem
-    //             buttonText="Delete"
-    //             onItemClick={closeMenu}
-    //             modalComponent={<DeleteReview
-    //                 review={review}
-    //             />}
-    //         ></OpenModalMenuItem>
-    //     }
-    // }
+
+    let isDisabled = true;
+        newReviewList.forEach(review =>{
+            if (review.userId === user.id){
+                isDisabled = false;
+            }
+        })
+
 
     if (!user) {
         if (newReviewList.length === 0) {
@@ -107,8 +102,10 @@ const SpotShow = () => {
                                     <div>{spot.description}</div>
                                 </div>
                                 <div className='reserve'>
+                                    <div className='money'>
                                     <div>$ {spot.price} night</div>
                                     <div>★ New</div>
+                                </div>
                                     <button onClick={reserve}>Reserve</button>
                                 </div>
                             </div>
@@ -143,8 +140,10 @@ const SpotShow = () => {
                                     <div>{spot.description}</div>
                                 </div>
                                 <div className='reserve'>
+                                    <div className='money'>
                                     <div>$ {spot.price} night</div>
                                     <div>★ {spot.avgStarRating} · {spot.numReviews} review</div>
+                                    </div>
                                     <button onClick={reserve}>Reserve</button>
                                 </div>
                             </div>
@@ -187,8 +186,10 @@ const SpotShow = () => {
                                     <div>{spot.description}</div>
                                 </div>
                                 <div className='reserve'>
+                                    <div className='money'>
                                     <div>$ {spot.price} night</div>
                                     <div>★ {spot.avgStarRating} · {spot.numReviews} reviews</div>
+                                    </div>
                                     <button onClick={reserve}>Reserve</button>
                                 </div>
                             </div>
@@ -235,8 +236,10 @@ const SpotShow = () => {
                                     <div>{spot.description}</div>
                                 </div>
                                 <div className='reserve'>
+                                    <div className='money'>
                                     <div>$ {spot.price} night</div>
                                     <div>★ New</div>
+                                    </div>
                                     <button onClick={reserve}>Reserve</button>
                                 </div>
                             </div>
@@ -279,8 +282,10 @@ const SpotShow = () => {
                                     <div>{spot.description}</div>
                                 </div>
                                 <div className='reserve'>
+                                    <div className='money'>
                                     <div>$ {spot.price} night</div>
                                     <div>★ {spot.avgStarRating} · {spot.numReviews} review</div>
+                                    </div>
                                     <button onClick={reserve}>Reserve</button>
                                 </div>
                             </div>
@@ -334,8 +339,10 @@ const SpotShow = () => {
                                     <div>{spot.description}</div>
                                 </div>
                                 <div className='reserve'>
+                                    <div className='money'>
                                     <div>$ {spot.price} night</div>
                                     <div>★ {spot.avgStarRating} · {spot.numReviews} review</div>
+                                    </div>
                                     <button onClick={reserve}>Reserve</button>
                                 </div>
                             </div>
@@ -389,8 +396,10 @@ const SpotShow = () => {
                                     <div>{spot.description}</div>
                                 </div>
                                 <div className='reserve'>
+                                    <div className='money'>
                                     <div>$ {spot.price} night</div>
                                     <div>★ {spot.avgStarRating} · {spot.numReviews} reviews</div>
+                                   </div>
                                     <button onClick={reserve}>Reserve</button>
                                 </div>
                             </div>
@@ -401,6 +410,14 @@ const SpotShow = () => {
                                 <li key={review.id}>
                                     <div>{review?.User?.firstName}</div>
                                     <div>{review.review}</div>
+                                    {/* <OpenModalMenuItem
+                                        disabled={isDisabled}
+                                        buttonText="Delete"
+                                        onItemClick={closeMenu}
+                                        modalComponent={<DeleteReview
+                                            review={review}
+                                        />}
+                                    /> */}
 
                                 </li>
                             ))}
@@ -433,8 +450,10 @@ const SpotShow = () => {
                                 <div>{spot.description}</div>
                             </div>
                             <div className='reserve'>
+                                <div className='money'>
                                 <div>$ {spot.price} night</div>
                                 <div>★ New</div>
+                                </div>
                                 <button onClick={reserve}>Reserve</button>
                             </div>
                         </div>
@@ -468,8 +487,10 @@ const SpotShow = () => {
                                 <div>{spot.description}</div>
                             </div>
                             <div className='reserve'>
+                                <div className='money'>
                                 <div>$ {spot.price} night</div>
                                 <div>★ {spot.avgStarRating} · {spot.numReviews} review</div>
+                                </div>
                                 <button onClick={reserve}>Reserve</button>
                             </div>
                         </div>
@@ -513,8 +534,10 @@ const SpotShow = () => {
                                 <div>{spot.description}</div>
                             </div>
                             <div className='reserve'>
+                                <div className='money'>
                                 <div>$ {spot.price} night</div>
                                 <div>★ New</div>
+                                </div>
                                 <button onClick={reserve}>Reserve</button>
                             </div>
                         </div>
@@ -553,8 +576,10 @@ const SpotShow = () => {
                                 <div>{spot.description}</div>
                             </div>
                             <div className='reserve'>
+                                <div className='money'>
                                 <div>$ {spot.price} night</div>
                                 <div>★ {spot.avgStarRating} · {spot.numReviews} review</div>
+                                </div>
                                 <button onClick={reserve}>Reserve</button>
                             </div>
                         </div>
@@ -598,8 +623,10 @@ const SpotShow = () => {
                                 <div>{spot.description}</div>
                             </div>
                             <div className='reserve'>
+                                <div className='money'>
                                 <div>$ {spot.price} night</div>
                                 <div>★ {spot.avgStarRating} · {spot.numReviews} reviews</div>
+                                </div>
                                 <button onClick={reserve}>Reserve</button>
                             </div>
                         </div>

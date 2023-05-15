@@ -77,3 +77,10 @@ img{
     background-color: gray;
     color:white;
 }
+.money{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3.5rem;
+    margin:.75rem;
+}
