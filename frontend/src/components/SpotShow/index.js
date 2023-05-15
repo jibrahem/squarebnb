@@ -68,19 +68,19 @@ const SpotShow = () => {
     if (!newReviewList) {
         return null
     }
-    const hidden = (review) => {
-        if (review.userId === user.id) {
-            return ''
-        } else {
-            return <OpenModalMenuItem
-                buttonText="Delete"
-                onItemClick={closeMenu}
-                modalComponent={<DeleteReview
-                    review={review}
-                />}
-            ></OpenModalMenuItem>
-        }
-    }
+    // const hidden = (review) => {
+    //     if (review.userId === user.id) {
+    //         return ''
+    //     } else {
+    //         return <OpenModalMenuItem
+    //             buttonText="Delete"
+    //             onItemClick={closeMenu}
+    //             modalComponent={<DeleteReview
+    //                 review={review}
+    //             />}
+    //         ></OpenModalMenuItem>
+    //     }
+    // }
 
     if (!user) {
         if (newReviewList.length === 0) {
@@ -219,9 +219,15 @@ const SpotShow = () => {
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                             <div className='images'>
-                                {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                    <img src={image.url} alt='house'></img>
-                                ))}
+                                <div className='img1'>
+                                    <img src={spot.SpotImages[0].url} alt='house'></img>
+                                </div>
+                                <div className='img2'>
+                                    <img src={spot.SpotImages[1].url} alt='house'></img>
+                                    <img src={spot.SpotImages[2].url} alt='house'></img>
+                                    <img src={spot.SpotImages[3].url} alt='house'></img>
+                                    <img src={spot.SpotImages[4].url} alt='house'></img>
+                                </div>
                             </div>
                             <div className='reserve-wrap'>
                                 <div className='host'>
@@ -257,9 +263,15 @@ const SpotShow = () => {
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
                             <div className='images'>
-                                {spot.SpotImages.length && spot.SpotImages.map(image => (
-                                    <img src={image.url} alt='house'></img>
-                                ))}
+                                <div className='img1'>
+                                    <img src={spot.SpotImages[0].url} alt='house'></img>
+                                </div>
+                                <div className='img2'>
+                                    <img src={spot.SpotImages[1].url} alt='house'></img>
+                                    <img src={spot.SpotImages[2].url} alt='house'></img>
+                                    <img src={spot.SpotImages[3].url} alt='house'></img>
+                                    <img src={spot.SpotImages[4].url} alt='house'></img>
+                                </div>
                             </div>
                             <div className='reserve-wrap'>
                                 <div className='host'>
@@ -469,8 +481,6 @@ const SpotShow = () => {
                                 <li>
                                     <div>{review?.User?.firstName}</div>
                                     <div>{review.review}</div>
-
-                                    <div>{hidden = (review)}</div>
                                 </li>
                             </div>
                         ))}
