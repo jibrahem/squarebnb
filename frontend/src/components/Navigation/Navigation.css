@@ -8,12 +8,14 @@ li{
     margin: .5rem;
  }
 
- li:hover{
-    cursor: pointer;
- }
-
  a:hover{
+    cursor: pointer;
     text-decoration: none;
+ }
+ .top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
  }
 
  .top a{
@@ -28,7 +30,7 @@ li{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 1rem;
+    margin: 2rem;
 }
 
 .air{
@@ -44,3 +46,7 @@ li{
     cursor: pointer;
 }
 
+.profile-dropdown{
+    margin-top: .5rem;
+    border: 1px solid black;
+}

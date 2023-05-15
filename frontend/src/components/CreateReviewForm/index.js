@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { allReviewsThunk, createReviewThunk, getAllReviews } from '../../store/reviews';
+import { allReviewsThunk, createReviewThunk} from '../../store/reviews';
 import { useModal } from "../../context/Modal";
 import { useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom'
 import { getOneSpotThunk } from "../../store/spots";
+
 
 const CreateReviewForm = ({ spot }) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [text, setText] = useState('');
     const [stars, setStars] = useState(1);
-    const [starRating, setStarRating] = useState(1)
+    const [starRating, setStarRating] = useState()
     const [errors, setErrors] = useState({});
     const user = useSelector(state => state.session.user)
     const { closeModal } = useModal();
@@ -36,7 +37,7 @@ const CreateReviewForm = ({ spot }) => {
         if (Object.values(errors).length > 0) {
             setErrors(errors);
         } else {
-            const newReview = await dispatch(createReviewThunk(spot, review)).then(closeModal)
+            const newReview = await dispatch(createReviewThunk(spot, review)).then(dispatch(allReviewsThunk(spot.id))).then(closeModal)
         }
         if (!review) {
             return null
@@ -45,6 +46,9 @@ const CreateReviewForm = ({ spot }) => {
             return null
         }
     }
+    useEffect(() => {
+        dispatch(allReviewsThunk(spot.id));
+    }, [dispatch, spot.id]);
 
 
     let isDisabled = true;
@@ -67,33 +71,40 @@ const CreateReviewForm = ({ spot }) => {
                 <textarea
                     value={text}
                     onChange={(e) => setText(e.target.value)}
+                    placeholder="Leave your review here..."
                 />
+                <div className="errors">{errors.stars}</div>
                 <div className="rating-input">
                         <i class="fa-regular fa-star"
+                        style={{ color: '#e1d700' }}
                         onClick={() => setStars(1)}
-                        onMouseEnter={() => setStarRating(1)}
+                        onMouseEnter={() => setStars(1)}
                         onMouseLeave={() => setStarRating(0)}
                         className={setStar(1)}></i>
 
                         <i class="fa-regular fa-star"
+                        style={{ color: '#e1d700' }}
                         onClick={() => setStars(2)}
-                        onMouseEnter={() => setStarRating(2)}
+                        onMouseEnter={() => setStars(2)}
                         onMouseLeave={() => setStarRating(0)}
                         className={setStar(2)}></i>
 
                     <i class="fa-regular fa-star"
+                        style={{ color: '#e1d700' }}
                         onClick={() => setStars(3)}
-                        onMouseEnter={() => setStarRating(3)}
+                        onMouseEnter={() => setStars(3)}
                         onMouseLeave={() => setStarRating(0)}
                         className={setStar(3)}></i>
 
                     <i class="fa-regular fa-star"
+                        style={{ color: '#e1d700' }}
                         onClick={() => setStars(4)}
-                        onMouseEnter={() => setStarRating(4)}
+                        onMouseEnter={() => setStars(4)}
                         onMouseLeave={() => setStarRating(0)}
                         className={setStar(4)}></i>
 
                     <i class="fa-regular fa-star"
+                        style={{color: '#e1d700'}}
                         onClick={() => setStars(5)}
                         onMouseEnter={() => setStarRating(5)}
                         onMouseLeave={() => setStarRating(0)}

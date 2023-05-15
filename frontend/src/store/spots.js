@@ -69,6 +69,14 @@ export const createSpotThunk = (spot, image) => async (dispatch) => {
     });
 
     if (response.ok) {
+        // for(let img of image){
+        //     console.log('IMAGE', img)
+        //     await csrfFetch(`/api/spots/${spot.id}/images`, {
+        //         method: 'POST',
+        //         headers: { 'Content-Type': 'application/json' },
+        //         body: JSON.stringify(img),
+        //     })
+        // }
         const newSpot = await response.json();
         dispatch(receiveSpot(newSpot))
         return newSpot;

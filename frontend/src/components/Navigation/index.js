@@ -11,28 +11,31 @@ function Navigation({ isLoaded }) {
         return (
             <div className='nav-wrap'>
                 <header>
-                    <ul className='nav'>
+                    <div className='nav'>
                         <div className='air'>
                             <li>
                                 <NavLink exact to="/">
-                                    <i class="fa-brands fa-airbnb"></i>
+                                    <i className="fa-brands fa-airbnb"></i>
                                 airebnb</NavLink>
                             </li>
                         </div>
                         {isLoaded && (
-                            <div className='top'>
-                                <ul>
-                                    <li><NavLink exact to='/spots/new'>
+                            <ul>
+                                    <div className='top'>
+                                    <div className='new'>
+                                    <NavLink exact to='/spots/new'>
                                         Create a New Spot
                                     </NavLink>
-                                    </li>
+                                    </div>
+                                    <div className='profile'>
                                     <li>
                                         <ProfileButton user={sessionUser} />
                                     </li>
-                                </ul>
+                                    </div>
                             </div>
+                                </ul>
                         )}
-                    </ul>
+                    </div>
                 </header>
             </div>
         );

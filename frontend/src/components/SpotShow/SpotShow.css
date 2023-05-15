@@ -50,3 +50,11 @@ img{
     margin-top: 1rem;
     justify-content: space-evenly;
 }
+.images{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.images img{
+    height: 250px;
+    width:fit-content;
+}

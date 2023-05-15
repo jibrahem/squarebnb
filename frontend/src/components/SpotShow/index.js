@@ -69,6 +69,21 @@ const SpotShow = () => {
     if(!newReviewList){
         return null
     }
+    const hidden = (review) =>{
+        if(review.userId === user.id){
+            return ''
+        } else{
+            return <OpenModalMenuItem
+                buttonText="Delete"
+                onItemClick={closeMenu}
+                modalComponent={<DeleteReview
+                    review={review}
+                />}
+                ></OpenModalMenuItem>
+        }
+    }
+
+    console.log('spot', spot)
 
     if(!user){
         if (newReviewList.length === 0) {
@@ -78,7 +93,11 @@ const SpotShow = () => {
                     <div className='spot-box'>
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+                        <div className='images'>
+                        {spot.SpotImages.length && spot.SpotImages.map(image => (
+                            <img src={image.url} alt='house'></img>
+                        ))}
+                            </div>
                             <div className='reserve-wrap'>
                         <div className='host'>
                         <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -86,7 +105,7 @@ const SpotShow = () => {
                         </div>
                         <div className='reserve'>
                             <div>$ {spot.price} night</div>
-                                <div>★</div>
+                                <div>★ New</div>
                                     <button onClick={reserve}>Reserve</button>
                         </div>
                         </div>
@@ -104,7 +123,11 @@ const SpotShow = () => {
                     <div className='spot-box'>
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+                            <div className='images'>
+                            {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                <img src={image.url} alt='house'></img>
+                            ))}
+                            </div>
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -112,14 +135,14 @@ const SpotShow = () => {
                                 </div>
                             <div className='reserve'>
                                 <div>$ {spot.price} night</div>
-                                <div>★</div>
+                                    <div>★ {spot.avgStarRating} · {spot.numReviews} review</div>
                                     <button onClick={reserve}>Reserve</button>
                             </div>
                             </div>
                     </div>
 
                     <ul>
-                        <h1>★ {newReviewList.length} review</h1>
+                            <h1>★ {spot.avgStarRating} · {newReviewList.length} review</h1>
                         {newReviewList.length && newReviewList.map(review => (
                             <li key={review.id}>
                                 <div>{review.User.firstName}</div>
@@ -139,7 +162,11 @@ const SpotShow = () => {
                     <div className='spot-box'>
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+                            <div className='images'>
+                            {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                <img src={image.url} alt='house'></img>
+                            ))}
+                            </div>
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -147,14 +174,14 @@ const SpotShow = () => {
                                 </div>
                             <div className='reserve'>
                                 <div>$ {spot.price} night</div>
-                                <div>★</div>
+                                    <div>★ {spot.avgStarRating} · {spot.numReviews} reviews</div>
                                     <button onClick={reserve}>Reserve</button>
                             </div>
                             </div>
                     </div>
 
                     <ul>
-                        <h1>★ {newReviewList.length} reviews</h1>
+                            <h1>★ {spot.avgStarRating} · {newReviewList.length} reviews</h1>
                         {newReviewList.length && newReviewList.map(review => (
                             <li key={review.id}>
                                 <div>{review.User.firstName}</div>
@@ -177,7 +204,11 @@ const SpotShow = () => {
                         <div className='spot-box'>
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+                                <div className='images'>
+                                {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                    <img src={image.url} alt='house'></img>
+                                ))}
+                                </div>
                                 <div className='reserve-wrap'>
                                     <div className='host'>
                                         <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -191,6 +222,7 @@ const SpotShow = () => {
                                 </div>
                             </div>
                         <h1>★ New</h1>
+                            <h5>Be the first to post a review!</h5>
                         <OpenModalMenuItem
                             buttonText="Post Your Review"
                             onItemClick={closeMenu}
@@ -208,7 +240,11 @@ const SpotShow = () => {
                             <div className='spot-box'>
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+                                <div className='images'>
+                                {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                    <img src={image.url} alt='house'></img>
+                                ))}
+                                </div>
                                 <div className='reserve-wrap'>
                                     <div className='host'>
                                         <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -243,6 +279,54 @@ const SpotShow = () => {
                         </div>
                     </section>
                 )
+                                        }
+                else if (newReviewList.length === 1 && newReviewList[0].userId !== user.id) {
+                return (
+                    <section>
+                        <div className='box'>
+                            <div className='spot-box'>
+                                <h1>{spot.name}</h1>
+                                <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                                <div className='images'>
+                                    {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                        <img src={image.url} alt='house'></img>
+                                    ))}
+                                </div>
+                                <div className='reserve-wrap'>
+                                    <div className='host'>
+                                        <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+                                        <div>{spot.description}</div>
+                                    </div>
+                                    <div className='reserve'>
+                                        <div>$ {spot.price} night</div>
+                                        <div>★</div>
+                                        <button onClick={reserve}>Reserve</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul>
+                                <h1>★ {newReviewList.length} review</h1>
+                                {newReviewList.length && newReviewList.map(review => (
+                                    <div key={review.id}>
+                                        <li>
+                                            <div>{review?.User?.firstName}</div>
+                                            <div>{review.review}</div>
+                                            <div>{review.stars}</div>
+                                        </li>
+                                        <OpenModalMenuItem
+                                            buttonText="Post Your Review"
+                                            onItemClick={closeMenu}
+                                            modalComponent={<CreateReviewForm
+                                                spot={spot}
+                                            />}
+                                        />
+                                    </div>
+                                ))}
+                            </ul>
+                        </div>
+                    </section>
+                )
+
             } else if (newReviewList.length > 1){
                 return (
                     <section>
@@ -250,7 +334,11 @@ const SpotShow = () => {
                             <div className='spot-box'>
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+                                <div className='images'>
+                                {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                    <img src={image.url} alt='house'></img>
+                                ))}
+                                </div>
                                 <div className='reserve-wrap'>
                                     <div className='host'>
                                         <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -270,7 +358,7 @@ const SpotShow = () => {
                                     <div>{review?.User?.firstName}</div>
                                     <div>{review.review}</div>
                                     <div>{review.stars}</div>
-                                </li>
+                                 </li>
                             ))}
                         </ul>
                         </div>
@@ -284,7 +372,11 @@ const SpotShow = () => {
                         <div className='spot-box'>
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+                            <div className='images'>
+                            {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                <img src={image.url} alt='house'></img>
+                            ))}
+                            </div>
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -309,7 +401,11 @@ const SpotShow = () => {
                         <div className='spot-box'>
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+                            <div className='images'>
+                            {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                <img src={image.url} alt='house'></img>
+                            ))}
+                            </div>
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -330,6 +426,7 @@ const SpotShow = () => {
                                 <div>{review?.User?.firstName}</div>
                                 <div>{review.review}</div>
                                 <div>{review.stars}</div>
+                                <div>{hidden=(review)}</div>
                                 </li>
                             </div>
                         ))}
@@ -345,7 +442,11 @@ const SpotShow = () => {
                         <div className='spot-box'>
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+                            <div className='images'>
+                            {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                <img src={image.url} alt='house'></img>
+                            ))}
+                            </div>
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -375,7 +476,11 @@ const SpotShow = () => {
                         <div className='spot-box'>
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+                            <div className='images'>
+                            {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                <img src={image.url} alt='house'></img>
+                            ))}
+                            </div>
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -410,7 +515,11 @@ const SpotShow = () => {
 
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='house'></img>
+                            <div className='images'>
+                            {spot.SpotImages.length && spot.SpotImages.map(image => (
+                                <img src={image.url} alt='house'></img>
+                            ))}
+                            </div>
                         <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>

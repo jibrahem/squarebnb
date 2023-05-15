@@ -38,13 +38,12 @@ export default function SpotList(){
         <div key={spot.id} className='spot' title={spot.name}>
           <Link to={`/spots/${spot.id}`}>
             <div className='image'>
-              <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/e6e61879358053.5cc08fa80eea0.jpg' alt='home'/>
-
+              <img src={spot.previewImage} alt='home'/>
             </div>
             <div className='list'>
               <div className='star'>
           <li>{spot.city}, {spot.state}</li>
-            <li>★ {spot.avgRating}</li>
+            <li>★ {spot?.avgRating || ('New')}</li>
               </div>
           <li>${spot.price} night</li>
             </div>

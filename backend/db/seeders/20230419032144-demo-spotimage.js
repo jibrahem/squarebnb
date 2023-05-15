@@ -21,27 +21,27 @@ module.exports = {
    await queryInterface.bulkInsert(options, [
     {
       spotId: 1,
-      url: 'hi.com',
+       url: 'https://www.thehousedesigners.com/images/plans/URD/bulk/6583/the-destination-side-rendering_1.jpg',
       preview: true
     },
     {
       spotId: 2,
-      url: 'bye.com',
-      preview: false
+      url: 'https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041_640.jpg',
+      preview: true
      },
      {
        spotId: 3,
-       url: 'bye.com',
-       preview: false
-     },
-     {
-       spotId: 1,
-       url: 'bye.com',
+       url: 'https://images.familyhomeplans.com/cdn-cgi/image/fit=scale-down,quality=85/plans/44207/44207-b600.jpg',
        preview: true
      },
      {
-       spotId: 2,
-       url: 'bye.com',
+       spotId: 1,
+       url: 'https://thumbs.dreamstime.com/b/modern-house-46517595.jpg',
+       preview: true
+     },
+     {
+       spotId: 4,
+       url: 'https://wallpaperaccess.com/full/1700222.jpg',
        preview: true
      }
    ], {});
