@@ -45,9 +45,18 @@ const CreateReviewForm = ({ spot }) => {
             return null
         }
     }
+
+
     let isDisabled = true;
-    if(text.length > 10){
+    if (text.length > 10 && Object.values(errors).length === 0){
         isDisabled = false
+    }
+
+    const setStar = (num)=> {
+        if(num <= stars){
+            return "fa-solid fa-star";
+        }
+            return "fa-regular fa-star";
     }
 
     return (
@@ -60,41 +69,36 @@ const CreateReviewForm = ({ spot }) => {
                     onChange={(e) => setText(e.target.value)}
                 />
                 <div className="rating-input">
-                    <div
-                        className={starRating >= 1 ? "filled" : "empty"}
+                        <i class="fa-regular fa-star"
+                        onClick={() => setStars(1)}
                         onMouseEnter={() => setStarRating(1)}
-                        onMouseLeave={() => setStarRating(1)}
-                        onClick={() => setStars(1)}>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <div
-                        className={starRating >= 2 ? "filled" : "empty"}
+                        onMouseLeave={() => setStarRating(0)}
+                        className={setStar(1)}></i>
+
+                        <i class="fa-regular fa-star"
+                        onClick={() => setStars(2)}
                         onMouseEnter={() => setStarRating(2)}
-                        onMouseLeave={() => setStarRating(2)}
-                        onClick={() => setStars(2)}>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div
-                        className={starRating >= 3 ? "filled" : "empty"}
+                        onMouseLeave={() => setStarRating(0)}
+                        className={setStar(2)}></i>
+
+                    <i class="fa-regular fa-star"
+                        onClick={() => setStars(3)}
                         onMouseEnter={() => setStarRating(3)}
-                        onMouseLeave={() => setStarRating(3)}
-                        onClick={() => setStars(3)}>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div
-                        className={starRating >= 4 ? "filled" : "empty"}
+                        onMouseLeave={() => setStarRating(0)}
+                        className={setStar(3)}></i>
+
+                    <i class="fa-regular fa-star"
+                        onClick={() => setStars(4)}
                         onMouseEnter={() => setStarRating(4)}
-                        onMouseLeave={() => setStarRating(4)}
-                        onClick={() => setStars(4)}>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <div
-                        className={starRating >= 5 ? "filled" : "empty"}
+                        onMouseLeave={() => setStarRating(0)}
+                        className={setStar(4)}></i>
+
+                    <i class="fa-regular fa-star"
+                        onClick={() => setStars(5)}
                         onMouseEnter={() => setStarRating(5)}
-                        onMouseLeave={() => setStarRating(5)}
-                        onClick={() => setStars(5)}>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
+                        onMouseLeave={() => setStarRating(0)}
+                        className={setStar(5)}></i>
+
                 </div>
                 <button type='submit' disabled={isDisabled}>Submit Your Review</button>
             </form>

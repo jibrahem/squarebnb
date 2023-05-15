@@ -41,6 +41,11 @@ function SignupFormModal() {
         });
     };
 
+    let isDisabled = true;
+    if (username.length > 4 && password.length > 6 && email && firstName && lastName && confirmPassword) {
+        isDisabled = false
+    }
+
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -108,7 +113,7 @@ function SignupFormModal() {
                     <div className="errors">{errors.confirmPassword}</div>
                 )}
                 <div className="login">
-                <button type="submit">Sign Up</button>
+                <button type="submit" disabled={isDisabled}>Sign Up</button>
                 </div>
             </form>
         </>

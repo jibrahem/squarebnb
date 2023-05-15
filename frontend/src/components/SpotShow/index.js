@@ -63,7 +63,9 @@ const SpotShow = () => {
 
 
     const newReviewList = reviewList.filter(review => review.spotId === spot.id);
- 
+
+    console.log('reviews', newReviewList)
+
     if(!newReviewList){
         return null
     }
@@ -241,7 +243,7 @@ const SpotShow = () => {
                         </div>
                     </section>
                 )
-            } else if (newReviewList.length > 1 && newReviewList[0].userId === user.id){
+            } else if (newReviewList.length > 1){
                 return (
                     <section>
                         <div className='box'>

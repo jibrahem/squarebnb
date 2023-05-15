@@ -69,7 +69,7 @@ const reviewReducer = (state = initialState, action) => {
         case ADD_REVIEW:
             newState = { ...state, spot: { ...state.spot }, user: { ...state.user } }
             // newState = { ...state, spot: { ...action.spot } }
-            newState.spot[action.review.id] = action.review
+            newState.spot[action.review] = action.review
             return newState
         case REMOVE_REVIEW:
             newState = { ...state, spot: { ...state.spot }, user: { ...state.user } }

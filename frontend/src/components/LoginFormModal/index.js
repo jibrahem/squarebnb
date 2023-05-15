@@ -25,6 +25,20 @@ function LoginFormModal() {
 
     };
 
+    let isDisabled = true;
+    if (credential.length > 4 && password.length > 6) {
+        isDisabled = false
+    }
+
+    const demoUser = () =>{
+        return dispatch(sessionActions.login({
+            credential: 'FakeUser1',
+            password: 'password2',
+        }))
+        .then(closeModal)
+    }
+
+
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -51,9 +65,9 @@ function LoginFormModal() {
                     <div className="errors">{errors.credential}</div>
                 )}
                 <div className='login'>
-                <button type="submit">Log In</button>
+                <button type="submit" disabled={isDisabled}>Log In</button>
                 </div>
-                <div>Demo User</div>
+                <button type='submit' onClick={demoUser}>Demo User</button>
             </form>
         </>
     );
