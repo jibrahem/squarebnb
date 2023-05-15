@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { createReviewThunk } from '../../store/reviews';
+import { allReviewsThunk, createReviewThunk, getAllReviews } from '../../store/reviews';
 import { useModal } from "../../context/Modal";
 import { useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom'
@@ -36,8 +36,7 @@ const CreateReviewForm = ({ spot }) => {
         if (Object.values(errors).length > 0) {
             setErrors(errors);
         } else {
-            const newReview = await dispatch(createReviewThunk(spot, review))
-                .then(dispatch(getOneSpotThunk(spot.id)))
+            const newReview = await dispatch(createReviewThunk(spot, review)).then(closeModal)
         }
         if (!review) {
             return null

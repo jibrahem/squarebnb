@@ -23,6 +23,7 @@ export const allReviewsThunk = (spotId) => async (dispatch) => {
     if (response.ok) {
         const spotReviews = await response.json()
         dispatch(getAllReviews(spotReviews))
+        return spotReviews
     }
 }
 
@@ -67,7 +68,8 @@ const reviewReducer = (state = initialState, action) => {
             return newState
         case ADD_REVIEW:
             newState = { ...state, spot: { ...state.spot }, user: { ...state.user } }
-            newState = { ...state, spot: { ...action.spot } }
+            // newState = { ...state, spot: { ...action.spot } }
+            newState.spot[action.review.id] = action.review
             return newState
         case REMOVE_REVIEW:
             newState = { ...state, spot: { ...state.spot }, user: { ...state.user } }

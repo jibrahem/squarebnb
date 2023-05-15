@@ -63,7 +63,10 @@ const SpotShow = () => {
 
 
     const newReviewList = reviewList.filter(review => review.spotId === spot.id);
-
+ 
+    if(!newReviewList){
+        return null
+    }
 
     if(!user){
         if (newReviewList.length === 0) {
@@ -221,7 +224,7 @@ const SpotShow = () => {
                             {newReviewList.length && newReviewList.map(review => (
                             <div key={review.id}>
                                <li>
-                                    <div>{review.User.firstName}</div>
+                                    <div>{review?.User?.firstName}</div>
                                     <div>{review.review}</div>
                                     <div>{review.stars}</div>
                                 </li>
@@ -262,7 +265,7 @@ const SpotShow = () => {
                             <h1>★ {newReviewList.length} reviews</h1>
                             {newReviewList.length && newReviewList.map(review => (
                                 <li key={review.id}>
-                                    <div>{review.User.firstName}</div>
+                                    <div>{review?.User?.firstName}</div>
                                     <div>{review.review}</div>
                                     <div>{review.stars}</div>
                                 </li>
@@ -322,7 +325,7 @@ const SpotShow = () => {
                         {newReviewList.length && newReviewList.map(review => (
                             <div key={review.id}>
                            <li>
-                                <div>{review.User.firstName}</div>
+                                <div>{review?.User?.firstName}</div>
                                 <div>{review.review}</div>
                                 <div>{review.stars}</div>
                                 </li>
@@ -387,7 +390,7 @@ const SpotShow = () => {
                         <h1>★ {newReviewList.length} review</h1>
                         {newReviewList.length && newReviewList.map(review => (
                             <li key={review.id}>
-                                <div>{review.User.firstName}</div>
+                                <div>{review?.User?.firstName}</div>
                                 <div>{review.review}</div>
                                 <div>{review.stars}</div>
                             </li>
@@ -422,7 +425,7 @@ const SpotShow = () => {
                         <h1>★ {newReviewList.length} reviews</h1>
                         {newReviewList.length && newReviewList.map(review => (
                             <li key={review.id}>
-                                <div>{review.User.firstName}</div>
+                                <div>{review?.User?.firstName}</div>
                                 <div>{review.review}</div>
                                 <div>{review.stars}</div>
                             </li>
