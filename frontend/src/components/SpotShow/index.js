@@ -69,13 +69,6 @@ const SpotShow = () => {
         return null
     }
 
-    let isDisabled = true;
-        newReviewList.forEach(review =>{
-            if (review.userId === user.id){
-                isDisabled = false;
-            }
-        })
-
 
     if (!user) {
         if (newReviewList.length === 0) {

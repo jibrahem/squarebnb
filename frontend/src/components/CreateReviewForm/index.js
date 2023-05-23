@@ -76,35 +76,35 @@ const CreateReviewForm = ({ spot }) => {
                 <div className="errors">{errors.stars}</div>
                 <div className="rating-input">
                         <i class="fa-regular fa-star"
-                        style={{ color: '#e1d700' }}
+                        style={{ color: 'black' }}
                         onClick={() => setStars(1)}
                         onMouseEnter={() => setStars(1)}
                         onMouseLeave={() => setStarRating(0)}
                         className={setStar(1)}></i>
 
                         <i class="fa-regular fa-star"
-                        style={{ color: '#e1d700' }}
+                        style={{ color: 'black' }}
                         onClick={() => setStars(2)}
                         onMouseEnter={() => setStars(2)}
                         onMouseLeave={() => setStarRating(0)}
                         className={setStar(2)}></i>
 
                     <i class="fa-regular fa-star"
-                        style={{ color: '#e1d700' }}
+                        style={{ color: 'black' }}
                         onClick={() => setStars(3)}
                         onMouseEnter={() => setStars(3)}
                         onMouseLeave={() => setStarRating(0)}
                         className={setStar(3)}></i>
 
                     <i class="fa-regular fa-star"
-                        style={{ color: '#e1d700' }}
+                        style={{ color: 'black' }}
                         onClick={() => setStars(4)}
                         onMouseEnter={() => setStars(4)}
                         onMouseLeave={() => setStarRating(0)}
                         className={setStar(4)}></i>
 
                     <i class="fa-regular fa-star"
-                        style={{color: '#e1d700'}}
+                        style={{color: 'black'}}
                         onClick={() => setStars(5)}
                         onMouseEnter={() => setStarRating(5)}
                         onMouseLeave={() => setStarRating(0)}
