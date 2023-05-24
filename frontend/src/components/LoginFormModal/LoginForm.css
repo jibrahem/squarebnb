@@ -7,19 +7,19 @@ ul{
     list-style: none;
 }
 
-label{
+.loggin label{
     display: flex;
     flex-direction: column;
     width: 300px;
     margin:.5rem;
 }
-input{
+.loggin input{
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 300px;
 }
-form{
+.loggin form{
     display: flex;
         flex-direction: column;
         align-items: center;

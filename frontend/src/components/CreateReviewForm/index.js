@@ -5,6 +5,7 @@ import { useModal } from "../../context/Modal";
 import { useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom'
 import { getOneSpotThunk } from "../../store/spots";
+import './CreateReview.css'
 
 
 const CreateReviewForm = ({ spot }) => {
@@ -65,6 +66,7 @@ const CreateReviewForm = ({ spot }) => {
 
     return (
         <>
+        <div className="post-review">
             <h1>How was your stay?</h1>
             <form onSubmit={handleSubmit}>
                 <div className="errors">{errors.text}</div>
@@ -113,6 +115,7 @@ const CreateReviewForm = ({ spot }) => {
                 </div>
                 <button type='submit' disabled={isDisabled}>Submit Your Review</button>
             </form>
+            </div>
         </>
     )
 }

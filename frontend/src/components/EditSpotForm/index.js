@@ -80,7 +80,7 @@ const EditSpotForm = () => {
     useEffect(() => {
         dispatch(getOneSpotThunk(spotId));
     }, [dispatch, spotId]);
-    
+
     if (!spot) return null;
 
     if (spot.id === spotId) {
@@ -90,8 +90,8 @@ const EditSpotForm = () => {
                     <div className='spot-form'>
                         <form onSubmit={handleSubmit}>
                             <h2>Update Spot</h2>
-                            <div>Where's your place located?</div>
-                            <div>Guests will only get your exact address once they booked a reservation</div>
+                            <h3>Where's your place located?</h3>
+                            <h5>Guests will only get your exact address once they booked a reservation</h5>
                             <div className='errors'>{errors.country}</div>
                             <label>
                                 Country
@@ -111,6 +111,7 @@ const EditSpotForm = () => {
                                 />
                             </label>
                             <div className='errors'>{errors.city}</div>
+                            <div className="city">
                             <label>
                                 City
                                 <input
@@ -128,7 +129,9 @@ const EditSpotForm = () => {
                                     onChange={(e) => setState(e.target.value)}
                                 />
                             </label>
+                            </div>
                             <div className='errors'>{errors.latitude}</div>
+                            <div className="lat">
                             <label>
                                 Latitude
                                 <input
@@ -146,26 +149,27 @@ const EditSpotForm = () => {
                                     onChange={(e) => setLongitude(e.target.value)}
                                 />
                             </label>
-                            <div>Describe your place to guests</div>
-                            <div>Mention the best features of your space, any special amentities like
-                                fast wif or parking, and what you love about the neighborhood.</div>
+                            </div>
+                            <h3>Describe your place to guests</h3>
+                            <h5>Mention the best features of your space, any special amentities like
+                                fast wif or parking, and what you love about the neighborhood.</h5>
                             <textarea
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                             />
                             <div className='errors'>{errors.description}</div>
-                            <div>Create a title for your spot</div>
-                            <div>Catch guests' attention with a spot title that highlights what makes
-                                your place special.</div>
+                            <h3>Create a title for your spot</h3>
+                            <h5>Catch guests' attention with a spot title that highlights what makes
+                                your place special.</h5>
                             <input
                                 type='text'
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />
                             <div className='errors'>{errors.name}</div>
-                            <div>Set a base price for your spot</div>
-                            <div>Competitive pricing can help your listing stand out and rank higher
-                                in search results.</div>
+                            <h3>Set a base price for your spot</h3>
+                            <h5>Competitive pricing can help your listing stand out and rank higher
+                                in search results.</h5>
                             <label>
                                 $
                                 <input

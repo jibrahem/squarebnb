@@ -60,15 +60,11 @@ const SpotShow = () => {
         window.alert('Feature Coming Soon...')
     }
 
-
     const newReviewList = reviewList.filter(review => review.spotId === spot.id);
-
-    console.log('reviews', newReviewList)
 
     if (!newReviewList) {
         return null
     }
-
 
     if (!user) {
         if (newReviewList.length === 0) {
@@ -147,6 +143,7 @@ const SpotShow = () => {
                             {newReviewList.length && newReviewList.map(review => (
                                 <li key={review.id}>
                                     <div>{review.User.firstName}</div>
+                                    <div>{review.createdAt.split('-')[1]} {review.createdAt.split('-')[0]}</div>
                                     <div>{review.review}</div>
                                 </li>
                             ))}
@@ -193,8 +190,8 @@ const SpotShow = () => {
                             {newReviewList.length && newReviewList.map(review => (
                                 <li key={review.id}>
                                     <div>{review.User.firstName}</div>
+                                    <div>{review.createdAt.split('-')[1]} {review.createdAt.split('-')[0]}</div>
                                     <div>{review.review}</div>
-
                                 </li>
                             ))}
                         </ul>

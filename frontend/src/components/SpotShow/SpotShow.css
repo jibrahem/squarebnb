@@ -1,5 +1,6 @@
 .info{
     font-size: 16px;
+    margin-bottom: 1rem;
 }
 
 .spot-box{
@@ -14,9 +15,14 @@ img{
 
 .spot-box h1{
     font-size: 30px;
+    margin-bottom: 1rem;
 }
+
 .box{
-    margin: 2rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 .reserve-wrap{
@@ -80,6 +86,7 @@ img{
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 3.5rem;
     margin:.75rem;
+    justify-content: space-between;
+    width:300px;
 }

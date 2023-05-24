@@ -4,13 +4,28 @@
 
 main ul {
     margin: 2rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
 }
 .spot{
-    width: 252px;
+    width: 310px;
 }
 
 .star{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.spot{
+    margin:1rem;
+}
+
+.image img{
+    height:250px;
+    width:310px;
+}
+
+.price{
+    font-weight: bolder;
 }

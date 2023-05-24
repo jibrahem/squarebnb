@@ -21,19 +21,19 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         ownerId: 1,
-        address: '123 Sesame Street',
-        city: 'Wonderland',
+        address: '123 Prune Street',
+        city: 'San Diego',
         state: 'CA',
         country: 'US',
         lat: 37.3749,
         lng: 12.4535,
         name: 'Elmo',
         description: 'Place where kids are welcome',
-        price: 1000
+        price: 121
       },
       {
         ownerId: 2,
-        address: "123 Disney Lane",
+        address: "567 Disney Lane",
         city: "San Francisco",
         state: "CA",
         country: "USA",
@@ -41,11 +41,11 @@ module.exports = {
         lng: -122.4730327,
         name: "App Academy",
         description: "Place where web developers are created",
-        price: 123
+        price: 99
       },
       {
         ownerId: 3,
-        address: "2022 Lara St",
+        address: "202 Lara St",
         city: "Sacramento",
         state: "CA",
         country: "USA",
@@ -53,7 +53,7 @@ module.exports = {
         lng: -124.234,
         name: "Google",
         description: "Place where web developers thrive",
-        price: 12356
+        price: 391
       },
       {
         ownerId: 3,
@@ -65,7 +65,7 @@ module.exports = {
         lng: -57.23327,
         name: "Microsoft",
         description: "Place where web developers are eaten alive",
-        price: 435896
+        price: 256
       }
     ], {});
     },

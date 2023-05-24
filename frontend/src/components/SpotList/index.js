@@ -4,16 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { allSpotsThunk } from '../../store/spots';
 import { Link } from 'react-router-dom';
 import './SpotList.css'
-//build a component
-//route in the backend to grab spots
-//backened will send array of objects
 
-//component
 //dispatch to fetch data and put it in the store
 //useSelector grabs data fromthe store and give component access to data
 
 export default function SpotList(){
-
     //convert spots obj to list
     //normalize spot data
     const dispatch = useDispatch()
@@ -25,10 +20,9 @@ export default function SpotList(){
         dispatch(allSpotsThunk())
     }, [dispatch])
 
-    if(spotList.length === 0){
+    if(!spotList){
       return null
     }
-
 
     //show data on page through return jsx, map through list of spot
     return (
@@ -46,7 +40,7 @@ export default function SpotList(){
             <li>★ {spot?.avgRating || ('New')}</li>
               </div>
           <li>${spot.price} night</li>
-            </div>
+              </div>
           </Link>
           </div>
       ))}

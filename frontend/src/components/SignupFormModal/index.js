@@ -47,7 +47,7 @@ function SignupFormModal() {
     }
 
     return (
-        <>
+        <div className="loggin">
             <form onSubmit={handleSubmit}>
             <h1>Sign Up</h1>
                 <label>
@@ -116,7 +116,7 @@ function SignupFormModal() {
                 <button type="submit" disabled={isDisabled}>Sign Up</button>
                 </div>
             </form>
-        </>
+        </div>
     );
 }
 
