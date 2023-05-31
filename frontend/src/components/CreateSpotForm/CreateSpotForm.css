@@ -43,5 +43,15 @@
 .spot-form h6{
     font-size: 12.5px;
     margin-top: .5rem;
-    
+
+}
+
+.spot-form button{
+    margin-top:1rem;
+    margin-bottom: 2rem;
+    width:100px;
+    color:white;
+    background-color: rgb(236, 86, 70);
+    box-shadow: 1px 1px 1px 1px black;
+    align-self: center;
 }

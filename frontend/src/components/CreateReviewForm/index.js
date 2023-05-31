@@ -38,7 +38,8 @@ const CreateReviewForm = ({ spot }) => {
         if (Object.values(errors).length > 0) {
             setErrors(errors);
         } else {
-            const newReview = await dispatch(createReviewThunk(spot, review)).then(dispatch(allReviewsThunk(spot.id))).then(closeModal)
+            const newReview = await dispatch(createReviewThunk(spot, review))
+            .then(closeModal)
         }
         if (!review) {
             return null
@@ -47,9 +48,7 @@ const CreateReviewForm = ({ spot }) => {
             return null
         }
     }
-    useEffect(() => {
-        dispatch(allReviewsThunk(spot.id));
-    }, [dispatch, spot.id]);
+
 
 
     let isDisabled = true;
@@ -110,9 +109,9 @@ const CreateReviewForm = ({ spot }) => {
                         onClick={() => setStars(5)}
                         onMouseEnter={() => setStarRating(5)}
                         onMouseLeave={() => setStarRating(0)}
-                        className={setStar(5)}></i>
-
+                        className={setStar(5)}></i> Stars
                 </div>
+
                 <button type='submit' disabled={isDisabled}>Submit Your Review</button>
             </form>
             </div>

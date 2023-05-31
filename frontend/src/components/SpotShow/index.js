@@ -7,6 +7,7 @@ import CreateReviewForm from '../CreateReviewForm';
 import OpenModalMenuItem from '../OpenModalButton'
 import DeleteReview from '../DeleteReview';
 import './SpotShow.css';
+import SpotImages from './SpotImages';
 
 const SpotShow = () => {
     const dispatch = useDispatch();
@@ -21,12 +22,9 @@ const SpotShow = () => {
 
     useEffect(() => {
         dispatch(getOneSpotThunk(spotId))
+        dispatch(allReviewsThunk(spotId))
     }, [dispatch, spotId]);
 
-
-    useEffect(() => {
-        dispatch(allReviewsThunk(spotId))
-    }, [dispatch, spotId])
 
     useEffect(() => {
         if (!showMenu) return;
@@ -60,11 +58,13 @@ const SpotShow = () => {
         window.alert('Feature Coming Soon...')
     }
 
+    console.log('reviews',reviewList)
     const newReviewList = reviewList.filter(review => review.spotId === spot.id);
 
     if (!newReviewList) {
         return null
     }
+
 
     if (!user) {
         if (newReviewList.length === 0) {
@@ -74,17 +74,9 @@ const SpotShow = () => {
                         <div className='spot-box'>
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <div className='images'>
-                                <div className='img1'>
-                                    <img src={spot?.SpotImages[0]?.url} alt='house'></img>
-                                </div>
-                                <div className='img2'>
-                                    <img src={spot?.SpotImages[1]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[2]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[3]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[4]?.url} alt='house'></img>
-                            </div>
-                            </div>
+                            <SpotImages
+                            spot={spot}
+                            />
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -112,17 +104,9 @@ const SpotShow = () => {
                         <div className='spot-box'>
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <div className='images'>
-                                <div className='img1'>
-                                    <img src={spot?.SpotImages[0]?.url} alt='house'></img>
-                                </div>
-                                <div className='img2'>
-                                    <img src={spot?.SpotImages[1]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[2]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[3]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[4]?.url} alt='house'></img>
-                                </div>
-                            </div>
+                            <SpotImages
+                                spot={spot}
+                            />
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -159,17 +143,9 @@ const SpotShow = () => {
                         <div className='spot-box'>
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <div className='images'>
-                                <div className='img1'>
-                                    <img src={spot?.SpotImages[0]?.url} alt='house'></img>
-                                </div>
-                                <div className='img2'>
-                                    <img src={spot?.SpotImages[1]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[2]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[3]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[4]?.url} alt='house'></img>
-                                </div>
-                            </div>
+                            <SpotImages
+                                spot={spot}
+                            />
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -209,17 +185,9 @@ const SpotShow = () => {
                         <div className='spot-box'>
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <div className='images'>
-                                <div className='img1'>
-                                    <img src={spot?.SpotImages[0]?.url} alt='house'></img>
-                                </div>
-                                <div className='img2'>
-                                    <img src={spot?.SpotImages[1]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[2]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[3]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[4]?.url} alt='house'></img>
-                                </div>
-                            </div>
+                            <SpotImages
+                                spot={spot}
+                            />
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -255,17 +223,9 @@ const SpotShow = () => {
                         <div className='spot-box'>
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <div className='images'>
-                                <div className='img1'>
-                                    <img src={spot?.SpotImages[0]?.url} alt='house'></img>
-                                </div>
-                                <div className='img2'>
-                                    <img src={spot?.SpotImages[1]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[2]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[3]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[4]?.url} alt='house'></img>
-                                </div>
-                            </div>
+                            <SpotImages
+                                spot={spot}
+                            />
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -312,17 +272,9 @@ const SpotShow = () => {
                         <div className='spot-box'>
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <div className='images'>
-                                <div className='img1'>
-                                    <img src={spot?.SpotImages[0]?.url} alt='house'></img>
-                                </div>
-                                <div className='img2'>
-                                    <img src={spot?.SpotImages[1]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[2]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[3]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[4]?.url} alt='house'></img>
-                                </div>
-                            </div>
+                            <SpotImages
+                                spot={spot}
+                            />
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -369,17 +321,9 @@ const SpotShow = () => {
                         <div className='spot-box'>
                             <h1>{spot.name}</h1>
                             <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                            <div className='images'>
-                                <div className='img1'>
-                                    <img src={spot?.SpotImages[0]?.url} alt='house'></img>
-                                </div>
-                                <div className='img2'>
-                                    <img src={spot?.SpotImages[1]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[2]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[3]?.url} alt='house'></img>
-                                    <img src={spot?.SpotImages[4]?.url} alt='house'></img>
-                                </div>
-                            </div>
+                            <SpotImages
+                                spot={spot}
+                            />
                             <div className='reserve-wrap'>
                                 <div className='host'>
                                     <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -423,17 +367,9 @@ const SpotShow = () => {
                     <div className='spot-box'>
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <div className='images'>
-                            <div className='img1'>
-                                <img src={spot?.SpotImages[0]?.url} alt='house'></img>
-                            </div>
-                            <div className='img2'>
-                                <img src={spot?.SpotImages[1]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[2]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[3]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[4]?.url} alt='house'></img>
-                            </div>
-                        </div>
+                        <SpotImages
+                            spot={spot}
+                        />
                         <div className='reserve-wrap'>
                             <div className='host'>
                                 <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -460,17 +396,9 @@ const SpotShow = () => {
                     <div className='spot-box'>
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <div className='images'>
-                            <div className='img1'>
-                                <img src={spot?.SpotImages[0]?.url} alt='house'></img>
-                            </div>
-                            <div className='img2'>
-                                <img src={spot?.SpotImages[1]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[2]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[3]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[4]?.url} alt='house'></img>
-                            </div>
-                        </div>
+                        <SpotImages
+                            spot={spot}
+                        />
                         <div className='reserve-wrap'>
                             <div className='host'>
                                 <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -507,17 +435,9 @@ const SpotShow = () => {
                     <div className='spot-box'>
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <div className='images'>
-                            <div className='img1'>
-                                <img src={spot?.SpotImages[0]?.url} alt='house'></img>
-                            </div>
-                            <div className='img2'>
-                                <img src={spot?.SpotImages[1]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[2]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[3]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[4]?.url} alt='house'></img>
-                            </div>
-                        </div>
+                        <SpotImages
+                            spot={spot}
+                        />
                         <div className='reserve-wrap'>
                             <div className='host'>
                                 <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -549,17 +469,9 @@ const SpotShow = () => {
                     <div className='spot-box'>
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <div className='images'>
-                            <div className='img1'>
-                                <img src={spot?.SpotImages[0]?.url} alt='house'></img>
-                            </div>
-                            <div className='img2'>
-                                <img src={spot?.SpotImages[1]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[2]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[3]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[4]?.url} alt='house'></img>
-                            </div>
-                        </div>
+                        <SpotImages
+                            spot={spot}
+                        />
                         <div className='reserve-wrap'>
                             <div className='host'>
                                 <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
@@ -596,17 +508,9 @@ const SpotShow = () => {
 
                         <h1>{spot.name}</h1>
                         <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <div className='images'>
-                            <div className='img1'>
-                                <img src={spot?.SpotImages[0].url} alt='house'></img>
-                            </div>
-                            <div className='img2'>
-                                <img src={spot?.SpotImages[1]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[2]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[3]?.url} alt='house'></img>
-                                <img src={spot?.SpotImages[4]?.url} alt='house'></img>
-                            </div>
-                        </div>
+                        <SpotImages
+                            spot={spot}
+                        />
                         <div className='reserve-wrap'>
                             <div className='host'>
                                 <h3>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>

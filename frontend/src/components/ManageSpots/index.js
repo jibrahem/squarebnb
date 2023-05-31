@@ -53,7 +53,6 @@ export default function ManageSpots() {
             </div>
             <ul>
                 {newList.length > 0 && newList.map(spot => (
-                    <>
                         <div key={spot.id} className="spot">
                             <Link to={`/spots/${spot.id}`}>
                                 <div className="image">
@@ -82,7 +81,6 @@ export default function ManageSpots() {
                                 />
                             </div>
                         </div>
-                    </>
                 ))}
             </ul>
         </main>
