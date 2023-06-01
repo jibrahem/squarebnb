@@ -7,9 +7,6 @@ main ul {
     margin-left: 4rem;
     margin-right: 4rem;
 }
-.spot{
-    width: 310px;
-}
 
 .star{
     display: flex;
@@ -19,10 +16,17 @@ main ul {
 
 .spot{
     margin:1rem;
+    width: 310px;
+    transition: box-shadow .3s;
+    border-radius: 6px;
+}
+.spot:hover{
+    box-shadow: 0 0 11px rgba(33, 33, 33, .3);
 }
 
+
 .image img{
-    height:250px;
+    height:240px;
     width:310px;
 }
 

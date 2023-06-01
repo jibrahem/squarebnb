@@ -119,6 +119,57 @@ module.exports = {
        url: 'https://media.istockphoto.com/id/1293762741/photo/modern-living-room-interior-3d-render.jpg?s=612x612&w=0&k=20&c=iZ561ZIXOtPYGSzqlKUnLrliorreOYVz1pzu8WJmrnc=',
        preview: false
      },
+     {
+       spotId: 5,
+       url: 'https://www.thespruce.com/thmb/2mQ6hYtoaFcuxnQx_EX5I7xR87w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/a-frame-houses-4772019-hero-7cacd243cfe74fb8b06f44760ea59f35.jpg',
+       preview: true
+     },
+     {
+       spotId: 5,
+       url: 'https://www.southernliving.com/thmb/YUg5RCBmbvUC4FXkWDaKfM01Qtk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/2580601_hanna_944-2000-649113c5795840868d2ebaa1d982fdc3.jpg',
+       preview: false
+     },
+     {
+       spotId: 5,
+       url: 'https://www.payrent.com/wp-content/uploads/2022/02/pexels-mw-studios-90317.jpg',
+       preview: false
+     },
+     {
+       spotId: 5,
+       url: 'https://media.designcafe.com/wp-content/uploads/2020/02/21010329/modern-living-room-design-ideas-768x512.jpg',
+       preview: false
+     },
+     {
+       spotId: 5,
+       url: 'https://media.architecturaldigest.com/photos/5eac5fa22105f13b72dede45/1:1/w_1067,h_1067,c_limit/111LexowAve_Aug18-1074.jpg',
+       preview: false
+     },
+     {
+       spotId: 6,
+       url: 'https://www.charlestonrealestate.com/blog/wp-content/uploads/80Rutledge-KeenEyeMarketing-103-1024x683.jpg',
+       preview: true
+     },
+     {
+       spotId: 6,
+       url: 'https://cf.ltkcdn.net/feng-shui/images/std/245816-800x549r1-bedroom-in-evening.jpg',
+       preview: false
+     },
+     {
+       spotId: 6,
+       url: 'https://www.home-designing.com/wp-content/uploads/2018/10/Open-plan-living-room.jpg',
+       preview: false
+     },
+     {
+       spotId: 6,
+       url: 'https://hips.hearstapps.com/elledecor/assets/16/29/1469205174-bedroom-design-ideas-lead.jpg',
+       preview: false
+     },
+     {
+       spotId: 6,
+       url: 'https://www.bestar.com/wp-content/uploads/2019/04/home-office-with-wooden-furniture.jpeg',
+       preview: false
+     },
+
    ], {});
   },
 

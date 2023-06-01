@@ -91,20 +91,16 @@ const CreateSpotForm = () => {
         if (!image) {
             errors.previewImage = 'Preview Image is required'
         }
-        // if (!image.endsWith('.png') || !image.endsWith('.jpg') || !image.endsWith('.jpeg')) {
-        //     errors.image = 'Image URL must end with .png, .jpg, or .jpeg'
-        // }
-
+        if (!(image.endsWith('.png') || image.endsWith('.jpg') || image.endsWith('.jpeg'))) {
+            errors.image = 'Image URL must end with .png, .jpg, or .jpeg'
+        }
 
         if (Object.values(errors).length > 0) {
             setErrors(errors);
-        }else{
-
+        } else{
             const newSpot = await dispatch(createSpotThunk(spotObj, SpotImages));
-            console.log('SPOT', newSpot)
             history.push(`/spots/${newSpot.id}`)
         }
-
         if(!spot){
             return null;
         }

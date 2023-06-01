@@ -24,6 +24,7 @@ ul button{
 .buttons{
     display: flex;
     align-items: center;
+    margin-left: .3rem;
 }
 .spot{
     display: flex;

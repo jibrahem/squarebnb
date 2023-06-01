@@ -49,4 +49,8 @@ li{
 .profile-dropdown{
     margin-top: .5rem;
     border: 1px solid black;
+    position: absolute;
+    background-color: whitesmoke;
+    top: 70px;
+    right: 40px
 }

@@ -66,7 +66,32 @@ module.exports = {
         name: "Microsoft",
         description: "Place where web developers are eaten alive",
         price: 256
-      }
+      },
+      {
+        ownerId: 4,
+        address: "729 Playa Drive",
+        city: "Santa Barbara",
+        state: "CA",
+        country: "USA",
+        lat: 95.258,
+        lng: -51.227,
+        name: "The Oasis",
+        description: "Place where you can relax and get away for sometime",
+        price: 299
+      },
+      {
+        ownerId: 4,
+        address: "950 Main Street",
+        city: "Ventura",
+        state: "CA",
+        country: "USA",
+        lat: 25.298,
+        lng: -11.297,
+        name: "The Getaway",
+        description: "Place where you can focus and get some work done",
+        price: 137
+      },
+
     ], {});
     },
 

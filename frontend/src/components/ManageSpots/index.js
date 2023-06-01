@@ -70,7 +70,6 @@ export default function ManageSpots() {
                             </div>
                         </Link>
                         <div className="buttons">
-                            {console.log('managespot', spot)}
                             <button onClick={() => history.push(`/spots/${spot.id}/edit`)}>
                                 Update
                             </button>

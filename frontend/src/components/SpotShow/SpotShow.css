@@ -4,7 +4,7 @@
 }
 
 .review{
-   border-bottom: solid black;
+   border-bottom: solid 2px black;
    display: flex;
    flex-direction: row;
    justify-content: flex-end;
@@ -35,6 +35,10 @@ img{
 .reserve-box{
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+.reserve-wrap{
+    border-bottom: solid 2px black;
 }
 
 .reserve{

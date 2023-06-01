@@ -2,6 +2,7 @@ import React from "react";
 import DeleteReview from "../DeleteReview";
 import OpenModalMenuItem from '../OpenModalButton'
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 
 const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
@@ -56,17 +57,64 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
                     <div className='reserve'>
                         <div className='money'>
                             <div>$ {spot.price} night</div>
-                            <div>★ {spot.avgStarRating} · {spot.numReviews} review</div>
+                            <div>★ {spot.avgStarRating} · 1 review</div>
                         </div>
                         <button onClick={reserve}>Reserve</button>
                     </div>
                 </div>
                 <ul>
-                    <h1>★ {spot.avgStarRating} · {newReviewList.length} review</h1>
+                    <h1>★ {spot.avgStarRating} · 1 review</h1>
                     {newReviewList.length && newReviewList.map(review => (
                         <li key={review.id}>
                             <div>{review.User?.firstName}</div>
-                            <div>{review.createdAt.split('-')[1]} {review.createdAt.split('-')[0]}</div>
+                            {review.createdAt.split('-')[1] === '01' &&
+                                <div> Jan {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '02' &&
+                                <div> Feb {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '03' &&
+                                <div> March {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '04' &&
+                                <div> April {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '05' &&
+                                <div> May {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '06' &&
+                            <div> June {review.createdAt.split('-')[0]}
+                            </div>
+                            }
+                            {review.createdAt.split('-')[1] === '07' &&
+                            <div> July {review.createdAt.split('-')[0]}
+                            </div>
+                            }
+                            {review.createdAt.split('-')[1] === '08' &&
+                            <div> Aug {review.createdAt.split('-')[0]}
+                            </div>
+                            }
+                            {review.createdAt.split('-')[1] === '09' &&
+                            <div> Sept {review.createdAt.split('-')[0]}
+                            </div>
+                            }
+                            {review.createdAt.split('-')[1] === '10' &&
+                            <div> Sept {review.createdAt.split('-')[0]}
+                            </div>
+                            }
+                            {review.createdAt.split('-')[1] === '11' &&
+                            <div> Nov {review.createdAt.split('-')[0]}
+                            </div>
+                            }
+                            {review.createdAt.split('-')[1] === '12' &&
+                            <div> Dec {review.createdAt.split('-')[0]}
+                            </div>
+                            }
                             <div>{review.review}</div>
                             {userReview && userId && review.userId === userId &&
                                 <div className='modal'>
@@ -75,6 +123,7 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
                                         onItemClick={closeMenu}
                                         modalComponent={<DeleteReview
                                             review={review}
+                                            spot={spot}
                                         />}
                                     />
                                 </div>
@@ -93,17 +142,64 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
                     <div className='reserve'>
                         <div className='money'>
                             <div>$ {spot.price} night</div>
-                            <div>★ {spot.avgStarRating} · {spot.numReviews} reviews</div>
+                            <div>★ {spot.avgStarRating.toFixed(1)} · {newReviewList.length} reviews</div>
                         </div>
                         <button onClick={reserve}>Reserve</button>
                     </div>
                 </div>
                 <ul>
-                    <h1>★ {spot.avgStarRating} · {newReviewList.length} reviews</h1>
+                    <h1>★ {spot.avgStarRating.toFixed(1)} · {newReviewList.length} reviews</h1>
                     {newReviewList.length && newReviewList.map(review => (
                         <li key={review.id}>
                             <div>{review.User?.firstName}</div>
-                            <div>{review.createdAt.split('-')[1]} {review.createdAt.split('-')[0]}</div>
+                            {review.createdAt.split('-')[1] === '01' &&
+                                <div> Jan {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '02' &&
+                                <div> Feb {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '03' &&
+                                <div> March {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '04' &&
+                                <div> April {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '05' &&
+                                <div> May {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '06' &&
+                                <div> June {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '07' &&
+                                <div> July {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '08' &&
+                                <div> Aug {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '09' &&
+                                <div> Sept {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '10' &&
+                                <div> Sept {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '11' &&
+                                <div> Nov {review.createdAt.split('-')[0]}
+                                </div>
+                            }
+                            {review.createdAt.split('-')[1] === '12' &&
+                                <div> Dec {review.createdAt.split('-')[0]}
+                                </div>
+                            }
                             <div>{review.review}</div>
                             {userReview && userId && review.userId === userId &&
                                 <div className='modal'>
@@ -112,12 +208,14 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
                                         onItemClick={closeMenu}
                                         modalComponent={<DeleteReview
                                             review={review}
+                                            spot={spot}
                                         />}
                                     />
                                 </div>
                             }
                         </li>
-                    ))}
+                    )).sort()
+                    }
                 </ul>
             </>
         )
