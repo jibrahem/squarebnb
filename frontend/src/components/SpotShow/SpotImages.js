@@ -1,6 +1,6 @@
 import React from "react"
 
-function SpotImages({spot}){
+function SpotImages({ spot }) {
 
     if (!spot.SpotImages[1].url) {
         return (
@@ -17,7 +17,7 @@ function SpotImages({spot}){
             </div>
         )
     }
-     if (!spot.SpotImages[2].url) {
+    if (!spot.SpotImages[2].url) {
         return (
             <div className='images'>
                 <div className='img1'>
@@ -62,7 +62,7 @@ function SpotImages({spot}){
             </div>
         )
     }
-    else{
+    else {
         return (
             <div className='images'>
                 <div className='img1'>

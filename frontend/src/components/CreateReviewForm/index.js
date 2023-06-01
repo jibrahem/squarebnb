@@ -38,7 +38,8 @@ const CreateReviewForm = ({ spot }) => {
         if (Object.values(errors).length > 0) {
             setErrors(errors);
         } else {
-            const newReview = await dispatch(createReviewThunk(spot, review))
+            const newReview = await dispatch(createReviewThunk(spot, review, user))
+            await dispatch(getOneSpotThunk(spot.id))
             .then(closeModal)
         }
         if (!review) {
@@ -48,7 +49,6 @@ const CreateReviewForm = ({ spot }) => {
             return null
         }
     }
-
 
 
     let isDisabled = true;

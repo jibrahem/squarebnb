@@ -2,14 +2,20 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { getOneSpotThunk, updateSpotThunk } from "../../store/spots";
-import SpotForm from "../SpotForm";
 import { useHistory } from "react-router-dom";
 
 const EditSpotForm = () => {
     let { spotId } = useParams();
     spotId = Number(spotId);
+    const dispatch = useDispatch();
     const spot = useSelector((state) => state.spots.singleSpot);
-    console.log('spot', spot)
+    console.log('editspot', spot)
+
+    useEffect(() => {
+        dispatch(getOneSpotThunk(spotId))
+    }, [dispatch, spotId]);
+
+
     const history = useHistory();
     const [country, setCountry] = useState(spot?.country);
     const [street, setStreet] = useState(spot?.address);
@@ -21,7 +27,7 @@ const EditSpotForm = () => {
     const [name, setName] = useState(spot?.name);
     const [price, setPrice] = useState(spot?.price);
     const [errors, setErrors] = useState({});
-    const dispatch = useDispatch();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -67,19 +73,14 @@ const EditSpotForm = () => {
             errors.price = 'Price is required'
         }
 
+        const editedSpot = await dispatch(updateSpotThunk(spotObj));
 
         if (Object.values(errors).length > 0) {
             setErrors(errors);
         } else {
-            const editedSpot = await dispatch(updateSpotThunk(spotObj));
             history.push(`/spots/${editedSpot.id}`)
-
         }
     }
-
-    useEffect(() => {
-        dispatch(getOneSpotThunk(spotId));
-    }, [dispatch, spotId]);
 
     if (!spot) return null;
 

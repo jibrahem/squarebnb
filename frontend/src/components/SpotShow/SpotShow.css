@@ -3,8 +3,11 @@
     margin-bottom: 1rem;
 }
 
-.spot-box{
+.review{
    border-bottom: solid black;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
 }
 
 img{
@@ -25,10 +28,13 @@ img{
     margin-bottom: 2rem;
 }
 
-.reserve-wrap{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.reserve-wrap h2{
+    margin-bottom: 1rem;
+}
+
+.reserve-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .reserve{

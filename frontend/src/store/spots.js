@@ -46,6 +46,7 @@ export const getOneSpotThunk = (spotId) => async (dispatch) => {
     if (response.ok) {
         const spotDetails = await response.json();
         dispatch(receiveSpot(spotDetails))
+        return spotDetails;
     } else {
         const errors = await response.json()
         return errors;
@@ -93,7 +94,6 @@ export const updateSpotThunk = (spot) => async (dispatch) => {
     if (response.ok) {
         const updatedSpot = await response.json();
         dispatch(editSpot(updatedSpot));
-        console.log('UPDATed', updatedSpot)
         return updatedSpot;
     } else {
         const errors = await response.json();
@@ -137,7 +137,7 @@ const spotReducer = (state = initialState, action) => {
             return newState;
         case UPDATE_SPOT:
             newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: { ...state.singleSpot } }
-            return newState;
+            return { ...state, singleSpot: { ...action.spot } };
         case REMOVE_SPOT:
             newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: {} };
             delete newState.allSpots[action.spot.id];

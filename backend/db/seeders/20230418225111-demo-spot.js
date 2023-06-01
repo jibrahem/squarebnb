@@ -46,14 +46,14 @@ module.exports = {
       {
         ownerId: 3,
         address: "202 Lara St",
-        city: "Sacramento",
-        state: "CA",
+        city: "North Bergen",
+        state: "NJ",
         country: "USA",
         lat: 89.348,
         lng: -124.234,
         name: "Google",
         description: "Place where web developers thrive",
-        price: 391
+        price: 300
       },
       {
         ownerId: 3,
