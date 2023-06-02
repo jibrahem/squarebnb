@@ -2,7 +2,6 @@ import React from "react";
 import DeleteReview from "../DeleteReview";
 import OpenModalMenuItem from '../OpenModalButton'
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
 
 
 const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
@@ -53,17 +52,8 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
     } else if (newReviewList.length === 1) {
         return (
             <>
-                <div className="review">
-                    <div className='reserve'>
-                        <div className='money'>
-                            <div>$ {spot.price} night</div>
-                            <div>★ {spot.avgStarRating} · 1 review</div>
-                        </div>
-                        <button onClick={reserve}>Reserve</button>
-                    </div>
-                </div>
                 <ul>
-                    <h1>★ {spot.avgStarRating} · 1 review</h1>
+                    <h1>★ {spot.avgStarRating.toFixed(1)} · 1 review</h1>
                     {newReviewList.length && newReviewList.map(review => (
                         <li key={review.id}>
                             <div>{review.User?.firstName}</div>
@@ -138,15 +128,6 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
     else {
         return (
             <>
-                <div className="review">
-                    <div className='reserve'>
-                        <div className='money'>
-                            <div>$ {spot.price} night</div>
-                            <div>★ {spot.avgStarRating.toFixed(1)} · {newReviewList.length} reviews</div>
-                        </div>
-                        <button onClick={reserve}>Reserve</button>
-                    </div>
-                </div>
                 <ul>
                     <h1>★ {spot.avgStarRating.toFixed(1)} · {newReviewList.length} reviews</h1>
                     {newReviewList.length && newReviewList.map(review => (
@@ -201,6 +182,7 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
                                 </div>
                             }
                             <div>{review.review}</div>
+
                             {userReview && userId && review.userId === userId &&
                                 <div className='modal'>
                                     <OpenModalMenuItem
@@ -211,6 +193,7 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
                                             spot={spot}
                                         />}
                                     />
+
                                 </div>
                             }
                         </li>

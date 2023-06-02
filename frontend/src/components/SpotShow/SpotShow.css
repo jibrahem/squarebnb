@@ -3,13 +3,6 @@
     margin-bottom: 1rem;
 }
 
-.review{
-   border-bottom: solid 2px black;
-   display: flex;
-   flex-direction: row;
-   justify-content: flex-end;
-}
-
 img{
     height: 125px;
     width: fit-content;
@@ -33,11 +26,9 @@ img{
 }
 
 .reserve-box{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.reserve-wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     border-bottom: solid 2px black;
 }
 
@@ -47,6 +38,7 @@ img{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-end;
     width: 350px;
     border-radius: 8px;
 }
@@ -99,4 +91,7 @@ img{
     margin:.75rem;
     justify-content: space-between;
     width:300px;
+}
+.new-post{
+    position: static;
 }

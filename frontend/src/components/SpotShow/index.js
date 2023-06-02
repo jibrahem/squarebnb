@@ -45,6 +45,10 @@ const SpotShow = () => {
 
     const closeMenu = () => setShowMenu(false);
 
+    const reserve = () => {
+        window.alert('Feature Coming Soon...')
+    }
+
     if (!spot) {
         return null
     }
@@ -66,60 +70,120 @@ const SpotShow = () => {
     }
 
     if (!userId) {
-        return (
-            <section>
-                <div className='box'>
-                    <div className='spot-box'>
-                        <h1>{spot.name}</h1>
-                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <SpotImages
-                            spot={spot}
-                        />
-                        <div className='reserve-box'>
-                        <div className='reserve-wrap'>
-                            <div className='host'>
-                                <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                                <div>{spot.description}</div>
+        if (newReviewList.length === 0) {
+            return (
+                <section>
+                    <div className='box'>
+                        <div className='spot-box'>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                            <SpotImages
+                                spot={spot}
+                            />
+                            <div className='reserve-box'>
+                                <div className='reserve-wrap'>
+                                    <div className='host'>
+                                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
+                                        <div>{spot.description}</div>
+                                    </div>
+                                </div>
+                                <div className="review">
+                                    <div className='reserve'>
+                                        <div className='money'>
+                                            <div>$ {spot.price} night</div>
+                                            <div>★ New</div>
+                                        </div>
+                                        <button onClick={reserve}>Reserve</button>
+                                    </div>
+                                </div>
                             </div>
+                            <h1>★ New</h1>
                         </div>
-                        <SpotReviews
-                            spot={spot}
-                            newReviewList={newReviewList}
-                        />
                     </div>
-                    </div>
-                </div>
-            </section>
-        )
-    }
-
-    if (userId !== spot.ownerId) {
-        return (
-            <section>
-                <div className='box'>
-                    <div className='spot-box'>
-                        <h1>{spot.name}</h1>
-                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <SpotImages
-                            spot={spot}
-                        />
-                        <div className='reserve-box'>
-                        <div className='reserve-wrap'>
-                            <div className='host'>
-                                <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                                <div>{spot.description}</div>
+                </section>
+            )
+        }
+        else {
+            return (
+                <section>
+                    <div className='box'>
+                        <div className='spot-box'>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                            <SpotImages
+                                spot={spot}
+                            />
+                            <div className='reserve-box'>
+                                <div className='reserve-wrap'>
+                                    <div className='host'>
+                                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
+                                        <div>{spot.description}</div>
+                                    </div>
+                                </div>
+                                <div className="review">
+                                    <div className='reserve'>
+                                        <div className='money'>
+                                            <div>$ {spot.price} night</div>
+                                            {newReviewList.length === 1 &&
+                                                <div>★ {spot.avgStarRating.toFixed(1)} · {newReviewList.length} review</div>
+                                            }
+                                            {newReviewList.length > 1 &&
+                                                <div>★ {spot.avgStarRating.toFixed(1)} · {newReviewList.length} reviews</div>
+                                            }
+                                        </div>
+                                        <button onClick={reserve}>Reserve</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        {!userReview && userId &&
                             <SpotReviews
                                 spot={spot}
                                 newReviewList={newReviewList}
                                 userReview={userReview}
-                            />}
+                            />
                         </div>
                     </div>
-                    {!userReview && userId &&
-                        <>
+                </section>
+            )
+        }
+    }
+
+    if (userId !== spot.ownerId) {
+        if (!userReview && userId && newReviewList.length === 0) {
+            return (
+                <section>
+                    <div className='box'>
+                        <div className='spot-box'>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                            <SpotImages
+                                spot={spot}
+                            />
+                            <div className='reserve-box'>
+                                <div className='reserve-wrap'>
+                                    <div className='host'>
+                                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
+                                        <div>{spot.description}</div>
+                                    </div>
+                                </div>
+                                <div className="review">
+                                    <div className='reserve'>
+                                        <div className='money'>
+                                            <div>$ {spot.price} night</div>
+                                            <div>★ New</div>
+                                        </div>
+                                        <button onClick={reserve}>Reserve</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        {/* <SpotReviews
+                            spot={spot}
+                            newReviewList={newReviewList}
+                            userReview={userReview}
+                        /> */}
+                        <div className='new-post'>
                             <div className='modal'>
                                 <OpenModalMenuItem
                                     buttonText="Post Your Review"
@@ -129,39 +193,40 @@ const SpotShow = () => {
                                     />}
                                 />
                             </div>
-                            {!newReviewList.length &&
-                                <div>Be the first to post a review!</div>
-                            }
-                        </>
-                    }  {userReview && userId &&
-                        <>
-                            <SpotReviews
+                        </div>
+                        <h4>Be the first to post a review!</h4>
+                    </div>
+                </section>
+            )
+        }
+        if (!userReview && userId && newReviewList.length > 0) {
+            return (
+                <section>
+                    <div className='box'>
+                        <div className='spot-box'>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                            <SpotImages
                                 spot={spot}
-                                newReviewList={newReviewList}
-                                userReview={userReview}
-                                userId={userId}
                             />
-                        </>
-                    }
-                </div>
-            </section>
-        )
-    }
-    else {
-        return (
-            <section>
-                <div className='box'>
-                    <div className='spot-box'>
-                        <h1>{spot.name}</h1>
-                        <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
-                        <SpotImages
-                            spot={spot}
-                        />
-                        <div className='reserve-box'>
-                        <div className='reserve-wrap'>
-                            <div className='host'>
-                                <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-                                <div>{spot.description}</div>
+                            <div className='reserve-box'>
+                                <div className='reserve-wrap'>
+                                    <div className='host'>
+                                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
+                                        <div>{spot.description}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='new-post'>
+                                <div className='modal'>
+                                    <OpenModalMenuItem
+                                        buttonText="Post Your Review"
+                                        onItemClick={closeMenu}
+                                        modalComponent={<CreateReviewForm
+                                            spot={spot}
+                                        />}
+                                    />
+                                </div>
                             </div>
                         </div>
                         <SpotReviews
@@ -170,11 +235,80 @@ const SpotShow = () => {
                             userReview={userReview}
                         />
                     </div>
-                </div>
-                </div>
-            </section>
-        )
+                </section>
+            )
+        }
+        if (!userReview && userId && newReviewList.length > 0) {
+            return (
+                <section>
+                    <div className='box'>
+                        <div className='spot-box'>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                            <SpotImages
+                                spot={spot}
+                            />
+                            <div className='reserve-box'>
+                                <div className='reserve-wrap'>
+                                    <div className='host'>
+                                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
+                                        <div>{spot.description}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='new-post'>
+                                <div className='modal'>
+                                    <OpenModalMenuItem
+                                        buttonText="Post Your Review"
+                                        onItemClick={closeMenu}
+                                        modalComponent={<CreateReviewForm
+                                            spot={spot}
+                                        />}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <SpotReviews
+                            spot={spot}
+                            newReviewList={newReviewList}
+                            userReview={userReview}
+                        />
+                    </div>
+                </section>
+            )
+
+        }
+        else {
+            return (
+                <section>
+                    <div className='box'>
+                        <div className='spot-box'>
+                            <h1>{spot.name}</h1>
+                            <div className='info'>{spot.city}, {spot.state}, {spot.country}</div>
+                            <SpotImages
+                                spot={spot}
+                            />
+                            <div className='reserve-box'>
+                                <div className='reserve-wrap'>
+                                    <div className='host'>
+                                        <h2>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h2>
+                                        <div>{spot.description}</div>
+                                    </div>
+                                </div>
+                                <SpotReviews
+                                    spot={spot}
+                                    newReviewList={newReviewList}
+                                    userReview={userReview}
+                                    userId={userId}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )
+        }
     }
 }
+
 
 export default SpotShow;

@@ -15,8 +15,7 @@ function Navigation({ isLoaded }) {
                         <div className='air'>
                             <li>
                                 <NavLink exact to="/">
-                                    <i class="fa-solid fa-square"></i>
-                                squarebnb</NavLink>
+                                    <i class="fa-solid fa-square"></i> squarebnb</NavLink>
                             </li>
                         </div>
                         {isLoaded && (
@@ -46,8 +45,7 @@ function Navigation({ isLoaded }) {
                     <div className='air'>
                         <li>
                             <NavLink exact to="/">
-                                <i class="fa-solid fa-square"></i>
-                                squarebnb</NavLink>
+                                <i class="fa-solid fa-square"></i> squarebnb</NavLink>
                         </li>
                     </div>
                     {isLoaded && (
