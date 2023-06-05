@@ -34,22 +34,7 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
         return null
     }
 
-    if (newReviewList.length === 0) {
-        return (
-            <>
-                <div className="review">
-                    <div className='reserve'>
-                        <div className='money'>
-                            <div>$ {spot.price} night</div>
-                            <div>★ New</div>
-                        </div>
-                        <button onClick={reserve}>Reserve</button>
-                    </div>
-                </div>
-                <h1>★ New</h1>
-            </>
-        )
-    } else if (newReviewList.length === 1) {
+    if (newReviewList.length === 1) {
         return (
             <>
                 <ul>

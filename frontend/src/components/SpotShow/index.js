@@ -420,12 +420,14 @@ const SpotShow = () => {
                         {newReviewList.length > 1 &&
                             <h1>★ {spot.avgStarRating.toFixed(1)} · {newReviewList.length} reviews</h1>
                         }
+                        {newReviewList.length > 0 &&
                         <SpotReviews
                             spot={spot}
                             newReviewList={newReviewList}
                             userReview={userReview}
                             userId={userId}
                         />
+                        }
                     </div>
                 </div>
             </section>
