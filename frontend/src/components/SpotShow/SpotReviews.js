@@ -53,7 +53,6 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
         return (
             <>
                 <ul>
-                    <h1>★ {spot.avgStarRating.toFixed(1)} · 1 review</h1>
                     {newReviewList.length && newReviewList.map(review => (
                         <li key={review.id}>
                             <div>{review.User?.firstName}</div>
@@ -129,7 +128,6 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
         return (
             <>
                 <ul>
-                    <h1>★ {spot.avgStarRating.toFixed(1)} · {newReviewList.length} reviews</h1>
                     {newReviewList.length && newReviewList.map(review => (
                         <li key={review.id}>
                             <div>{review.User?.firstName}</div>
@@ -197,7 +195,7 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
                                 </div>
                             }
                         </li>
-                    )).sort()
+                    ))
                     }
                 </ul>
             </>
