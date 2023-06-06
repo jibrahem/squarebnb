@@ -43,6 +43,12 @@ const CreateSpotForm = () => {
         { preview: false, url: img3 },
         { preview: false, url: img4 }]
 
+    SpotImages.forEach((image) => {
+        if (image.url === '') {
+            image.url = 'https://t4.ftcdn.net/jpg/05/07/58/41/360_F_507584110_KNIfe7d3hUAEpraq10J7MCPmtny8EH7A.jpg'
+        }
+    })
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const spotObj = {
@@ -91,9 +97,22 @@ const CreateSpotForm = () => {
         if (!image) {
             errors.previewImage = 'Preview Image is required'
         }
-        if (!(image.endsWith('.png') || image.endsWith('.jpg') || image.endsWith('.jpeg'))) {
+        if (image && !(image.endsWith('.png') || image.endsWith('.jpg') || image.endsWith('.jpeg'))) {
             errors.image = 'Image URL must end with .png, .jpg, or .jpeg'
         }
+        if (img1 && !(img1.endsWith('.png') || img1.endsWith('.jpg') || img1.endsWith('.jpeg'))) {
+            errors.img1 = 'Image URL must end with .png, .jpg, or .jpeg'
+        }
+        if (img2 && !(img2.endsWith('.png') || img2.endsWith('.jpg') || img2.endsWith('.jpeg'))) {
+            errors.img2 = 'Image URL must end with .png, .jpg, or .jpeg'
+        }
+        if (img3 && !(img3.endsWith('.png') || img3.endsWith('.jpg') || img3.endsWith('.jpeg'))) {
+            errors.img3 = 'Image URL must end with .png, .jpg, or .jpeg'
+        }
+        if (img4 && !(img4.endsWith('.png') || img4.endsWith('.jpg') || img4.endsWith('.jpeg'))) {
+            errors.img4 = 'Image URL must end with .png, .jpg, or .jpeg'
+        }
+
 
         if (Object.values(errors).length > 0) {
             setErrors(errors);
@@ -249,25 +268,28 @@ const CreateSpotForm = () => {
                         onChange={(e) => setImage(e.target.value)}
                     />
                     <div className='errors'>{errors.previewImage}</div>
+                    <div className='errors'>{errors.image}</div>
                     <input
                         type='text'
                         placeholder=" Image URL"
                         value={img1}
                         onChange={(e) => setImg1(e.target.value)}
                     />
-                    <div className='errors'>{errors.image}</div>
+                    <div className='errors'>{errors.img1}</div>
                     <input
                         type='text'
                         placeholder=" Image URL"
                         value={img2}
                         onChange={(e) => setImg2(e.target.value)}
                     />
+                    <div className='errors'>{errors.img2}</div>
                     <input
                         type='text'
                         placeholder=" Image URL"
                         value={img3}
                         onChange={(e) => setImg3(e.target.value)}
                     />
+                    <div className='errors'>{errors.img3}</div>
                     <div className='lastimg'>
                         <input
                             type='text'
@@ -275,6 +297,7 @@ const CreateSpotForm = () => {
                             value={img4}
                             onChange={(e) => setImg4(e.target.value)}
                         />
+                        <div className='errors'>{errors.img4}</div>
                     </div>
                 </div>
                 <button type="submit">Create Spot</button>
