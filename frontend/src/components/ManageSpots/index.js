@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { allSpotsOfUserThunk } from "../../store/spots";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteModal from "../DeleteModal";
-import EditSpotForm from '../EditSpotForm'
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -72,9 +71,6 @@ export default function ManageSpots() {
                         </Link>
                         <div className="buttons">
                             <button onClick={() => history.push(`/spots/${spot.id}/edit`)}>
-                                <EditSpotForm
-                                spot={spot}
-                                />
                                 Update
                             </button>
                             <OpenModalMenuItem

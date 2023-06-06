@@ -18,14 +18,16 @@ const SpotShow = () => {
     const userId = useSelector(state => state.session.user?.id)
     const reviewObj = useSelector(state => state.reviews.spot);
 
+    console.log('spot in spot show', spot)
+
     const reviewList = Object.values(reviewObj);
 
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
     useEffect(() => {
-        dispatch(getOneSpotThunk(spotId))
         dispatch(allReviewsThunk(spotId))
+        dispatch(getOneSpotThunk(spotId))
     }, [dispatch, spotId]);
 
 

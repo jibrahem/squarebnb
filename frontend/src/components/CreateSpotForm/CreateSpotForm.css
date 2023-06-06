@@ -15,6 +15,10 @@
     margin-bottom: 1rem;
 }
 
+.spot-form h3{
+    margin-top: .5rem;
+}
+
 .spot-form h5 {
     margin-bottom: 1rem;
     margin-top: .3rem;
@@ -23,6 +27,7 @@
 .city{
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .lat {
@@ -34,16 +39,19 @@
 .spot-form label{
     display: flex;
     flex-direction: column;
+    margin-top: .5rem;
 }
 .spot-form textarea {
+    border: solid 2px black;
     height: 100px;
-    margin-bottom: 1rem;
+    width: 100%;
+    margin-bottom: .5rem;
     margin-top: 1rem;
+    background-color: rgba(176, 213, 246, 0.279);
 }
 .spot-form h6{
     font-size: 12.5px;
     margin-top: .5rem;
-
 }
 
 .spot-form button{
@@ -51,7 +59,93 @@
     margin-bottom: 2rem;
     width:100px;
     color:white;
-    background-color: rgb(236, 86, 70); 
+    background-color: rgb(236, 86, 70);
      box-shadow: 0 0 11px rgba(33, 33, 33, .3);
     align-self: center;
+}
+
+.spot-form .flex{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    align-items: center;
+}
+
+.spot-form .errors{
+    font-size: 11.7px;
+    margin-bottom: .5rem;
+}
+.spot-form input{
+    border: solid 2px black;
+    margin-top: .5rem;
+    height: 25px;
+    background-color: rgba(176, 213, 246, 0.279);
+}
+
+.location{
+    border-bottom: solid 2px black;
+    margin-bottom: 1rem;
+}
+
+.spot-form .lat{
+    justify-content: center;
+}
+
+.city-input input{
+    width: 248px;
+}
+.comma{
+    display: flex;
+    margin-right: .5rem;
+    align-items: center;
+    gap:.1rem;
+}
+.lng-input input{
+    width: 210px;
+}
+
+.lat-input input{
+    width:180px;
+}
+.spot-form .price input{
+ width: 386px;
+ margin-bottom: .5rem;
+}
+.spot-form .descript{
+    border-bottom: solid 2px black;
+}
+
+.spot-form .name input{
+ margin-bottom: .5rem;
+}
+
+.spot-form .name{
+    border-bottom: solid 2px black;
+}
+
+.spot-form .name input{
+    width:100%;
+}
+
+.spot-form .cost {
+    border-bottom: solid 2px black;
+}
+
+.spot-form .pic{
+display: flex;
+flex-direction: column;
+border-bottom: solid 2px black;
+margin-bottom: .5rem;
+}
+
+.spot-form .pic input{
+    margin-bottom: .5rem;
+}
+
+.spot-form .lastimg{
+    margin-bottom: 1rem;
+}
+.spot-form .lastimg input{
+    width: 100%;
+
 }

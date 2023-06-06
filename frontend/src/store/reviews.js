@@ -50,6 +50,7 @@ export const deleteReviewThunk = (review) => async (dispatch) => {
     })
     if (response.ok) {
         dispatch(removeReview(review));
+        return review;
     } else {
         const errors = await response.json()
         return errors
@@ -72,7 +73,7 @@ const reviewReducer = (state = initialState, action) => {
             newState.spot[action.review.id] = action.review
             return newState
         case REMOVE_REVIEW:
-            newState = { ...state, spot: { ...state.spot }, user: { ...state.user } }
+            newState = { ...state, spot: { ...state.spot }, user: {} }
             delete newState.spot[action.review.id]
             return newState;
         default:

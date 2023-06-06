@@ -6,10 +6,6 @@ import { useEffect, useRef, useState } from "react";
 
 const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
 
-    const reserve = () => {
-        window.alert('Feature Coming Soon...')
-    }
-
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
@@ -33,6 +29,11 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
     if (!newReviewList) {
         return null
     }
+
+    const sortedReviews = newReviewList.sort((a, b) => {
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    })
+
 
     if (newReviewList.length === 1) {
         return (
@@ -62,7 +63,7 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '06' &&
-                            <div> June {review.createdAt.split('-')[0]}
+                            <div> Jun {review.createdAt.split('-')[0]}
                             </div>
                             }
                             {review.createdAt.split('-')[1] === '07' &&
@@ -137,7 +138,7 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '06' &&
-                                <div> June {review.createdAt.split('-')[0]}
+                                <div> Jun {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '07' &&

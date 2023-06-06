@@ -2,16 +2,24 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { deleteReviewThunk } from "../../store/reviews";
+import { getOneSpotThunk } from "../../store/spots";
+
 
 function DeleteReview({ review, spot }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
-    const handleSubmit = (e) => {
+    console.log('spot in delete modal', spot)
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-         dispatch(deleteReviewThunk(review))
-            .then(closeModal)
-    };
+            const deleted = await dispatch(deleteReviewThunk(review))
+            if(deleted.id === review.id){
+                dispatch(getOneSpotThunk(spot.id))
+                closeModal()
+            };
+        }
+
     return (
         <>
         <div className="delete">
