@@ -27,8 +27,8 @@ module.exports = {
         country: 'US',
         lat: 37.3749,
         lng: 12.4535,
-        name: 'Elmo',
-        description: 'Place where kids are welcome',
+        name: 'Marshmere',
+        description: 'Place where kids are welcome to have fun',
         price: 121
       },
       {
@@ -39,7 +39,7 @@ module.exports = {
         country: "USA",
         lat: 37.7645358,
         lng: -122.4730327,
-        name: "App Academy",
+        name: "Feathermond",
         description: "Place where web developers are created",
         price: 99
       },
@@ -51,8 +51,8 @@ module.exports = {
         country: "USA",
         lat: 89.348,
         lng: -124.234,
-        name: "Google",
-        description: "Place where web developers thrive",
+        name: "Richstar",
+        description: "Our luxurious home offers stunning views and all the amenities you need for a pampering stay",
         price: 300
       },
       {
@@ -63,7 +63,7 @@ module.exports = {
         country: "USA",
         lat: 90.23458,
         lng: -57.23327,
-        name: "Microsoft",
+        name: "Newwell",
         description: "Place where web developers are eaten alive",
         price: 256
       },
@@ -90,6 +90,126 @@ module.exports = {
         name: "The Getaway",
         description: "Place where you can focus and get some work done",
         price: 137
+      },
+      {
+        ownerId: 1,
+        address: "661 Smoky Hollow Street",
+        city: "Hayward",
+        state: "CA",
+        country: "USA",
+        lat: 46.4434,
+        lng: -148.5982,
+        name: "Sleepy Hollow",
+        description: "Place where you can relax and get away for some time",
+        price: 90
+      },
+      {
+        ownerId: 2,
+        address: "9983 Leeton Ridge Dr.",
+        city: "Pomona",
+        state: "CA",
+        country: "USA",
+        lat: 25.298,
+        lng: -11.297,
+        name: "Eagleman",
+        description: "Place where you can take your family for a weekend away",
+        price: 72
+      },
+      {
+        ownerId: 3,
+        address: "172 Canal Street",
+        city: "Huntington Park",
+        state: "CA",
+        country: "USA",
+        lat: 34.334,
+        lng: -135.7743,
+        name: "Gillford",
+        description: "Place where you can party your little heart out",
+        price: 127
+      },
+      {
+        ownerId: 4,
+        address: "74 Rich House Drive",
+        city: "Los Angeles",
+        state: "CA",
+        country: "USA",
+        lat: 46.9375,
+        lng: -137.3157,
+        name: "The Mansion",
+        description: "Place where you can come to meet new people and have fun",
+        price: 199
+      },
+      {
+        ownerId: 1,
+        address: "7 Heather Drive",
+        city: "El Cajon",
+        state: "CA",
+        country: "USA",
+        lat: 57.5547,
+        lng: -89.9239,
+        name: "Spenmer",
+        description: "Place where you can come see the beautiful city of El Cajon",
+        price: 90
+      },
+      {
+        ownerId: 2,
+        address: "9884 Deerfield Street",
+        city: "Fresno",
+        state: "CA",
+        country: "USA",
+        lat: 195.0531,
+        lng: -176.9397,
+        name: "Blackbrand",
+        description: "Place where you can come to do whatever you want",
+        price: 81
+      },
+      {
+        ownerId: 3,
+        address: "45 East Taylor Dr.",
+        city: "Simi Valley",
+        state: "CA",
+        country: "USA",
+        lat: 188.2417,
+        lng: -23.982,
+        name: "Rutherver",
+        description: "Place where you can come and check out the valley",
+        price: 98
+      },
+      {
+        ownerId: 4,
+        address: "993 Bear Hill Ave.",
+        city: "Oxnard",
+        state: "CA",
+        country: "USA",
+        lat: 123.2473,
+        lng: -137.2308,
+        name: "Conwen",
+        description: "Place where you can be in the middle of all the action of Santa Barbara and Los Angeles",
+        price: 70
+      },
+      {
+        ownerId: 1,
+        address: "394 La Sierra Dr.",
+        city: "San Jose",
+        state: "CA",
+        country: "USA",
+        lat: 83.6319,
+        lng: -120.814,
+        name: "Sweethall",
+        description: "Place where you can see the beautiful city of San Jose",
+        price: 110
+      },
+      {
+        ownerId: 2,
+        address: "293 S. Carpenter Rd.",
+        city: "Hawthorne",
+        state: "CA",
+        country: "USA",
+        lat: 3.4015,
+        lng: -23.982,
+        name: "Ravenbeard",
+        description: "Place where you can come and have a beautiful stay at the Ravenbeard",
+        price: 68
       },
 
     ], {});
