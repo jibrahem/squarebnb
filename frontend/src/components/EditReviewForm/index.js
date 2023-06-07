@@ -9,14 +9,14 @@ import { useHistory } from 'react-router-dom'
 const EditReviewForm = ({ review, spot }) => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const [text, setText] = useState(review?.text);
+    const [text, setText] = useState(review?.review);
     const [stars, setStars] = useState(review?.stars);
     const [starRating, setStarRating] = useState()
     const [errors, setErrors] = useState({});
     const user = useSelector(state => state.session.user)
     const { closeModal } = useModal();
 
-    console.log()
+    console.log('review', review)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -67,13 +67,13 @@ const EditReviewForm = ({ review, spot }) => {
     return (
         <>
             <div className="post-review">
-                <h1>How was your stay?</h1>
+                <h1>How was your stay at {spot.name}?</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="errors">{errors.text}</div>
                     <textarea
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        placeholder="Leave your review here..."
+                        placeholder={text}
                     />
                     <div className="errors">{errors.stars}</div>
                     <div className="rating-input">
