@@ -43,52 +43,52 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
                         <li key={review.id}>
                             <div>{review.User?.firstName}</div>
                             {review.createdAt.split('-')[1] === '01' &&
-                                <div> Jan {review.createdAt.split('-')[0]}
+                                <div className="date"> Jan {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '02' &&
-                                <div> Feb {review.createdAt.split('-')[0]}
+                                <div className="date"> Feb {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '03' &&
-                                <div> March {review.createdAt.split('-')[0]}
+                                <div className="date"> March {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '04' &&
-                                <div> April {review.createdAt.split('-')[0]}
+                                <div className="date"> April {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '05' &&
-                                <div> May {review.createdAt.split('-')[0]}
+                                <div className="date"> May {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '06' &&
-                            <div> Jun {review.createdAt.split('-')[0]}
-                            </div>
+                                <div className="date"> Jun {review.createdAt.split('-')[0]}
+                                </div>
                             }
                             {review.createdAt.split('-')[1] === '07' &&
-                            <div> July {review.createdAt.split('-')[0]}
-                            </div>
+                                <div className="date"> July {review.createdAt.split('-')[0]}
+                                </div>
                             }
                             {review.createdAt.split('-')[1] === '08' &&
-                            <div> Aug {review.createdAt.split('-')[0]}
-                            </div>
+                                <div className="date"> Aug {review.createdAt.split('-')[0]}
+                                </div>
                             }
                             {review.createdAt.split('-')[1] === '09' &&
-                            <div> Sept {review.createdAt.split('-')[0]}
-                            </div>
+                                <div className="date"> Sept {review.createdAt.split('-')[0]}
+                                </div>
                             }
                             {review.createdAt.split('-')[1] === '10' &&
-                            <div> Sept {review.createdAt.split('-')[0]}
-                            </div>
+                                <div className="date"> Sept {review.createdAt.split('-')[0]}
+                                </div>
                             }
                             {review.createdAt.split('-')[1] === '11' &&
-                            <div> Nov {review.createdAt.split('-')[0]}
-                            </div>
+                                <div className="date"> Nov {review.createdAt.split('-')[0]}
+                                </div>
                             }
                             {review.createdAt.split('-')[1] === '12' &&
-                            <div> Dec {review.createdAt.split('-')[0]}
-                            </div>
+                                <div className="date"> Dec {review.createdAt.split('-')[0]}
+                                </div>
                             }
                             <div>{review.review}</div>
                             {userReview && userId && review.userId === userId &&
@@ -118,51 +118,51 @@ const SpotReviews = ({ spot, newReviewList, userReview, userId }) => {
                         <li key={review.id}>
                             <div>{review.User?.firstName}</div>
                             {review.createdAt.split('-')[1] === '01' &&
-                                <div> Jan {review.createdAt.split('-')[0]}
+                                <div className="date"> Jan {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '02' &&
-                                <div> Feb {review.createdAt.split('-')[0]}
+                                <div className="date"> Feb {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '03' &&
-                                <div> March {review.createdAt.split('-')[0]}
+                                <div className="date"> March {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '04' &&
-                                <div> April {review.createdAt.split('-')[0]}
+                                <div className="date"> April {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '05' &&
-                                <div> May {review.createdAt.split('-')[0]}
+                                <div className="date"> May {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '06' &&
-                                <div> Jun {review.createdAt.split('-')[0]}
+                                <div className="date"> Jun {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '07' &&
-                                <div> July {review.createdAt.split('-')[0]}
+                                <div className="date"> July {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '08' &&
-                                <div> Aug {review.createdAt.split('-')[0]}
+                                <div className="date"> Aug {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '09' &&
-                                <div> Sept {review.createdAt.split('-')[0]}
+                                <div className="date"> Sept {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '10' &&
-                                <div> Sept {review.createdAt.split('-')[0]}
+                                <div className="date"> Sept {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '11' &&
-                                <div> Nov {review.createdAt.split('-')[0]}
+                                <div className="date"> Nov {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             {review.createdAt.split('-')[1] === '12' &&
-                                <div> Dec {review.createdAt.split('-')[0]}
+                                <div className="date"> Dec {review.createdAt.split('-')[0]}
                                 </div>
                             }
                             <div>{review.review}</div>

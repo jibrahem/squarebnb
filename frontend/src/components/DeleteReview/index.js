@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { deleteReviewThunk } from "../../store/reviews";
+import { allReviewsOfUserThunk, deleteReviewThunk } from "../../store/reviews";
 import { getOneSpotThunk } from "../../store/spots";
 
 
@@ -16,6 +16,7 @@ function DeleteReview({ review, spot }) {
             const deleted = await dispatch(deleteReviewThunk(review))
             if(deleted.id === review.id){
                 dispatch(getOneSpotThunk(spot.id))
+                dispatch(allReviewsOfUserThunk())
                 closeModal()
             };
         }

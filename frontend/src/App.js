@@ -9,7 +9,7 @@ import SpotShow from "./components/SpotShow";
 import ManageSpots from "./components/ManageSpots";
 import CreateSpotForm from "./components/CreateSpotForm";
 import EditSpotForm from "./components/EditSpotForm";
-// import ManageReviews from "./components/ManageReviews"
+import ManageReviews from "./components/ManageReviews"
 
 function App() {
   const dispatch = useDispatch();
@@ -31,9 +31,9 @@ function App() {
         <Route exact path={'/spots/current'}>
         <ManageSpots />
         </Route>
-        {/* <Route exact path={'/reviews/current'}>
+        <Route exact path={'/reviews/current'}>
         <ManageReviews />
-        </Route> */}
+        </Route>
         <Route exact path={'/spots/:spotId/edit'}>
         <EditSpotForm />
         </Route>

@@ -3,6 +3,10 @@ ul button{
     height: 30px
 }
 
+.manage h1{
+    margin-left: 3rem;
+}
+
 .manage{
     margin: 2rem;
 }
@@ -12,6 +16,7 @@ ul button{
     color:white;
     height:30px;
     width:150px;
+    margin-left: 3rem
 }
 .buttons button{
     background-color: gray;
