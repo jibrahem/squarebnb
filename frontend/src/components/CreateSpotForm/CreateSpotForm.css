@@ -41,6 +41,7 @@
     flex-direction: column;
     margin-top: .5rem;
 }
+
 .spot-form textarea {
     border: solid 2px black;
     height: 100px;
