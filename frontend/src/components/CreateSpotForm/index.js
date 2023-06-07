@@ -249,7 +249,7 @@ const CreateSpotForm = () => {
                     <label>
                         <div className='price'>
                             $ <input
-                                type='text'
+                                type='number'
                                 placeholder=' Price per night (USD)'
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
