@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 export const GET_ALL_REVIEWS = 'reviews/GET_ALL_REVIEWS';
 export const ADD_REVIEW = 'reviews/ADD_REVIEW';
 export const GET_USER_REVIEW = 'reviews/GET_USER_REVIEW'
+export const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW'
 export const REMOVE_REVIEW = 'reviews/REMOVE_REVIEW'
 
 export const getAllReviews = (reviews) => ({
@@ -17,6 +18,11 @@ export const addReview = (review) => ({
 export const currentUserReview = (reviews) => ({
     type: GET_USER_REVIEW,
     reviews,
+});
+
+export const editReview = (review) => ({
+    type: UPDATE_REVIEW,
+    review,
 })
 
 export const removeReview = (review) => ({
@@ -59,6 +65,22 @@ export const createReviewThunk = (spot, review, user) => async (dispatch) => {
     }
 }
 
+export const updateReviewThunk = (review) => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/${review.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(review),
+    })
+    if (response.ok) {
+        const updatedReview = await response.json();
+        dispatch(editReview(updatedReview));
+        return updatedReview;
+    } else {
+        const errors = await response.json();
+        return errors
+    }
+}
+
 export const deleteReviewThunk = (review) => async (dispatch) => {
     const response = await csrfFetch(`/api/reviews/${review.id}`, {
         method: 'DELETE',
@@ -85,10 +107,13 @@ const reviewReducer = (state = initialState, action) => {
             return newState
         case GET_USER_REVIEW:
             newState = { ...state, spot: { ...state.spot }, user: { ...state.user } }
-            action.reviews.Reviews.forEach(review =>{
+            action.reviews.Reviews.forEach(review => {
                 newState.user[review.id] = review
             })
             return newState
+        case UPDATE_REVIEW:
+            newState = newState = { ...state, spot: { ...state.spot }, user: { ...state.user } }
+            return {...state, user: { ...action.review }}
         case ADD_REVIEW:
             newState = { ...state, spot: { ...state.spot }, user: { ...state.user } }
             newState.spot[action.review.id] = action.review

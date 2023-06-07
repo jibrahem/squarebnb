@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { allReviewsThunk, createReviewThunk} from '../../store/reviews';
+import { createReviewThunk } from '../../store/reviews';
 import { useModal } from "../../context/Modal";
 import { useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom'
