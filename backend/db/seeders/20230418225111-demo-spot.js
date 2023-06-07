@@ -53,7 +53,7 @@ module.exports = {
         lng: -124.234,
         name: "Richstar",
         description: "Our luxurious home offers stunning views and all the amenities you need for a pampering stay",
-        price: 300
+        price: 97
       },
       {
         ownerId: 3,
@@ -61,11 +61,11 @@ module.exports = {
         city: "Brooklyn",
         state: "NY",
         country: "USA",
-        lat: 90.23458,
+        lat: 79.324,
         lng: -57.23327,
         name: "Newwell",
         description: "Place where web developers are eaten alive",
-        price: 256
+        price: 156
       },
       {
         ownerId: 4,
@@ -73,11 +73,11 @@ module.exports = {
         city: "Santa Barbara",
         state: "CA",
         country: "USA",
-        lat: 95.258,
+        lat: 57.342,
         lng: -51.227,
         name: "The Oasis",
         description: "Place where you can relax and get away for sometime",
-        price: 299
+        price: 199
       },
       {
         ownerId: 4,
@@ -137,7 +137,7 @@ module.exports = {
         lng: -137.3157,
         name: "The Mansion",
         description: "Place where you can come to meet new people and have fun",
-        price: 199
+        price: 1999
       },
       {
         ownerId: 1,
@@ -157,7 +157,7 @@ module.exports = {
         city: "Fresno",
         state: "CA",
         country: "USA",
-        lat: 195.0531,
+        lat: 5.0531,
         lng: -176.9397,
         name: "Blackbrand",
         description: "Place where you can come to do whatever you want",
@@ -169,7 +169,7 @@ module.exports = {
         city: "Simi Valley",
         state: "CA",
         country: "USA",
-        lat: 188.2417,
+        lat: 88.2417,
         lng: -23.982,
         name: "Rutherver",
         description: "Place where you can come and check out the valley",
@@ -181,7 +181,7 @@ module.exports = {
         city: "Oxnard",
         state: "CA",
         country: "USA",
-        lat: 123.2473,
+        lat: 23.2473,
         lng: -137.2308,
         name: "Conwen",
         description: "Place where you can be in the middle of all the action of Santa Barbara and Los Angeles",

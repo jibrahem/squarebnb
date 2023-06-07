@@ -171,8 +171,11 @@ const EditSpotForm = () => {
                                         <div className='lat-input'>
                                             <div className='comma'>
                                                 <input
-                                                    type='text'
+                                                    type='number'
                                                     placeholder='latitude'
+                                                    min='-90'
+                                                    max='90'
+                                                    step='any'
                                                     value={latitude}
                                                     onChange={(e) => setLatitude(e.target.value)}
                                                 /> ,
@@ -186,7 +189,10 @@ const EditSpotForm = () => {
                                         </div>
                                         <div className='lng-input'>
                                             <input
-                                                type='text'
+                                                type='number'
+                                                step='any'
+                                                min='-180'
+                                                max='180'
                                                 placeholder='longitude'
                                                 value={longitude}
                                                 onChange={(e) => setLongitude(e.target.value)}
@@ -227,6 +233,8 @@ const EditSpotForm = () => {
                                         $ <input
                                             type='number'
                                             placeholder=' Price per night (USD)'
+                                            step='1'
+                                            min='1'
                                             value={price}
                                             onChange={(e) => setPrice(e.target.value)}
                                         />

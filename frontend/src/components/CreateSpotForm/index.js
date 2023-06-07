@@ -195,8 +195,11 @@ const CreateSpotForm = () => {
                             <div className='lat-input'>
                                 <div className='comma'>
                                     <input
-                                        type='text'
+                                        type='number'
                                         placeholder='latitude'
+                                        min='-90'
+                                        max='90'
+                                        step='any'
                                         value={latitude}
                                         onChange={(e) => setLatitude(e.target.value)}
                                     /> ,
@@ -210,8 +213,11 @@ const CreateSpotForm = () => {
                             </div>
                             <div className='lng-input'>
                                 <input
-                                    type='text'
+                                    type='number'
                                     placeholder='longitude'
+                                    min='-180'
+                                    max='180'
+                                    step='any'
                                     value={longitude}
                                     onChange={(e) => setLongitude(e.target.value)}
                                 />
@@ -251,6 +257,8 @@ const CreateSpotForm = () => {
                             $ <input
                                 type='number'
                                 placeholder=' Price per night (USD)'
+                                min='1'
+                                step='1'
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
                             />
