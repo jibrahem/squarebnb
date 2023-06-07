@@ -110,7 +110,7 @@ const EditReviewForm = ({ review, spot }) => {
                             className={setStar(5)}></i> Stars
                     </div>
 
-                    <button type='submit' disabled={isDisabled}>Submit Your Review</button>
+                    <button type='submit' disabled={isDisabled}>Update Your Review</button>
                 </form>
             </div>
         </>
