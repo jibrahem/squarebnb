@@ -13,7 +13,6 @@ export default function ManageReviews() {
     const list = Object.values(reviewObj)
 
     const reviewList = list.filter((review)=> review.userId === user.id)
-console.log('user', user)
 
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
@@ -45,8 +44,6 @@ console.log('user', user)
     const sortedReviews = reviewList.sort((a, b) => {
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     })
-
-    console.log('reviewlist', reviewList)
 
     return (
         <>

@@ -24,8 +24,6 @@ export default function SpotList(){
       return null
     }
 
-    console.log('spotssss', spotList)
-
     //show data on page through return jsx, map through list of spot
     return (
       <main>

@@ -101,7 +101,6 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     });
 
     if (Object.keys(error.errors).length) {
-        console.log(error);
         return res.status(403).json(error);
     }
 

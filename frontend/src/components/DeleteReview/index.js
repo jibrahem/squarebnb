@@ -9,8 +9,6 @@ function DeleteReview({ review, spot }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
-    console.log('spot in delete modal', spot)
-
     const handleSubmit = async (e) => {
         e.preventDefault()
             const deleted = await dispatch(deleteReviewThunk(review))

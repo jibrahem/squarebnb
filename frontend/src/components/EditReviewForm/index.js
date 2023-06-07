@@ -16,8 +16,6 @@ const EditReviewForm = ({ review, spot }) => {
     const user = useSelector(state => state.session.user)
     const { closeModal } = useModal();
 
-    console.log('review', review)
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const reviewObj = {
@@ -73,7 +71,6 @@ const EditReviewForm = ({ review, spot }) => {
                     <textarea
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        placeholder={text}
                     />
                     <div className="errors">{errors.stars}</div>
                     <div className="rating-input">

@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: space-evenly;
     height:350px;
+    width: 380px;
     border: 4px solid black;
     border-radius: 10px;
 }
@@ -26,4 +27,8 @@
 }
 #modal-content{
     border-radius: 10px;
+}
+
+.post-review h1{
+  text-align: center;
 }

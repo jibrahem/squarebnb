@@ -18,7 +18,7 @@ const SpotShow = () => {
     const userId = useSelector(state => state.session.user?.id)
     const reviewObj = useSelector(state => state.reviews.spot);
 
-    console.log('spot in spot show', spot)
+
 
     const reviewList = Object.values(reviewObj);
 
