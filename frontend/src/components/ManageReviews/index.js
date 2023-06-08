@@ -120,7 +120,6 @@ export default function ManageReviews() {
                                         review={review}
                                         spot={review.Spot}
                                         />}
-
                                 />
                             </div>
                         </div>

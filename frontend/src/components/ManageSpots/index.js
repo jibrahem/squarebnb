@@ -64,7 +64,8 @@ export default function ManageSpots() {
                             <div className='list'>
                                 <div className='star'>
                                     <li>{spot.city}, {spot.state}</li>
-                                    <li>★ {spot.avgRating}</li>
+                                    {spot.avgRating > 0 && <li>★ {spot.avgRating}.0</li>}
+                                    {!spot.avgRating && <li>★ New</li>}
                                 </div>
                                 <li>${spot.price} night</li>
                             </div>

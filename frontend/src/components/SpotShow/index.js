@@ -8,6 +8,7 @@ import OpenModalMenuItem from '../OpenModalButton'
 import './SpotShow.css';
 import SpotImages from './SpotImages';
 import SpotReviews from './SpotReviews';
+import CreateBookingForm from '../CreateBookingForm';
 
 const SpotShow = () => {
     const dispatch = useDispatch();
@@ -180,7 +181,12 @@ const SpotShow = () => {
                                             <div>$ {spot.price} night</div>
                                             <div>★ New</div>
                                         </div>
-                                        <button onClick={reserve}>Reserve</button>
+                                        <OpenModalMenuItem
+                                            buttonText="Reserve"
+                                            onItemClick={closeMenu}
+                                            modalComponent={<CreateBookingForm
+                                                spot={spot} />}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -231,7 +237,12 @@ const SpotShow = () => {
                                                 <div>★ {spot.avgStarRating.toFixed(1)} · {newReviewList.length} reviews</div>
                                             }
                                         </div>
-                                        <button onClick={reserve}>Reserve</button>
+                                        <OpenModalMenuItem
+                                            buttonText="Reserve"
+                                            onItemClick={closeMenu}
+                                            modalComponent={<CreateBookingForm
+                                                spot={spot} />}
+                                        />
                                     </div>
 
                                 </div>
@@ -291,7 +302,12 @@ const SpotShow = () => {
                                                 <div>★ {spot.avgStarRating.toFixed(1)} · {newReviewList.length} reviews</div>
                                             }
                                         </div>
-                                        <button onClick={reserve}>Reserve</button>
+                                        <OpenModalMenuItem
+                                            buttonText="Reserve"
+                                            onItemClick={closeMenu}
+                                            modalComponent={<CreateBookingForm
+                                                spot={spot} />}
+                                        />
                                     </div>
                                 </div>
 
@@ -356,7 +372,12 @@ const SpotShow = () => {
                                                 <div>★ {spot.avgStarRating.toFixed(1)} · {newReviewList.length} reviews</div>
                                             }
                                         </div>
-                                        <button onClick={reserve}>Reserve</button>
+                                        <OpenModalMenuItem
+                                            buttonText="Reserve"
+                                            onItemClick={closeMenu}
+                                            modalComponent={<CreateBookingForm
+                                                spot={spot} />}
+                                        />
                                     </div>
                                 </div>
                             </div>

@@ -44,7 +44,7 @@ module.exports = {
         price: 99
       },
       {
-        ownerId: 3,
+        ownerId: 4,
         address: "202 Lara St",
         city: "North Bergen",
         state: "NJ",

@@ -1,9 +1,9 @@
 import { csrfFetch } from './csrf';
 export const GET_ALL_REVIEWS = 'reviews/GET_ALL_REVIEWS';
 export const ADD_REVIEW = 'reviews/ADD_REVIEW';
-export const GET_USER_REVIEW = 'reviews/GET_USER_REVIEW'
-export const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW'
-export const REMOVE_REVIEW = 'reviews/REMOVE_REVIEW'
+export const GET_USER_REVIEW = 'reviews/GET_USER_REVIEW';
+export const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW';
+export const REMOVE_REVIEW = 'reviews/REMOVE_REVIEW';
 
 export const getAllReviews = (reviews) => ({
     type: GET_ALL_REVIEWS,
@@ -23,7 +23,7 @@ export const currentUserReview = (reviews) => ({
 export const editReview = (review) => ({
     type: UPDATE_REVIEW,
     review,
-})
+});
 
 export const removeReview = (review) => ({
     type: REMOVE_REVIEW,
