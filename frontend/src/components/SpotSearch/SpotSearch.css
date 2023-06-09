@@ -1,0 +1,24 @@
+.search-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-form form {
+    display: flex;
+    flex-direction: column;
+    height: 420px;
+}
+
+.search-form input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+}
+
+.search-form label {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: .5rem;
+}

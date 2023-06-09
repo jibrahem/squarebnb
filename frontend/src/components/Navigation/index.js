@@ -1,12 +1,38 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import OpenModalMenuItem from './OpenModalMenuItem';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import { useHistory } from 'react-router-dom';
+
+
+import { Link } from 'react-router-dom';
+import SpotSearch from '../SpotSearch';
 
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
+    const ulRef = useRef();
+    const [showMenu, setShowMenu] = useState(false);
+    const history = useHistory()
+
+    useEffect(() => {
+        if (!showMenu) return;
+
+        const closeMenu = (e) => {
+            if (!ulRef.current.contains(e.target)) {
+                setShowMenu(false);
+            }
+        };
+
+        document.addEventListener('click', closeMenu);
+
+        return () => document.removeEventListener("click", closeMenu);
+    }, [showMenu]);
+
+    const closeMenu = () => setShowMenu(false);
+
     if (sessionUser) {
         return (
             <div className='nav-wrap'>
@@ -20,19 +46,25 @@ function Navigation({ isLoaded }) {
                         </div>
                         {isLoaded && (
                             <ul>
-                                    <div className='top'>
+                                <div className='top'>
                                     <div className='new'>
-                                    <NavLink exact to='/spots/new'>
-                                        Create a New Spot
-                                    </NavLink>
+                                        <OpenModalMenuItem
+                                            itemText="Search Spots"
+                                            onItemClick={closeMenu}
+                                            modalComponent={<SpotSearch
+                                                />}
+                                        />
+                                        <NavLink exact to='/spots/new'>
+                                            Create a New Spot
+                                        </NavLink>
                                     </div>
                                     <div className='profile'>
-                                    <li>
-                                        <ProfileButton user={sessionUser} />
-                                    </li>
+                                        <li>
+                                            <ProfileButton user={sessionUser} />
+                                        </li>
                                     </div>
-                            </div>
-                                </ul>
+                                </div>
+                            </ul>
                         )}
                     </div>
                 </header>
@@ -48,11 +80,19 @@ function Navigation({ isLoaded }) {
                                 <i class="fa-solid fa-square"></i> squarebnb</NavLink>
                         </li>
                     </div>
-                    {isLoaded && (
-                        <li>
-                            <ProfileButton user={sessionUser} />
-                        </li>
-                    )}
+                    <div className='top'>
+                        <OpenModalMenuItem
+                            itemText="Search Spots"
+                            onItemClick={closeMenu}
+                            modalComponent={<SpotSearch
+                            />}
+                        />
+                        {isLoaded && (
+                            <li>
+                                <ProfileButton user={sessionUser} />
+                            </li>
+                        )}
+                    </div>
                 </ul>
             </div>
         );

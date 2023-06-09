@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 export const ADD_BOOKING = 'bookings/ADD_BOOKING';
 export const GET_USER_BOOKING = 'bookings/GET_USER_BOOKING';
+export const UPDATE_BOOKING = 'bookings/UPDATE_BOOKING'
 export const REMOVE_BOOKING = 'bookings/REMOVE_BOOKING';
 
 export const addBooking = (booking) => ({
@@ -12,6 +13,11 @@ export const currentUserBooking = (bookings) => ({
     type: GET_USER_BOOKING,
     bookings,
 })
+
+export const editBooking = (booking) => ({
+    type: UPDATE_BOOKING,
+    booking,
+});
 
 export const removeBooking = (booking) => ({
     type: REMOVE_BOOKING,
@@ -38,11 +44,20 @@ export const createBookingThunk = (spot, booking) => async (dispatch) => {
         dispatch(addBooking(spotBooking))
         return spotBooking
     }
-    //  else {
-    //     const errors = await response.json()
-    //     console.log('errors from the backend', errors)
-    //     return errors
-    // }
+}
+
+export const updateBookingThunk = (booking) => async (dispatch) => {
+    const response = await csrfFetch(`/api/bookings/${booking.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(booking),
+    })
+    if (response.ok) {
+        const updatedBooking = await response.json();
+        dispatch(editBooking(updatedBooking));
+        return updatedBooking;
+    }
+
 }
 
 export const deleteBookingThunk = (booking) => async (dispatch) => {
@@ -69,12 +84,15 @@ const bookingReducer = (state = initialState, action) => {
                 newState.user[booking.id] = booking
             })
             return newState
+        case UPDATE_BOOKING:
+            newState = { ...state, user: { ...state.user }, spot: { ...state.spot } }
+            return { ...state, user: { ...action.booking } }
         case ADD_BOOKING:
             newState = { ...state, user: { ...state.user }, spot: { ...state.spot } }
             newState.spot[action.booking.id] = action.booking
             return newState
         case REMOVE_BOOKING:
-            newState = { ...state, user: { ...state.user }, spot: { } }
+            newState = { ...state, user: { ...state.user }, spot: {} }
             delete newState.user[action.booking.id]
             return newState
         default:

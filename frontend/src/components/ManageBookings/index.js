@@ -4,6 +4,7 @@ import { allBookingsOfUserThunk } from '../../store/bookings'
 import OpenModalMenuItem from '../OpenModalButton'
 import DeleteBooking from "../DeleteBooking"
 import './ManageBookings.css';
+import EditBookingForm from "../EditBookingForm"
 
 export default function ManageBookings() {
     const dispatch = useDispatch()
@@ -55,7 +56,14 @@ export default function ManageBookings() {
                             <h4>End: {booking.endDate}</h4>
                             </div>
                             <div className="buttons">
-                                <button>Update</button>
+                                <OpenModalMenuItem
+                                    buttonText="Update"
+                                    onItemClick={closeMenu}
+                                    modalComponent={<EditBookingForm
+                                        booking={booking}
+                                        spot={booking.Spot}
+                                    />}
+                                />
                                 <OpenModalMenuItem
                                     buttonText="Delete"
                                     onItemClick={closeMenu}

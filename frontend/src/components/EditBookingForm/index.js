@@ -1,43 +1,45 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createBookingThunk, allBookingsOfUserThunk } from '../../store/bookings';
+import { allBookingsOfUserThunk, updateBookingThunk } from '../../store/bookings';
 import { useModal } from "../../context/Modal";
 import { useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom'
 
-const CreateBookingForm = ({ spot }) => {
-    const history = useHistory()
+const EditBookingForm = ({ spot, booking }) => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
-    const [startDate, setStartDate] = useState(new Date().toJSON().slice(0, 10))
-    const [endDate, setEndDate] = useState(new Date().toJSON().slice(0, 10))
+    const [startDate, setStartDate] = useState(booking.startDate)
+    const [endDate, setEndDate] = useState(booking.endDate)
     const [errors, setErrors] = useState({})
     const { closeModal } = useModal()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({})
-        const booking = {
+        const bookingObj = {
+            ...booking,
             spotId: spot.id,
             userId: user.id,
             startDate,
             endDate,
         }
-        console.log(new Date().toJSON().slice(0, 10))
         if (startDate >= new Date().toJSON().slice(0, 10) &&
-            endDate > new Date().toJSON().slice(0, 10)){
-        return dispatch(createBookingThunk(spot, booking))
-        .then(dispatch(allBookingsOfUserThunk()))
-        .then(history.push('/bookings/current'))
-        .then(closeModal)
-        .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) {
-                setErrors(data.errors);
-                history.push(`/spots/${spot.id}`)
-            }
-        });
-    }
+            endDate > new Date().toJSON().slice(0, 10)) {
+            const newBooking = await dispatch(updateBookingThunk(bookingObj))
+                await (dispatch(allBookingsOfUserThunk()))
+                .then(history.push('/bookings/current'))
+                .then(closeModal)
+                .catch(async (res) => {
+                    console.log('res,', res)
+                    const data = await res.json();
+                    console.log(data)
+                    if (data && data.errors) {
+                        console.log('errors', errors)
+                        setErrors(data.errors);
+                    }
+                });
+        }
         return setErrors({
             startDate: 'Cannot book in the past'
         })
@@ -47,13 +49,10 @@ const CreateBookingForm = ({ spot }) => {
         return null
     }
 
-
-
-
     return (
         <>
             <div className="loggin">
-                <h1>Book your stay at {spot.name}</h1>
+                <h1>Update your stay at {spot.name}</h1>
                 <form onSubmit={handleSubmit}>
                     <label>Start Date
                         <input
@@ -73,11 +72,13 @@ const CreateBookingForm = ({ spot }) => {
                         />
                     </label>
                     {errors.endDate && <div className="errors">{errors.endDate}</div>}
-                    <button type="submit">Book your stay</button>
+                    <button type="submit">Update your stay</button>
                 </form>
             </div>
         </>
     )
+
+
 }
 
-export default CreateBookingForm
+export default EditBookingForm

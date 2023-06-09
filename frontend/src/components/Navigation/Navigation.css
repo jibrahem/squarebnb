@@ -53,3 +53,12 @@ li{
     top: 70px;
     right: 40px
 }
+.new{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    color: rgb(12, 100, 83);
+}
+.new:hover{
+    cursor: pointer;
+}
