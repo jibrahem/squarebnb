@@ -5,10 +5,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { useHistory } from 'react-router-dom';
-
-
-import { Link } from 'react-router-dom';
-import SpotSearch from '../SpotSearch';
+import SpotSearchModal from '../SpotSearchModal';
 
 
 function Navigation({ isLoaded }) {
@@ -51,7 +48,7 @@ function Navigation({ isLoaded }) {
                                         <OpenModalMenuItem
                                             itemText="Search Spots"
                                             onItemClick={closeMenu}
-                                            modalComponent={<SpotSearch
+                                            modalComponent={<SpotSearchModal
                                                 />}
                                         />
                                         <NavLink exact to='/spots/new'>
@@ -84,7 +81,7 @@ function Navigation({ isLoaded }) {
                         <OpenModalMenuItem
                             itemText="Search Spots"
                             onItemClick={closeMenu}
-                            modalComponent={<SpotSearch
+                            modalComponent={<SpotSearchModal
                             />}
                         />
                         {isLoaded && (

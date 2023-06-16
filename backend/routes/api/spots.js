@@ -75,13 +75,17 @@ router.get('/', async (req, res) => {
     if (maxLng) {
         where.lng = { [Op.lte]: maxLng };
     }
-    if (minPrice) {
-        where.price = { [Op.gte]: minPrice };
-    }
-    if (maxPrice) {
-        where.price = { [Op.lte]: maxPrice };
+    if (minPrice && maxPrice) {
+        where.price = { [Op.between]: [minPrice, maxPrice] };
+        
+    } else if(minPrice){
+        where.price = { [Op.gte]: minPrice}
+
+    } else if(maxPrice){
+        where.price = { [Op.lte]: maxPrice }
     }
 
+    console.log('where in backend', where)
     const allSpots = await Spot.findAll({
         include: [
             {model: Review},

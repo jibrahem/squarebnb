@@ -23,7 +23,6 @@ const CreateBookingForm = ({ spot }) => {
             startDate,
             endDate,
         }
-        console.log(new Date().toJSON().slice(0, 10))
         if (startDate >= new Date().toJSON().slice(0, 10) &&
             endDate > new Date().toJSON().slice(0, 10)){
         return dispatch(createBookingThunk(spot, booking))

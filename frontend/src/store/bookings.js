@@ -56,8 +56,10 @@ export const updateBookingThunk = (booking) => async (dispatch) => {
         const updatedBooking = await response.json();
         dispatch(editBooking(updatedBooking));
         return updatedBooking;
+    } else {
+        const errors = await response.json()
+        return errors
     }
-
 }
 
 export const deleteBookingThunk = (booking) => async (dispatch) => {

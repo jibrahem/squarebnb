@@ -51,9 +51,10 @@ export default function ManageBookings() {
                     {bookingList.length > 0 && bookingList.map(booking => (
                         <div key={booking.id} className="review">
                             <h3>{booking.Spot?.name}</h3>
+                            <div>${(((new Date(booking.endDate).getTime()) - (new Date(booking.startDate).getTime())) / (1000 * 3600 * 24)) * booking.Spot.price}</div>
                             <div className="date">
-                            <h4>Start: {booking.startDate}</h4>
-                            <h4>End: {booking.endDate}</h4>
+                                <h4>Start: {booking.startDate}</h4>
+                                <h4>End: {booking.endDate}</h4>
                             </div>
                             <div className="buttons">
                                 <OpenModalMenuItem
@@ -68,7 +69,7 @@ export default function ManageBookings() {
                                     buttonText="Delete"
                                     onItemClick={closeMenu}
                                     modalComponent={<DeleteBooking
-                                       booking={booking}
+                                        booking={booking}
                                     />}
                                 />
                             </div>
