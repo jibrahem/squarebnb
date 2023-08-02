@@ -5,26 +5,25 @@ import { allSpotsThunk } from '../../store/spots';
 import { Link } from 'react-router-dom';
 import './SpotList.css'
 
-//dispatch to fetch data and put it in the store
-//useSelector grabs data fromthe store and give component access to data
-
 export default function SpotList(){
-    //convert spots obj to list
-    //normalize spot data
     const dispatch = useDispatch()
     const spotObj = useSelector(state => state.spots.allSpots)
     const spotList = Object.values(spotObj)
+    console.log('spolist', spotList)
 
-    //useEffect to trigger dipatch of thunk
+
     useEffect(() => {
         dispatch(allSpotsThunk())
     }, [dispatch])
 
-    if(!spotList){
+    if(spotObj === undefined){
       return null
     }
 
-    //show data on page through return jsx, map through list of spot
+    if(spotList.length === 0){
+      return null
+    }
+
     return (
       <main>
         <ul>

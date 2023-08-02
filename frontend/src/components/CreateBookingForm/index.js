@@ -24,19 +24,19 @@ const CreateBookingForm = ({ spot }) => {
             endDate,
         }
         if (startDate >= new Date().toJSON().slice(0, 10) &&
-            endDate > new Date().toJSON().slice(0, 10)){
-        return dispatch(createBookingThunk(spot, booking))
-        .then(dispatch(allBookingsOfUserThunk()))
-        .then(history.push('/bookings/current'))
-        .then(closeModal)
-        .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) {
-                setErrors(data.errors);
-                history.push(`/spots/${spot.id}`)
-            }
-        });
-    }
+            endDate > new Date().toJSON().slice(0, 10)) {
+            return dispatch(createBookingThunk(spot, booking))
+                .then(closeModal)
+                .catch(async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) {
+                        setErrors(data.errors);
+                        history.push(`/spots/${spot.id}`)
+                    }
+                })
+                .then(dispatch(allBookingsOfUserThunk()))
+                .then(history.push('/bookings/current'))
+        }
         return setErrors({
             startDate: 'Cannot book in the past'
         })

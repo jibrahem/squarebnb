@@ -46,7 +46,7 @@ export const createBookingThunk = (spot, booking) => async (dispatch) => {
     }
 }
 
-export const updateBookingThunk = (booking) => async (dispatch) => {
+export const updateBookingThunk = (booking, spot) => async (dispatch) => {
     const response = await csrfFetch(`/api/bookings/${booking.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -54,6 +54,8 @@ export const updateBookingThunk = (booking) => async (dispatch) => {
     })
     if (response.ok) {
         const updatedBooking = await response.json();
+        updatedBooking.Spot = spot
+        console.log('updated booking in thunk', updatedBooking)
         dispatch(editBooking(updatedBooking));
         return updatedBooking;
     } else {
@@ -88,7 +90,8 @@ const bookingReducer = (state = initialState, action) => {
             return newState
         case UPDATE_BOOKING:
             newState = { ...state, user: { ...state.user }, spot: { ...state.spot } }
-            return { ...state, user: { ...action.booking } }
+            newState.user[action.booking.id] = action.booking
+            return newState
         case ADD_BOOKING:
             newState = { ...state, user: { ...state.user }, spot: { ...state.spot } }
             newState.spot[action.booking.id] = action.booking

@@ -28,6 +28,7 @@ main ul {
 .image img{
     height:240px;
     width:310px;
+    object-fit: cover;
 }
 
 .price{

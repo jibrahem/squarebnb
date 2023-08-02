@@ -5,63 +5,66 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { Spot, User, SpotImage, Review, ReviewImage } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
-router.get('/current', requireAuth, async (req, res)=>{
+router.get('/current', requireAuth, async (req, res) => {
     const { user } = req;
     const Reviews = await Review.findAll({
-        where: {userId: user.id},
-        include:[
-            {model: User,
-            attributes: ['id', 'firstName', 'lastName']
+        where: { userId: user.id },
+        include: [
+            {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
             },
-            {model: Spot, include: {model: SpotImage},
-            attributes: {exclude: ['description', 'createdAt', 'updatedAt']}},
-            {model: ReviewImage, attributes: {exclude: ['reviewId', 'createdAt', 'updatedAt']}},
+            {
+                model: Spot, include: { model: SpotImage },
+                attributes: { exclude: ['description', 'createdAt', 'updatedAt'] }
+            },
+            { model: ReviewImage, attributes: { exclude: ['reviewId', 'createdAt', 'updatedAt'] } },
         ]
     });
     let reviewList = [];
-    for(let i = 0; i < Reviews.length; i++){
+    for (let i = 0; i < Reviews.length; i++) {
         const review = Reviews[i];
         reviewList.push(review.toJSON());
     }
-    reviewList.forEach(review =>{
-                const spot = review.Spot;
-                spot.SpotImages.forEach(image =>{
-                    if (image.preview === true) {
-                        spot.previewImage = image.url;
-                    }
-                    if (!review.Spot.previewImage) {
-                        spot.previewImage = 'No preview image found';
-                    }
-                });
-                delete spot.SpotImages;
+    reviewList.forEach(review => {
+        const spot = review.Spot;
+        spot.SpotImages.forEach(image => {
+            if (image.preview === true) {
+                spot.previewImage = image.url;
+            }
+            if (!review.Spot.previewImage) {
+                spot.previewImage = 'No preview image found';
+            }
+        });
+        delete spot.SpotImages;
         spot.price = Number(spot.price);
         spot.lng = Number(spot.lng);
         spot.lat = Number(spot.lat);
-            });
+    });
 
-   return res.json({Reviews: reviewList});
+    return res.json({ Reviews: reviewList });
 });
 
-router.post('/:reviewId/images', requireAuth, async (req, res) =>{
-    const {url, reviewId} = req.body;
-     const {user} = req;
+router.post('/:reviewId/images', requireAuth, async (req, res) => {
+    const { url, reviewId } = req.body;
+    const { user } = req;
     const review = await Review.findByPk(req.params.reviewId);
 
-    if(!review){
+    if (!review) {
         return res.status(404).json({
             message: "Review couldn't be found"
         });
     }
     const count = await ReviewImage.count({
-        where: {reviewId : review.id}
+        where: { reviewId: review.id }
     });
-    if(review.userId !== user.id){
+    if (review.userId !== user.id) {
         return res.status(403).json({
             message: "Forbidden"
         });
     }
-    if(count >= 9){
-       return res.status(403).json({
+    if (count >= 9) {
+        return res.status(403).json({
             message: "Maximum number of images for this resource was reached"
         });
     }
@@ -80,16 +83,16 @@ router.post('/:reviewId/images', requireAuth, async (req, res) =>{
 });
 
 
-router.put('/:reviewId', requireAuth, async(req, res) =>{
+router.put('/:reviewId', requireAuth, async (req, res) => {
     const { user } = req;
-    const {review, stars} = req.body;
+    const { review, stars } = req.body;
     const editedReview = await Review.findByPk(req.params.reviewId);
     if (!editedReview) {
         return res.status(404).json({
             message: "Review couldn't be found"
         });
     }
-    if(editedReview.userId !== user.id){
+    if (editedReview.userId !== user.id) {
         res.status(403).json({
             message: "Forbidden"
         });
@@ -107,27 +110,27 @@ router.put('/:reviewId', requireAuth, async(req, res) =>{
             errors: errors
         });
     }
-        if(review){
-            editedReview.review = review;
-        }
-        if(stars){
-            editedReview.stars = stars;
-        }
-        await editedReview.save();
+    if (review) {
+        editedReview.review = review;
+    }
+    if (stars) {
+        editedReview.stars = stars;
+    }
+    await editedReview.save();
 
-        return res.json(editedReview);
+    return res.json(editedReview);
 
 });
 
-router.delete('/:reviewId', async (req, res) =>{
+router.delete('/:reviewId', async (req, res) => {
     const { user } = req;
     const review = await Review.findByPk(req.params.reviewId);
-    if(!review){
-       return res.status(404).json({
-           message: "Review couldn't be found"
+    if (!review) {
+        return res.status(404).json({
+            message: "Review couldn't be found"
         });
     }
-    if(review.userId !== user.id){
+    if (review.userId !== user.id) {
         return res.status(403).json({
             message: "Forbidden"
         });

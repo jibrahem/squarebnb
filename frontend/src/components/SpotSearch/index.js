@@ -1,23 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { searchSpotsThunk } from "../../store/spots";
-import { useParams, Link } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 const SpotSearch = () => {
-    const dispatch = useDispatch();
-    const spotObj = useSelector(state => state.spots.allSpots)
+    const spotObj = useSelector(state => state.spots.query)
+
+    if(spotObj === undefined){
+        return null
+    }
+
     const spotList = Object.values(spotObj)
-   const query = useParams()
-    console.log('query', query)
 
-    console.log('spots', spotList)
-
-    useEffect(() => {
-        dispatch(searchSpotsThunk(query))
-    }, [dispatch, query])
-
-    if (!spotList) {
+    if (spotList.length === 0) {
         return null
     }
 

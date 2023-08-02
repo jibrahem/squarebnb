@@ -72,6 +72,7 @@ img {
 .img1 img{
     height: 412px;
     width: 100%;
+    object-fit: cover;
 }
 
 .img2 {
@@ -79,12 +80,14 @@ img {
     grid-template-columns: 1fr 1fr;
     row-gap: .5rem;
     column-gap: .5rem;
-    width:670px
+    width:670px;
+    object-fit: cover;
 }
 
 .img2 img {
     height: 200px;
     width: 100%;
+    object-fit: cover;
 }
 
 .modal button {
@@ -154,7 +157,7 @@ img {
     }
 
     .img img {
-        height: fit-content
+        height: fit-content;
     }
 
     .img2 {

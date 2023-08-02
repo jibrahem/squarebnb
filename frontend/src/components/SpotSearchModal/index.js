@@ -55,6 +55,7 @@ const SpotSearchModal = () => {
                 history.push(`/spots/query`)
             }
         });
+        
     }
 
     return (

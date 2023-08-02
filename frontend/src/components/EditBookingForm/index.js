@@ -16,7 +16,6 @@ const EditBookingForm = ({ spot, booking }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrors({})
         const bookingObj = {
             ...booking,
             spotId: spot.id,
@@ -24,22 +23,20 @@ const EditBookingForm = ({ spot, booking }) => {
             startDate,
             endDate,
         }
+        console.log('booking obj', bookingObj)
 
         if (startDate >= new Date().toJSON().slice(0, 10) &&
             endDate > new Date().toJSON().slice(0, 10)) {
-            const updated = await dispatch(updateBookingThunk(bookingObj))
-            if(updated.id === bookingObj.id){
-                dispatch(allBookingsOfUserThunk())
-                closeModal()
-            }
-
-        //     catch(async (res) => {
-        //         const data = await res.json();
-        //         if (data && data.errors) {
-        //             setErrors(data.errors);
-        //             history.push(`/bookings/current`)
-        //     }
-        // });
+            setErrors({})
+            return dispatch(updateBookingThunk(bookingObj, spot))
+            .then(closeModal)
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) {
+                    setErrors(data.errors);
+                }
+                history.push('/bookings/current')
+            })
         }
         return setErrors({
             startDate: 'Cannot book in the past'

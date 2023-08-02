@@ -49,7 +49,7 @@ function Navigation({ isLoaded }) {
                                             itemText="Search Spots"
                                             onItemClick={closeMenu}
                                             modalComponent={<SpotSearchModal
-                                                />}
+                                            />}
                                         />
                                         <NavLink exact to='/spots/new'>
                                             Create a New Spot
@@ -78,12 +78,14 @@ function Navigation({ isLoaded }) {
                         </li>
                     </div>
                     <div className='top'>
-                        <OpenModalMenuItem
-                            itemText="Search Spots"
-                            onItemClick={closeMenu}
-                            modalComponent={<SpotSearchModal
-                            />}
-                        />
+                        <div className='new'>
+                            <OpenModalMenuItem
+                                itemText="Search Spots"
+                                onItemClick={closeMenu}
+                                modalComponent={<SpotSearchModal
+                                />}
+                            />
+                        </div>
                         {isLoaded && (
                             <li>
                                 <ProfileButton user={sessionUser} />

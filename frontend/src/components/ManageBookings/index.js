@@ -41,6 +41,9 @@ export default function ManageBookings() {
         return null
     }
 
+    console.log('booking in manage', bookingList)
+
+
     return (
         <>
             <div className="manage-bookings">

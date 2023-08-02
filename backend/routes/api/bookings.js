@@ -76,9 +76,11 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     }
 
     const now = new Date();
-    if(start.getTime() < now.getTime() || end.getTime() < now.getTime()){
+    if(booking.startDate.getTime() < now.getTime() || booking.endDate.getTime() < now.getTime()){
         return res.status(403).json({
-            message: "Past bookings can't be modified"
+            errors:{
+               startDate: "Past bookings can't be modified"
+            }
         });
     }
 

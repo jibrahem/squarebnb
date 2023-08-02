@@ -1,5 +1,6 @@
 import { csrfFetch } from "./csrf";
 export const GET_ALL_SPOTS = 'spots/GET_ALL_SPOTS';
+export const GET_QUERY_SPOTS = 'spots/GET_QUERY_SPOTS'
 export const RECEIVE_SPOT = 'spots/RECEIVE_SPOT';
 export const GET_USER_SPOT = 'spots/GET_USER_SPOT'
 export const UPDATE_SPOT = 'spots/UPDATE_SPOT';
@@ -10,6 +11,11 @@ export const getSpots = (spots) => ({
     type: GET_ALL_SPOTS,
     spots,
 });
+
+export const getQuerySpots = (spots) => ({
+    type: GET_QUERY_SPOTS,
+    spots,
+})
 
 export const receiveSpot = (spot) => ({
     type: RECEIVE_SPOT,
@@ -46,7 +52,7 @@ export const searchSpotsThunk = (query) => async (dispatch) => {
 
     if(response.ok){
         const spots = await response.json()
-        dispatch(getSpots(spots))
+        dispatch(getQuerySpots(spots))
     }else{
         const errors = await response.json()
         return errors;
@@ -126,7 +132,7 @@ export const deleteSpotThunk = (spot) => async (dispatch) => {
 }
 
 
-const initialState = { allSpots: {}, singleSpot: {} };
+const initialState = { allSpots: {}, singleSpot: {}, query: {} };
 
 //reducer: case in the reducer for all spots
 const spotReducer = (state = initialState, action) => {
@@ -138,6 +144,11 @@ const spotReducer = (state = initialState, action) => {
                 newState.allSpots[spot.id] = spot
             })
             return newState
+        case GET_QUERY_SPOTS:
+            newState = { ...state, query: { ...state.query } };
+            newState.query = action.spots.Spots
+            return newState
+
         case RECEIVE_SPOT:
             newState = { ...state, allSpots: { ...state.allSpots }, singleSpot: { ...state.singleSpot } }
             return { ...state, singleSpot: { ...action.spot } };
