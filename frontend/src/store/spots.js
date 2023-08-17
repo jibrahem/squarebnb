@@ -48,12 +48,12 @@ export const allSpotsThunk = () => async (dispatch) => {
 }
 
 export const searchSpotsThunk = (query) => async (dispatch) => {
-    const response =  await csrfFetch(`/api/spots/${query}`)
+    const response = await csrfFetch(`/api/spots/${query}`)
 
-    if(response.ok){
+    if (response.ok) {
         const spots = await response.json()
         dispatch(getQuerySpots(spots))
-    }else{
+    } else {
         const errors = await response.json()
         return errors;
     }
@@ -80,23 +80,36 @@ export const allSpotsOfUserThunk = () => async (dispatch) => {
     }
 }
 
-export const createSpotThunk = (spot, spotImages) => async (dispatch) => {
+export const createSpotThunk = (spot, images) => async (dispatch) => {
+    console.log('spot in thunk', spot)
+    console.log('spotimages in thunk', images)
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot),
     });
+    console.log('response', response)
     const newSpot = await response.json();
+    console.log('newspot', newSpot)
     if (response.ok) {
-        for(let img of spotImages){
-            await csrfFetch(`/api/spots/${newSpot.id}/images`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(img),
-            })
+        const formData = new FormData();
+        console.log('array', Array.from(images))
+        Array.from(images).forEach(image => formData.append("images", image))
+        const res = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
+            method: 'POST',
+            body: formData,
+        })
+        console.log('formdata', formData)
+        console.log('res', res)
+        if (res.ok) {
+            const data = await res.json()
+            data.spot = newSpot
+            data.SpotImages = images
+            dispatch(receiveSpot(data))
+            console.log('data in thunk', data)
         }
-        dispatch(receiveSpot(newSpot))
-        return newSpot;
+        return res;
+
     } else {
         const errors = await response.json();
         return errors;

@@ -15,7 +15,6 @@ const CreateSpotForm = () => {
         description: '',
         name: '',
         price: '',
-        // image: '',
     };
 
     const history = useHistory();
@@ -28,23 +27,24 @@ const CreateSpotForm = () => {
     const [description, setDescription] = useState('');
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
-    const [image, setImage] = useState('');
-    const [img1, setImg1] = useState('');
-    const [img2, setImg2] = useState('');
-    const [img3, setImg3] = useState('');
-    const [img4, setImg4] = useState('');
+    const [images, setImages] = useState('');
+    // const [img1, setImg1] = useState('');
+    // const [img2, setImg2] = useState('');
+    // const [img3, setImg3] = useState('');
+    // const [img4, setImg4] = useState('');
     const [errors, setErrors] = useState({});
     const dispatch = useDispatch();
 
-    const SpotImages = [
-        { preview: true, url: image },
-        { preview: false, url: img1 },
-        { preview: false, url: img2 },
-        { preview: false, url: img3 },
-        { preview: false, url: img4 }]
+    const SpotImages =
+        [
+            { preview: true, url: images[0] },
+            { preview: false, url: images[1] },
+            { preview: false, url: images[2] },
+            { preview: false, url: images[3] },
+            { preview: false, url: images[4] }]
 
     SpotImages.forEach((image) => {
-        if (image.url === '') {
+        if (image.url === undefined ) {
             image.url = 'https://t4.ftcdn.net/jpg/05/07/58/41/360_F_507584110_KNIfe7d3hUAEpraq10J7MCPmtny8EH7A.jpg'
         }
     })
@@ -94,24 +94,24 @@ const CreateSpotForm = () => {
             errors.price = 'Price is required'
         }
 
-        if (!image) {
+        if (!images[0]) {
             errors.previewImage = 'Preview Image is required'
         }
-        if (image && !(image.endsWith('.png') || image.endsWith('.jpg') || image.endsWith('.jpeg'))) {
-            errors.image = 'Image URL must end with .png, .jpg, or .jpeg'
-        }
-        if (img1 && !(img1.endsWith('.png') || img1.endsWith('.jpg') || img1.endsWith('.jpeg'))) {
-            errors.img1 = 'Image URL must end with .png, .jpg, or .jpeg'
-        }
-        if (img2 && !(img2.endsWith('.png') || img2.endsWith('.jpg') || img2.endsWith('.jpeg'))) {
-            errors.img2 = 'Image URL must end with .png, .jpg, or .jpeg'
-        }
-        if (img3 && !(img3.endsWith('.png') || img3.endsWith('.jpg') || img3.endsWith('.jpeg'))) {
-            errors.img3 = 'Image URL must end with .png, .jpg, or .jpeg'
-        }
-        if (img4 && !(img4.endsWith('.png') || img4.endsWith('.jpg') || img4.endsWith('.jpeg'))) {
-            errors.img4 = 'Image URL must end with .png, .jpg, or .jpeg'
-        }
+        // if (image && !(image.endsWith('.png') || image.endsWith('.jpg') || image.endsWith('.jpeg'))) {
+        //     errors.image = 'Image URL must end with .png, .jpg, or .jpeg'
+        // }
+        // if (img1 && !(img1.endsWith('.png') || img1.endsWith('.jpg') || img1.endsWith('.jpeg'))) {
+        //     errors.img1 = 'Image URL must end with .png, .jpg, or .jpeg'
+        // }
+        // if (img2 && !(img2.endsWith('.png') || img2.endsWith('.jpg') || img2.endsWith('.jpeg'))) {
+        //     errors.img2 = 'Image URL must end with .png, .jpg, or .jpeg'
+        // }
+        // if (img3 && !(img3.endsWith('.png') || img3.endsWith('.jpg') || img3.endsWith('.jpeg'))) {
+        //     errors.img3 = 'Image URL must end with .png, .jpg, or .jpeg'
+        // }
+        // if (img4 && !(img4.endsWith('.png') || img4.endsWith('.jpg') || img4.endsWith('.jpeg'))) {
+        //     errors.img4 = 'Image URL must end with .png, .jpg, or .jpeg'
+        // }
 
 
         if (Object.values(errors).length > 0) {
@@ -124,6 +124,28 @@ const CreateSpotForm = () => {
             return null;
         }
     };
+
+    const updateFiles = e => {
+        const files = e.target.files;
+        setImages(files);
+    };
+    // const updateFile1 = e => {
+    //     const file = e.target.files[0];
+    //     setImg1(file);
+    // };
+    // const updateFile2 = e => {
+    //     const file = e.target.files[0];
+    //     setImg2(file);
+    // };
+    // const updateFile3 = e => {
+    //     const file = e.target.files[0];
+    //     setImg3(file);
+    // };
+    // const updateFile4 = e => {
+    //     const file = e.target.files[0];
+    //     setImg4(file);
+    // };
+
     return (
         <div className='spot-form'>
             <form onSubmit={handleSubmit}>
@@ -269,44 +291,46 @@ const CreateSpotForm = () => {
                 <div className='pic'>
                     <h3>Liven up your spot with photos</h3>
                     <h5>Submit a link to at least one photo to publish your spot.</h5>
-                    <input
+                    {/* <input
                         type='text'
                         placeholder=" Preview Image URL"
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
-                    />
+                    /> */}
+                    <input
+                        type="file"
+                        multiple
+                        placeholder='Preview Image'
+                        accept=".jpg, .jpeg, .png"
+
+                        onChange={updateFiles} />
+
                     <div className='errors'>{errors.previewImage}</div>
                     <div className='errors'>{errors.image}</div>
-                    <input
-                        type='text'
-                        placeholder=" Image URL"
-                        value={img1}
-                        onChange={(e) => setImg1(e.target.value)}
-                    />
+                    {/* <input
+                        type='file'
+                        accept=".jpg, .jpeg, .png"
+
+                        onChange={updateFile1} />
+
                     <div className='errors'>{errors.img1}</div>
                     <input
-                        type='text'
-                        placeholder=" Image URL"
-                        value={img2}
-                        onChange={(e) => setImg2(e.target.value)}
-                    />
+                        type='file'
+                        accept=".jpg, .jpeg, .png"
+                        onChange={updateFile2} />
                     <div className='errors'>{errors.img2}</div>
                     <input
-                        type='text'
-                        placeholder=" Image URL"
-                        value={img3}
-                        onChange={(e) => setImg3(e.target.value)}
-                    />
-                    <div className='errors'>{errors.img3}</div>
-                    <div className='lastimg'>
+                        type='file'
+                        accept=".jpg, .jpeg, .png"
+                        onChange={updateFile3} />
+                    <div className='errors'>{errors.img3}</div> */}
+                    {/* <div className='lastimg'>
                         <input
-                            type='text'
-                            placeholder=" Image URL"
-                            value={img4}
-                            onChange={(e) => setImg4(e.target.value)}
-                        />
-                        <div className='errors'>{errors.img4}</div>
-                    </div>
+                            type='file'
+                            accept=".jpg, .jpeg, .png"
+                            onChange={updateFile4} />
+                <div className='errors'>{errors.img4}</div>
+                    </div> */}
                 </div>
                 <button type="submit">Create Spot</button>
             </form>

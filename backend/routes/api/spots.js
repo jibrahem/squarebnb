@@ -5,6 +5,9 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { Spot, User, SpotImage, Booking, Review, ReviewImage } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { Op } = require('sequelize');
+// backend/routes/api/images.js
+
+const { multipleFilesUpload, multipleMulterUpload, retrievePrivateFile } = require("../../awsS3");
 
 router.get('/', async (req, res) => {
 
@@ -75,14 +78,11 @@ router.get('/', async (req, res) => {
     if (maxLng) {
         where.lng = { [Op.lte]: maxLng };
     }
-    if (minPrice && maxPrice) {
-        where.price = { [Op.between]: [minPrice, maxPrice] };
-
-    } else if (minPrice) {
-        where.price = { [Op.gte]: minPrice }
-
-    } else if (maxPrice) {
-        where.price = { [Op.lte]: maxPrice }
+    if (minPrice) {
+        where.price = { [Op.gte]: minPrice };
+    }
+    if (maxPrice) {
+        where.price = { [Op.lte]: maxPrice };
     }
 
     const allSpots = await Spot.findAll({
@@ -204,7 +204,9 @@ router.get('/:spotId', async (req, res) => {
     spot.price = Number(spot.price);
     spot.lng = Number(spot.lng);
     spot.lat = Number(spot.lat);
-
+    // const imageUrls = spot.SpotImage.map(image => retrievePrivateFile(image.key))
+    // console.log('imagesurl', imageUrls)
+    // console.log('spot', spot)
     return res.json(spot);
 });
 
@@ -276,7 +278,7 @@ router.post('/', validateSpot, requireAuth, async (req, res) => {
     return res.status(201).json(spot);
 });
 
-router.post('/:spotId/images', requireAuth, async (req, res) => {
+router.post('/:spotId/images', multipleMulterUpload("images"), requireAuth, async (req, res) => {
     const { url, preview } = req.body;
     const { user } = req;
     const spot = await Spot.findByPk(req.params.spotId);
@@ -290,16 +292,23 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
             message: "Forbidden"
         });
     }
-    const updatedSpot = await SpotImage.create({
-        spotId: spot.id,
-        url,
-        preview
-    });
-    const pojo = updatedSpot.toJSON();
-    delete pojo.spotId;
-    delete pojo.createdAt;
-    delete pojo.updatedAt;
-    return res.json(pojo);
+    const keys = await multipleFilesUpload({ files: req.files });
+    const images = await Promise.all(
+        keys.map(key => SpotImage.create({ key, spotId: spot.id, url, preview }))
+    );
+    const imageUrls = images.map(image => retrievePrivateFile(image.key));
+    // const updatedSpot = await SpotImage.create({
+    //     spotId: spot.id,
+    //     url,
+    //     preview
+    // });
+    console.log('IMAGES IN BACK', images)
+    console.log('IMAGEURLINBACKEND', imageUrls)
+    // const pojo = imageUrls.toJSON();
+    // delete pojo.spotId;
+    // delete pojo.createdAt;
+    // delete pojo.updatedAt;
+    return res.json(imageUrls);
 });
 
 router.put('/:spotId', validateSpot, requireAuth, async (req, res) => {
