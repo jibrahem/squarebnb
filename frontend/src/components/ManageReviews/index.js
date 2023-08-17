@@ -9,10 +9,10 @@ import './ManageReviews.css'
 export default function ManageReviews() {
     const dispatch = useDispatch()
     const reviewObj = useSelector(state => state.reviews.user)
-    console.log('review object', reviewObj)
+
     const user = useSelector(state => state.session.user)
     const list = Object.values(reviewObj)
-    console.log('review list', list)
+  
 
     const reviewList = list.filter((review)=> review.userId === user.id)
 

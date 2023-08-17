@@ -9,7 +9,6 @@ export default function SpotList(){
     const dispatch = useDispatch()
     const spotObj = useSelector(state => state.spots.allSpots)
     const spotList = Object.values(spotObj)
-    console.log('spolist', spotList)
 
 
     useEffect(() => {

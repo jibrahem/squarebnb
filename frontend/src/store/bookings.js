@@ -55,7 +55,6 @@ export const updateBookingThunk = (booking, spot) => async (dispatch) => {
     if (response.ok) {
         const updatedBooking = await response.json();
         updatedBooking.Spot = spot
-        console.log('updated booking in thunk', updatedBooking)
         dispatch(editBooking(updatedBooking));
         return updatedBooking;
     } else {

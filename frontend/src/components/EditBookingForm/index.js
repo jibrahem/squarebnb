@@ -23,7 +23,6 @@ const EditBookingForm = ({ spot, booking }) => {
             startDate,
             endDate,
         }
-        console.log('booking obj', bookingObj)
 
         if (startDate >= new Date().toJSON().slice(0, 10) &&
             endDate > new Date().toJSON().slice(0, 10)) {

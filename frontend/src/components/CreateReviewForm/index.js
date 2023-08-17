@@ -20,7 +20,7 @@ const CreateReviewForm = ({ spot }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const review = {
+        const reviewObj = {
             spotId: spot.id,
             userId: user.id,
             review: text,
@@ -28,21 +28,25 @@ const CreateReviewForm = ({ spot }) => {
         }
         const errors = {};
 
-        if (!text) {
-            errors.text = 'Review text is required'
+        if (text.length < 10) {
+            errors.text = 'Review text needs 10 characters minimum'
+        }
+        if(text.length > 200){
+            errors.text = "Review text must be less than 200 characters"
         }
         if (!stars) {
             errors.stars = "Stars must be an integer from 1 to 5";
         }
 
+
         if (Object.values(errors).length > 0) {
             setErrors(errors);
         } else {
-            const newReview = await dispatch(createReviewThunk(spot, review, user))
+            const newReview = await dispatch(createReviewThunk(spot, reviewObj, user))
             await dispatch(getOneSpotThunk(spot.id))
             .then(closeModal)
         }
-        if (!review) {
+        if (!reviewObj) {
             return null
         }
         if (!spot) {
@@ -51,10 +55,10 @@ const CreateReviewForm = ({ spot }) => {
     }
 
 
-    let isDisabled = true;
-    if (text.length > 10 && Object.values(errors).length === 0){
-        isDisabled = false
-    }
+    // let isDisabled = true;
+    // if (text.length > 10 && Object.values(errors).length === 0){
+    //     isDisabled = false
+    // }
 
     const setStar = (num)=> {
         if(num <= stars){
@@ -112,7 +116,7 @@ const CreateReviewForm = ({ spot }) => {
                         className={setStar(5)}></i> Stars
                 </div>
 
-                <button type='submit' disabled={isDisabled}>Submit Your Review</button>
+                <button type='submit'>Submit Your Review</button>
             </form>
             </div>
         </>
