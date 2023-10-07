@@ -14,7 +14,7 @@
 
 ## Search Spot Modal
 <img width="1508" alt="Screenshot 2023-09-07 at 11 35 24 AM" src="https://github.com/jibrahem/squarebnb/assets/118121002/57db4383-f54d-4f4b-86e6-6cc806226e06">
-
+The search modal works as a filter. Filter the spots you want to look at by latitude, longitude, and price.
 
 ## Contact me:
 Jehan Ibrahem: https://www.linkedin.com/in/jehan-ibrahem/
