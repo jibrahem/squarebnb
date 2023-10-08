@@ -14,11 +14,11 @@
 
 ## Manage Spots Page
 <img width="1503" alt="Screenshot 2023-10-07 at 5 28 01 PM" src="https://github.com/jibrahem/squarebnb/assets/118121002/8af14688-9e63-45c3-9daf-d2062a560fac">
-The logged in user is able to update or delete spots they have created.
+This the manage spots page. The logged in user is able to update or delete spots they have created. 
 
 ## Manage Reviews Page
 <img width="1499" alt="Screenshot 2023-10-07 at 5 19 57 PM" src="https://github.com/jibrahem/squarebnb/assets/118121002/a0b86134-e00f-42f1-8a9a-ec3f1865ab9e">
-The logged in user is able to update or delete reviews they have created for a certain spot.
+This is the manage reviews page. The logged in user is able to update or delete reviews they have created for a certain spot.
 
 ## Search Spot Modal
 <img width="1508" alt="Screenshot 2023-09-07 at 11 35 24 AM" src="https://github.com/jibrahem/squarebnb/assets/118121002/57db4383-f54d-4f4b-86e6-6cc806226e06">
